@@ -42,14 +42,14 @@ class ConnectionPoint {
   onMouseDown(e) {
     const startCoords = GeometryUtils.calculatePointCoordinates(
       this,
-      this.visualizer.svgContainer
+      this.visualizer.svgContainer,
     );
 
     this.startX = startCoords.x;
     this.startY = startCoords.y;
 
     const lineObjects = this.visualizer.createTemporaryLine(
-      DomUtils.getScale()
+      DomUtils.getScale(),
     );
     this.activeLine = lineObjects.line;
     this.activePath = lineObjects.path;
@@ -63,7 +63,7 @@ class ConnectionPoint {
       this.startY,
       e.clientX,
       e.clientY,
-      this.type
+      this.type,
     );
   }
 
@@ -74,7 +74,7 @@ class ConnectionPoint {
       this.startY,
       e.clientX,
       e.clientY,
-      this.type
+      this.type,
     );
   }
 
@@ -150,15 +150,15 @@ class ConnectionPoint {
     const id = NetworkModel.getConnectionId();
     const connectionElement = this.visualizer.createPermanentConnection(
       source,
-      target
+      target,
     );
     if (connectionElement) {
       let targetNode = document.querySelector(
-        `.layer-node[data-id="${target}"]`
+        `.layer-node[data-id="${target}"]`,
       );
       if (!targetNode) {
         targetNode = document.querySelector(
-          `.layer-group[data-id="${target}"]`
+          `.layer-group[data-id="${target}"]`,
         );
       }
       const connection = new ConnectionModel(
@@ -167,7 +167,7 @@ class ConnectionPoint {
         target,
         this.node,
         targetNode,
-        connectionElement
+        connectionElement,
       );
       NetworkModel.addConnection(connection);
       this.visualizer.removeTemporaryLine(this.activeLine);

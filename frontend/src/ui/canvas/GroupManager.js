@@ -69,7 +69,7 @@ class GroupManager {
       dimensions: {
         width: boundingBox.width,
         height: boundingBox.height,
-      }
+      },
     });
     this.selectionManager.clearSelection();
     GroupManager.updateGroupConnections(groupId);
@@ -80,7 +80,7 @@ class GroupManager {
   createGroupElement(
     groupId,
     boundingBox,
-    groupName = `Group ${this.groupCounter}`
+    groupName = `Group ${this.groupCounter}`,
   ) {
     const groupElement = DomUtils.createElementWithClass("div", "layer-group");
     groupElement.dataset.id = groupId;
@@ -154,7 +154,7 @@ class GroupManager {
   deselectAllGroups() {
     if (this.selectedGroup) {
       const previousGroup = this.groups.find(
-        (g) => g.id === this.selectedGroup
+        (g) => g.id === this.selectedGroup,
       );
       if (previousGroup && previousGroup.element) {
         previousGroup.element.classList.remove("selected-group");
@@ -316,8 +316,12 @@ class GroupManager {
           if (isDragging) {
             const canvasRect = canvas.getBoundingClientRect();
 
-            const worldX = (moveEvent.clientX - canvasRect.left - this.parent.panX) / this.parent.scale;
-            const worldY = (moveEvent.clientY - canvasRect.top - this.parent.panY) / this.parent.scale;
+            const worldX =
+              (moveEvent.clientX - canvasRect.left - this.parent.panX) /
+              this.parent.scale;
+            const worldY =
+              (moveEvent.clientY - canvasRect.top - this.parent.panY) /
+              this.parent.scale;
 
             const left = worldX - offsetX;
             const top = worldY - offsetY;
@@ -381,7 +385,7 @@ class GroupManager {
       nodes.forEach((node) => {
         node.style.display = "block";
       });
-      
+
       groupElement.style.width = `${group.dimensions.width}px`;
       groupElement.style.height = `${group.dimensions.height}px`;
 
@@ -414,7 +418,7 @@ class GroupManager {
       groupElement.appendChild(handle);
       handle.addEventListener(
         "mousedown",
-        this.handleResizeStart.bind(this, groupElement, pos)
+        this.handleResizeStart.bind(this, groupElement, pos),
       );
     });
   }
@@ -439,9 +443,9 @@ class GroupManager {
 
     const handleMouseMove = (moveEvent) => {
       moveEvent.preventDefault();
-      const dx = (moveEvent.clientX - startX);
-      const dy = (moveEvent.clientY - startY);
-      
+      const dx = moveEvent.clientX - startX;
+      const dy = moveEvent.clientY - startY;
+
       let minLeft = Infinity;
       let minTop = Infinity;
       let maxRight = -Infinity;
@@ -453,16 +457,19 @@ class GroupManager {
         const nodeTop = parseInt(node.style.top);
         const nodeWidth = node.offsetWidth;
         const nodeHeight = node.offsetHeight;
-        
+
         minLeft = Math.min(minLeft, nodeLeft);
         minTop = Math.min(minTop, nodeTop);
         maxRight = Math.max(maxRight, nodeLeft + nodeWidth);
         maxBottom = Math.max(maxBottom, nodeTop + nodeHeight);
       });
-      
 
       const minRequiredWidth = maxRight - minLeft + GROUP_DEFAULTS.PADDING * 2;
-      const minRequiredHeight = maxBottom - minTop + GROUP_DEFAULTS.PADDING * 2 + GROUP_DEFAULTS.HEADER_AREA_HEIGHT;
+      const minRequiredHeight =
+        maxBottom -
+        minTop +
+        GROUP_DEFAULTS.PADDING * 2 +
+        GROUP_DEFAULTS.HEADER_AREA_HEIGHT;
 
       let newWidth = initialWidth;
       let newHeight = initialHeight;
@@ -471,37 +478,61 @@ class GroupManager {
 
       switch (position) {
         case "nw":
-          newWidth = Math.max(minRequiredWidth, initialWidth - dx/this.parent.scale);
-          newHeight = Math.max(minRequiredHeight, initialHeight - dy/this.parent.scale);
+          newWidth = Math.max(
+            minRequiredWidth,
+            initialWidth - dx / this.parent.scale,
+          );
+          newHeight = Math.max(
+            minRequiredHeight,
+            initialHeight - dy / this.parent.scale,
+          );
           newLeft = initialLeft + dx;
           newTop = initialTop + dy;
-          if (newLeft>initialLeft){
+          if (newLeft > initialLeft) {
             newLeft = initialLeft;
           }
-          if (newTop>initialTop){
+          if (newTop > initialTop) {
             newTop = initialTop;
           }
           break;
 
         case "ne":
-          newWidth = Math.max(minRequiredWidth, initialWidth + dx/this.parent.scale);
-          newHeight = Math.max(minRequiredHeight, initialHeight - dy/this.parent.scale);
+          newWidth = Math.max(
+            minRequiredWidth,
+            initialWidth + dx / this.parent.scale,
+          );
+          newHeight = Math.max(
+            minRequiredHeight,
+            initialHeight - dy / this.parent.scale,
+          );
           newTop = initialTop + dy;
-          if (newTop>initialTop){
+          if (newTop > initialTop) {
             newTop = initialTop;
           }
           break;
 
         case "se":
-          newWidth = Math.max(minRequiredWidth, initialWidth + dx/this.parent.scale);
-          newHeight = Math.max(minRequiredHeight, initialHeight + dy/this.parent.scale);
+          newWidth = Math.max(
+            minRequiredWidth,
+            initialWidth + dx / this.parent.scale,
+          );
+          newHeight = Math.max(
+            minRequiredHeight,
+            initialHeight + dy / this.parent.scale,
+          );
           break;
 
         case "sw":
-          newWidth = Math.max(minRequiredWidth, initialWidth - dx/this.parent.scale);
-          newHeight = Math.max(minRequiredHeight, initialHeight + dy/this.parent.scale);
+          newWidth = Math.max(
+            minRequiredWidth,
+            initialWidth - dx / this.parent.scale,
+          );
+          newHeight = Math.max(
+            minRequiredHeight,
+            initialHeight + dy / this.parent.scale,
+          );
           newLeft = initialLeft + dx;
-          if(newLeft>initialLeft){
+          if (newLeft > initialLeft) {
             newLeft = initialLeft;
           }
           break;
@@ -511,12 +542,13 @@ class GroupManager {
       groupElement.style.height = `${newHeight}px`;
       groupElement.style.left = `${newLeft}px`;
       groupElement.style.top = `${newTop}px`;
-      groupElement.dataset.originalX  = (newLeft - this.parent.panX) / this.parent.scale;
-      groupElement.dataset.originalY  = (newTop - this.parent.panY) / this.parent.scale;
+      groupElement.dataset.originalX =
+        (newLeft - this.parent.panX) / this.parent.scale;
+      groupElement.dataset.originalY =
+        (newTop - this.parent.panY) / this.parent.scale;
       const group = this.groups.find((g) => g.id === groupElement.dataset.id);
       group.dimensions.width = newWidth;
       group.dimensions.height = newHeight;
-
 
       GroupManager.updateGroupConnections();
     };
@@ -721,7 +753,7 @@ class GroupManager {
       const newNode = await this.createNodeFromData(
         nodeData,
         GROUP_DEFAULTS.PASTE_OFFSET,
-        GROUP_DEFAULTS.PASTE_OFFSET
+        GROUP_DEFAULTS.PASTE_OFFSET,
       );
       if (newNode) {
         newLayers.push(newNode);
@@ -736,7 +768,7 @@ class GroupManager {
         const newSourceId = idMapping[conn.sourceId];
         const newTargetId = idMapping[conn.targetId];
         const sourceNode = document.querySelector(
-          `.layer-node[data-id="${newSourceId}"]`
+          `.layer-node[data-id="${newSourceId}"]`,
         );
         this.createConnection(newSourceId, newTargetId, sourceNode);
       }
@@ -764,15 +796,15 @@ class GroupManager {
 
     const connectionElement = visualizer.createPermanentConnection(
       sourceId,
-      targetId
+      targetId,
     );
     if (connectionElement) {
       let targetNode = document.querySelector(
-        `.layer-node[data-id="${targetId}"]`
+        `.layer-node[data-id="${targetId}"]`,
       );
       if (!targetNode) {
         targetNode = document.querySelector(
-          `.layer-group[data-id="${targetId}"]`
+          `.layer-group[data-id="${targetId}"]`,
         );
       }
       const connection = new ConnectionModel(
@@ -781,37 +813,38 @@ class GroupManager {
         targetId,
         sourceNode,
         targetNode,
-        connectionElement
+        connectionElement,
       );
       NetworkModel.addConnection(connection);
     }
   }
 
-
   addNodeToGroup(groupId, node) {
-    const group = this.groups.find(g => g.id === groupId);
- 
+    const group = this.groups.find((g) => g.id === groupId);
+
     if (node.dataset.groupId) {
       console.warn("Node is already part of another group");
       return false;
     }
     //find to which node is the node atta hed to
     const attachedTo = node.dataset.attachedTo;
-    const attachedToNode = document.querySelector(`.layer-node[data-id="${attachedTo}"]`);
-    console.log("attachedToNode.style.left", attachedToNode.style.left)
-    console.log("attachedToNode.style.top", attachedToNode.style.top)
+    const attachedToNode = document.querySelector(
+      `.layer-node[data-id="${attachedTo}"]`,
+    );
+    console.log("attachedToNode.style.left", attachedToNode.style.left);
+    console.log("attachedToNode.style.top", attachedToNode.style.top);
     const groupElement = group.element;
     const scale = this.parent.scale || 1;
-    const originalLeft = parseFloat(attachedToNode.style.left)  + 22 + 24  //+ (parseInt(node.dataset.originalX) - parseInt(groupElement.dataset.originalX)) / scale;
-    const originalTop = parseFloat(attachedToNode.style.top) - 22 // (parseInt(node.dataset.originalY) - parseInt(groupElement.dataset.originalY)) / scale;
-    
+    const originalLeft = parseFloat(attachedToNode.style.left) + 22 + 24; //+ (parseInt(node.dataset.originalX) - parseInt(groupElement.dataset.originalX)) / scale;
+    const originalTop = parseFloat(attachedToNode.style.top) - 22; // (parseInt(node.dataset.originalY) - parseInt(groupElement.dataset.originalY)) / scale;
+
     node.dataset.groupId = groupId;
     groupElement.appendChild(node);
     node.style.transform = `scale(${1})`;
     node.style.left = `${originalLeft}px`;
     node.style.top = `${originalTop}px`;
-    console.log("node.style.left", node.style.left)
-    console.log("node.style.top", node.style.top)
+    console.log("node.style.left", node.style.left);
+    console.log("node.style.top", node.style.top);
     group.nodes.push(node);
     GroupManager.updateGroupConnections(groupId);
     this.parent.updateElementPositions();
@@ -825,7 +858,7 @@ class GroupManager {
   }
   static resize(groupId, nodeElement, moveEvent, startx, starty) {
     const groupElement = document.querySelector(
-      `.layer-group[data-id="${groupId}"]`
+      `.layer-group[data-id="${groupId}"]`,
     );
 
     const initialWidth = parseInt(groupElement.style.width);
@@ -844,13 +877,12 @@ class GroupManager {
     // newHeight = Math.max(GROUP_DEFAULTS.MIN_RESIZE_HEIGHT, initialHeight - dy);
     // newLeft = initialLeft + initialWidth - newWidth;
     // newTop = initialTop + initialHeight - newHeight;
-    
 
     const difference = initialLeft - startx + 60;
     if (difference > 0) {
       newWidth = Math.max(
         GROUP_DEFAULTS.MIN_RESIZE_WIDTH,
-        initialWidth + difference
+        initialWidth + difference,
       );
       newLeft = initialLeft + initialWidth - newWidth;
     }
@@ -858,14 +890,7 @@ class GroupManager {
     groupElement.style.height = `${newHeight}px`;
     groupElement.style.left = `${newLeft}px`;
     groupElement.style.top = `${newTop}px`;
-
-    
-
-    
-
   }
 }
 
-
 export default GroupManager;
-

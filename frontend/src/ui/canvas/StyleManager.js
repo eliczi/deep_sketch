@@ -1,12 +1,12 @@
 class StyleManager {
-    constructor() {
-      this.injectStyles();
-      this.zoomIndicator = this.createZoomIndicator();
-    }
-  
-    injectStyles() {
-      const style = document.createElement('style');
-      style.textContent = `
+  constructor() {
+    this.injectStyles();
+    this.zoomIndicator = this.createZoomIndicator();
+  }
+
+  injectStyles() {
+    const style = document.createElement("style");
+    style.textContent = `
         .selection-area {
           position: absolute;
           border: 1px dashed #3498db;
@@ -20,16 +20,16 @@ class StyleManager {
           box-shadow: 0 0 8px rgba(52, 152, 219, 0.6) !important;
         }
       `;
-      document.head.appendChild(style);
-    }
-  
-    createZoomIndicator() {
-      const indicator = document.createElement('div');
-      indicator.className = 'zoom-indicator';
-      indicator.textContent = '100%';
-      document.body.appendChild(indicator);
-      return indicator;
-    }
+    document.head.appendChild(style);
   }
 
-  export default StyleManager;
+  createZoomIndicator() {
+    const indicator = document.createElement("div");
+    indicator.className = "zoom-indicator";
+    indicator.textContent = "100%";
+    document.body.appendChild(indicator);
+    return indicator;
+  }
+}
+
+export default StyleManager;

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="64.060608mm"
+   height="64.060608mm"
+   viewBox="0 0 64.060608 64.060608"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   sodipodi:docname="flattening_layer.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.94895954"
+     inkscape:cx="196.53103"
+     inkscape:cy="61.646464"
+     inkscape:window-width="1728"
+     inkscape:window-height="972"
+     inkscape:window-x="0"
+     inkscape:window-y="38"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showgrid="false" />
+  <defs
+     id="defs1">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 83.594648 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="64 : 83.594648 : 1"
+       inkscape:persp3d-origin="32 : 74.749968 : 1"
+       id="perspective11" />
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Drop Shadow"
+       id="filter30"
+       x="-0.4131175"
+       y="-0.4131175"
+       width="1.6577377"
+       height="1.6577377">
+      <feFlood
+         result="flood"
+         flood-opacity="0.53907815631262523"
+         flood-color="rgb(0,0,0)"
+         id="feFlood29" />
+      <feGaussianBlur
+         result="blur"
+         in="SourceGraphic"
+         stdDeviation="1.6949152542372881"
+         id="feGaussianBlur29" />
+      <feOffset
+         result="offset"
+         dx="-3.4907597535934309"
+         dy="-3.4907597535934309"
+         id="feOffset29" />
+      <feComposite
+         result="comp1"
+         operator="in"
+         in="flood"
+         in2="offset"
+         id="feComposite29" />
+      <feComposite
+         result="comp2"
+         operator="over"
+         in="SourceGraphic"
+         in2="comp1"
+         id="feComposite30" />
+    </filter>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-46.325584,-49.163548)">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-dasharray:none"
+       id="rect1"
+       width="62.060608"
+       height="62.060604"
+       x="47.325584"
+       y="50.163548" />
+    <path
+       style="fill:#cccccc;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-dasharray:2, 3;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 89.647087,56.562121 63.236751,69.412452 M 89.382505,56.562123"
+       id="path18-3"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.65863;stroke-dasharray:none"
+       d="M 64.027084,70.344718 V 95.945699"
+       id="path2" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.7;stroke-dasharray:none"
+       id="rect2"
+       width="26.538071"
+       height="26.538071"
+       x="50.796627"
+       y="69.648308" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.65863;stroke-dasharray:none"
+       d="M 51.336643,82.773764 H 77.702847"
+       id="path3" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.7;stroke-dasharray:none"
+       d="M 90.188842,67.957308 H 103.88928"
+       id="path3-0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.7;stroke-dasharray:none"
+       d="M 90.332387,94.313059 H 104.03282"
+       id="path3-0-4" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.7;stroke-dasharray:none"
+       d="M 90.211301,81.026432 H 103.91174"
+       id="path3-0-5" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.7;stroke-dasharray:none"
+       id="rect3"
+       width="12.857115"
+       height="51.428459"
+       x="90.408264"
+       y="55.340046" />
+    <path
+       style="fill:#cccccc;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-dasharray:2, 3;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 90.11473,68.672352 77.463643,70.080778"
+       id="path18-3-0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#cccccc;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-dasharray:2, 3;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 91.092515,94.800791 76.703417,84.332803"
+       id="path18-3-4"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag to SVG Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .draggable-elements {
+            width: 200px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        
+        .draggable {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            cursor: grab;
+            user-select: none;
+        }
+        
+        .canvas-area {
+            border: 2px dashed #aaa;
+            width: 600px;
+            height: 400px;
+            position: relative;
+        }
+        
+        .svg-element {
+            position: absolute;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Drag HTML Elements to Canvas</h1>
+    
+    <div class="container">
+        <div class="draggable-elements">
+            <h3>Draggable Elements</h3>
+            <div class="draggable" draggable="true" data-svg-type="rectangle">Rectangle</div>
+            <div class="draggable" draggable="true" data-svg-type="circle">Circle</div>
+            <div class="draggable" draggable="true" data-svg-type="star">Star</div>
+            <div class="draggable" draggable="true" data-svg-type="custom">Custom Element</div>
+        </div>
+        
+        <div class="canvas-area" id="canvas">
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
-import apiClient from '../api/ApiClient.js';
-import LayerModel from './LayerModel.js';
-import GroupModel from './GroupModel.js';
+import apiClient from "../api/ApiClient.js";
+import LayerModel from "./LayerModel.js";
+import GroupModel from "./GroupModel.js";
 /**
  * Represents the neural network model, including layers, connections, and groups.
  * Handles network initialization, layer management, and API communication.
@@ -9,35 +9,33 @@ import GroupModel from './GroupModel.js';
 class NetworkModel {
   constructor() {
     this.id = null;
-    this.layers = []; 
-    this.connections = []; 
+    this.layers = [];
+    this.connections = [];
     this.layerTypes = [];
     this.nextNodeId = 1;
-    this.groups = []
+    this.groups = [];
   }
-  
+
   async initialize() {
     try {
       this.id = await apiClient.createNetwork();
       this.layerTypes = await apiClient.getLayerTypes();
       //this.layerTypes = layerTypes;
       return true;
-      
     } catch (error) {
-      console.error('Failed to initialize network:', error);
+      console.error("Failed to initialize network:", error);
       return false;
     }
   }
   addLayer(type, params, x, y) {
     const nodeId = this.nextNodeId++;
-    const tempBackendId = 'temp-' + nodeId;
+    const tempBackendId = "temp-" + nodeId;
     const layer = new LayerModel(nodeId, tempBackendId, type, params, x, y);
     this.layers.push(layer);
 
-    apiClient.addLayer(this.id, type, params)
-        .then(backendId => {
-            layer.backendId = backendId;
-        })
+    apiClient.addLayer(this.id, type, params).then((backendId) => {
+      layer.backendId = backendId;
+    });
     return layer;
   }
   // async addLayer(type, params, x, y) {
@@ -49,40 +47,39 @@ class NetworkModel {
   //   return layer;
 
   // }
-    
+
   getLayerType(typeName) {
-    return this.layerTypes.find(lt => lt.name === typeName) || null;
+    return this.layerTypes.find((lt) => lt.name === typeName) || null;
   }
-  
+
   clear() {
     this.layers = [];
     this.connections = [];
     this.nextNodeId = 1;
   }
 
-  addConnection(connection){
-    this.connections.push(connection)
+  addConnection(connection) {
+    this.connections.push(connection);
   }
 
-  getConnectionId(){
-    return this.connections.length
+  getConnectionId() {
+    return this.connections.length;
   }
 
-  
   removeLayer(layerId) {
-    const layerIndex = this.layers.findIndex(layer => layer.id == layerId);    
+    const layerIndex = this.layers.findIndex((layer) => layer.id == layerId);
     this.layers.splice(layerIndex, 1);
   }
 
   getLayerById(id) {
-    return this.layers.find(layer => layer.id === id);
+    return this.layers.find((layer) => layer.id === id);
   }
 
-  reset(){
-    this.layers = []; 
-    this.connections = []; 
+  reset() {
+    this.layers = [];
+    this.connections = [];
     this.nextNodeId = 1;
-    this.groups = []
+    this.groups = [];
   }
 }
 

@@ -1,15 +1,15 @@
-import { DraggableWindow } from './DraggableWindow.js';
+import { DraggableWindow } from "./DraggableWindow.js";
 export class ConnectionWindow {
-    constructor() {
-      this.windowVisible = false;
-      this.setupStyles();
-    }
-  
-    setupStyles() {
-      if (!document.getElementById('connection-styles')) {
-        const style = document.createElement('style');
-        style.id = 'connection-styles';
-        style.textContent = `
+  constructor() {
+    this.windowVisible = false;
+    this.setupStyles();
+  }
+
+  setupStyles() {
+    if (!document.getElementById("connection-styles")) {
+      const style = document.createElement("style");
+      style.id = "connection-styles";
+      style.textContent = `
           /* Connection window styles */
           .connection-window {
             position: absolute;
@@ -57,67 +57,61 @@ export class ConnectionWindow {
             min-height: 120px;
           }
         `;
-        document.head.appendChild(style);
-      }
-    }
-    
-    show(sourceId, targetId, event) {
-      this.close();
-      
-      const windowElement = document.createElement('div');
-      windowElement.className = 'connection-window';
-      windowElement.id = 'connection-window';
-      
-      const header = document.createElement('div');
-      header.className = 'connection-window-header';
-      
-      const title = document.createElement('div');
-      title.className = 'connection-window-title';
-      title.textContent = `Connection Details`;
-      
-      const closeButton = document.createElement('div');
-      closeButton.className = 'connection-window-close';
-      closeButton.innerHTML = '&times;';
-      closeButton.addEventListener('click', () => this.close());
-      
-      header.appendChild(title);
-      header.appendChild(closeButton);
-      
-      const content = document.createElement('div');
-      content.className = 'connection-window-content';
-      
-      windowElement.appendChild(header);
-      windowElement.appendChild(content);
-      
-      
-      windowElement.style.left = `${event.clientX}px`;
-      windowElement.style.top = `${event.clientY}px`;
-      windowElement.style.transform = 'none';
-  
-      document.body.appendChild(windowElement);
-      this.windowVisible = true;
-      
-      
-      
-      
-      
-      document.addEventListener('mousedown', this.handleOutsideClick);
-    }
-    
-    handleOutsideClick = (e) => {
-      const window = document.getElementById('connection-window');
-      if (window && !window.contains(e.target) && this.windowVisible) {
-        this.close();
-      }
-    }
-    
-    close() {
-      const window = document.getElementById('connection-window');
-      if (window) {
-        window.remove();
-        this.windowVisible = false;
-        document.removeEventListener('mousedown', this.handleOutsideClick);
-      }
+      document.head.appendChild(style);
     }
   }
-  
+
+  show(sourceId, targetId, event) {
+    this.close();
+
+    const windowElement = document.createElement("div");
+    windowElement.className = "connection-window";
+    windowElement.id = "connection-window";
+
+    const header = document.createElement("div");
+    header.className = "connection-window-header";
+
+    const title = document.createElement("div");
+    title.className = "connection-window-title";
+    title.textContent = `Connection Details`;
+
+    const closeButton = document.createElement("div");
+    closeButton.className = "connection-window-close";
+    closeButton.innerHTML = "&times;";
+    closeButton.addEventListener("click", () => this.close());
+
+    header.appendChild(title);
+    header.appendChild(closeButton);
+
+    const content = document.createElement("div");
+    content.className = "connection-window-content";
+
+    windowElement.appendChild(header);
+    windowElement.appendChild(content);
+
+    windowElement.style.left = `${event.clientX}px`;
+    windowElement.style.top = `${event.clientY}px`;
+    windowElement.style.transform = "none";
+
+    document.body.appendChild(windowElement);
+    this.windowVisible = true;
+
+    document.addEventListener("mousedown", this.handleOutsideClick);
+  }
+
+  handleOutsideClick = (e) => {
+    const window = document.getElementById("connection-window");
+    if (window && !window.contains(e.target) && this.windowVisible) {
+      this.close();
+    }
+  };
+
+  close() {
+    const window = document.getElementById("connection-window");
+    if (window) {
+      window.remove();
+      this.windowVisible = false;
+      document.removeEventListener("mousedown", this.handleOutsideClick);
+    }
+  }
+}

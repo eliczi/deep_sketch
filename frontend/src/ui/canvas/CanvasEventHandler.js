@@ -150,6 +150,7 @@ class CanvasEventHandler {
           targetPos.y,
           this.parent.scale,
         );
+        console.log('functionLayer:', functionLayer);
 
         nodeUnderCursor.dataset.activation_fuction = functionLayer;
 

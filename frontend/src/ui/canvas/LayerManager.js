@@ -21,35 +21,32 @@ class LayerManager {
     if (!layerTypeDef) return null;
 
     const params = this.createDefaultParams(layerTypeDef);
-    try {
-      const layer = await this.networkModel.addLayer(layerType, params, x, y);
-      if (!layer) throw new Error('Failed to create layer');
-      const clickHandler = (nodeId) => {
-        this.canvas.dispatchEvent(new CustomEvent('node-clicked', { 
-          detail: { nodeId }, 
-          bubbles: true 
-        }));
-      };
-      const nodeElement = this.layerFactory.createNodeElement(
-        layer.id,
-        layerType,
-        x,
-        y,
-        clickHandler,
-        layerTypeDef,
-        scale,
-        this.parent.panX,
-        this.parent.panY
-      );
+    
+    const layer = this.networkModel.addLayer(layerType, params, x, y);
+    if (!layer) throw new Error('Failed to create layer');
+    const clickHandler = (nodeId) => {
+      this.canvas.dispatchEvent(new CustomEvent('node-clicked', { 
+        detail: { nodeId }, 
+        bubbles: true 
+      }));
+    };
+    const nodeElement = this.layerFactory.createNodeElement(
+      layer.id,
+      layerType,
+      x,
+      y,
+      clickHandler,
+      layerTypeDef,
+      scale,
+      this.parent.panX,
+      this.parent.panY
+    );
+    
+    this.canvas.appendChild(nodeElement);
+    layer.setElement(nodeElement);
+    return layer;
       
-      this.canvas.appendChild(nodeElement);
-      layer.setElement(nodeElement);
-      return layer;
-      
-    } catch (error) {
-      console.error('Failed to create layer:', error);
-      return null;
-    }
+    
   }
   
   createDefaultParams(layerTypeDef) {

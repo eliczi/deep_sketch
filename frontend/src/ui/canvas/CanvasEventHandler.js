@@ -85,7 +85,7 @@ class CanvasEventHandler {
     }
   }
   
-  async handleDrop(e) {
+  handleDrop(e) {
     e.preventDefault();
     
     if (this.layerPanel.currentDraggedLayerType && this.layerPanel.currentDraggedLayerType.includes('Function')) {
@@ -106,7 +106,7 @@ class CanvasEventHandler {
         
         
         
-        const functionLayer = await this.layerManager.createLayer(
+        const functionLayer = this.layerManager.createLayer(
           this.layerPanel.currentDraggedLayerType, 
           targetPos.x,
           targetPos.y,
@@ -129,7 +129,7 @@ class CanvasEventHandler {
       const layerType = e.dataTransfer.getData('text/plain');
       const position = this.canvasUtils.getCanvasPosition(e, this.parent.scale, this.parent.panX, this.parent.panY, false);
       this.previewManager.removePreviewElement();
-      const layer = await this.layerManager.createLayer(layerType, position.x, position.y, this.parent.scale);
+      const layer = this.layerManager.createLayer(layerType, position.x, position.y, this.parent.scale);
       if (layer) {
         this.selectionManager.selectNode(layer.id);
         this.layerPanelManager.showLayerPanel(layer.id);

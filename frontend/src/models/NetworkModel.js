@@ -28,15 +28,27 @@ class NetworkModel {
       return false;
     }
   }
-  async addLayer(type, params, x, y) {
-
-    const backendId = await apiClient.addLayer(this.id, type, params);
+  addLayer(type, params, x, y) {
     const nodeId = this.nextNodeId++;
-    const layer = new LayerModel(nodeId, backendId, type, params, x, y);
+    const tempBackendId = 'temp-' + nodeId;
+    const layer = new LayerModel(nodeId, tempBackendId, type, params, x, y);
     this.layers.push(layer);
-    return layer;
 
+    apiClient.addLayer(this.id, type, params)
+        .then(backendId => {
+            layer.backendId = backendId;
+        })
+    return layer;
   }
+  // async addLayer(type, params, x, y) {
+
+  //   const backendId = await apiClient.addLayer(this.id, type, params);
+  //   const nodeId = this.nextNodeId++;
+  //   const layer = new LayerModel(nodeId, backendId, type, params, x, y);
+  //   this.layers.push(layer);
+  //   return layer;
+
+  // }
     
   getLayerType(typeName) {
     return this.layerTypes.find(lt => lt.name === typeName) || null;

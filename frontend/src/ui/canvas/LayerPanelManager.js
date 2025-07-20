@@ -324,6 +324,8 @@ class LayerPanelManager {
         transition: all 0.3s ease-in-out;
         overflow: hidden;
         margin-top: 10px;
+        max-height: 200px;
+        overflow-y: auto;
       }
 
       .additional-params-content > * {

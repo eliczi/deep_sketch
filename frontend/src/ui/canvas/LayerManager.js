@@ -16,7 +16,7 @@ class LayerManager {
   
   // ===== Layer Creation/Deletion Methods =====
   
-  async createLayer(layerType, x, y, scale) {
+  createLayer(layerType, x, y, scale) {
     const layerTypeDef = this.networkModel.getLayerType(layerType);
     if (!layerTypeDef) return null;
 

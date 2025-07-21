@@ -78,16 +78,7 @@ class LayerPanel {
         "div",
         "category-header",
       );
-      Object.assign(categoryHeader.style, {
-        padding: "8px",
-        backgroundColor: "#f5f5f5",
-        borderBottom: "1px solid #ddd",
-        cursor: "pointer",
-        userSelect: "none",
-        position: "sticky",
-        top: "0",
-        zIndex: "1",
-      });
+  
 
       categoryHeader.innerHTML = `
         <span class="category-name">${categoryName}</span>
@@ -174,10 +165,11 @@ class LayerPanel {
       });
 
       categoryContainer.appendChild(contentContainer);
-      scrollableWrapper.appendChild(categoryContainer);
+      //scrollableWrapper.appendChild(categoryContainer);
+      this.container.appendChild(categoryContainer);
     });
 
-    this.container.appendChild(scrollableWrapper);
+    //this.container.appendChild(scrollableWrapper);
   }
 
   handleLayerTypeDragStart(e) {

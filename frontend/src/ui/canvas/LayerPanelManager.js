@@ -1,21 +1,4 @@
 import DomUtils from "../../utils/DomUtils.js";
-/**
- *
- * Handles displaying and updating the properties panel for neural network layers.
- * Shows editable parameters and updates the network model when changes are made.
- * The panel appears when a layer is selected and allows configuring layer-specific properties.
- *
- * @class LayerPanelManager
- * @param {NetworkModel} networkModel - The network model instance to manage layers for
- *
- * @property {NetworkModel} networkModel - Reference to the network model
- * @property {string|null} currentLayerNodeId - ID of currently selected layer node
- *
- * @method showLayerPanel - Shows the properties panel for a given layer node
- * @method createParameterControl - Creates UI controls for layer parameters
- * @method hideLayerPanel - Hides the properties panel
- * @method styleLayerPanel - Applies styling to the panel
- */
 
 class LayerPanelManager {
   constructor(networkModel) {
@@ -36,7 +19,8 @@ class LayerPanelManager {
     if (!panel) {
       panel = DomUtils.createElementWithClass("div", "layer-properties-panel");
       panel.id = "layer-properties-panel";
-      document.body.appendChild(panel);
+      parent = document.querySelector(".app-container");
+      parent.appendChild(panel);
     }
     panel.innerHTML = "";
 
@@ -138,7 +122,7 @@ class LayerPanelManager {
       content.appendChild(additionalParamsContainer);
     }
     panel.appendChild(content);
-    this.styleLayerPanel(panel);
+    // Removed this.styleLayerPanel(panel);
     panel.style.display = "block";
   }
 
@@ -223,14 +207,14 @@ class LayerPanelManager {
   }
 
   formatEnumValue(value) {
-    return value;
+    //return value;
     if (!value) return "";
     return value
-      .replace(/_/g, "")
-      .replace(/([A-Z])/g, " $1")
-      .replace(/^\s+/, "")
-      .replace(/\s+/g, "")
-      .replace(/^./, (str) => str.toUpperCase());
+      .replace(/_/g, " ")
+      // .replace(/([A-Z])/g, " $1")
+      // .replace(/^\s+/, "")
+      // .replace(/\s+/g, "")
+      // .replace(/^./, (str) => str.toUpperCase());
   }
 
   formatParamName(name) {
@@ -238,156 +222,6 @@ class LayerPanelManager {
       .replace(/_/g, " ")
       .replace(/([A-Z])/g, " $1")
       .replace(/^./, (str) => str.toUpperCase());
-  }
-
-  styleLayerPanel(panel) {
-    Object.assign(panel.style, {
-      position: "fixed",
-      right: "0px",
-      top: "0px",
-      width: "300px",
-      maxHeight: "100vh",
-      backgroundColor: "var(--surface-color, #ffffff)",
-      backdropFilter: "blur(10px)",
-      boxShadow: "0 0 20px rgba(0,0,0,0.1)",
-      borderLeft: "1px solid rgba(0,0,0,0.1)",
-      zIndex: "1000",
-      display: "flex",
-      flexDirection: "column",
-      transition: "transform 0.3s ease-in-out",
-    });
-
-    const style = document.createElement("style");
-    style.textContent = `
-      .layer-properties-panel {
-        display: flex;
-        flex-direction: column;
-        min-height: min-content;
-        max-height: 100vh;
-      }
-
-      .panel-header {
-        padding: 20px 20px 10px 20px;
-        font-size: 16px;
-        font-weight: 500;
-        border-bottom: 1px solid #eee;
-        background: var(--surface-color, #ffffff);
-        position: sticky;
-        top: 0;
-        z-index: 2;
-      }
-
-      .panel-content {
-        flex: 0 1 auto;
-        overflow-y: auto;
-        overflow-x: hidden;
-        padding: 20px;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(0,0,0,0.2) transparent;
-      }
-
-      .panel-content::-webkit-scrollbar {
-        width: 6px;
-      }
-
-      .panel-content::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      .panel-content::-webkit-scrollbar-thumb {
-        background-color: rgba(0,0,0,0.2);
-        border-radius: 3px;
-      }
-
-      .basic-params-container,
-      .additional-params-container {
-        margin-bottom: 20px;
-      }
-      
-      .basic-params-container h3,
-      .additional-params-container h3 {
-        font-size: 14px;
-        color: #666;
-        margin: 0 0 10px 0;
-      }
-
-      .additional-params-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-        padding-top: 10px;
-        border-top: 1px solid #eee;
-      }
-
-      .additional-params-content {
-        transition: all 0.3s ease-in-out;
-        overflow: hidden;
-        margin-top: 10px;
-        max-height: 200px;
-        overflow-y: auto;
-      }
-
-      .additional-params-content > * {
-        margin-bottom: 15px;
-      }
-
-      .additional-params-content > *:last-child {
-        margin-bottom: 0;
-      }
-
-      .toggle-additional-params {
-        background: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 4px 8px;
-        font-size: 12px;
-        cursor: pointer;
-        color: #666;
-        transition: all 0.2s ease;
-      }
-
-      .toggle-additional-params:hover {
-        background: #f5f5f5;
-        border-color: #999;
-      }
-
-      .param-container {
-        margin-bottom: 15px;
-      }
-
-      .param-container:last-child {
-        margin-bottom: 0;
-      }
-
-      .param-label {
-        display: block;
-        font-size: 12px;
-        margin-bottom: 4px;
-        color: #333;
-      }
-
-      input, select {
-        width: 100%;
-        padding: 6px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 12px;
-        box-sizing: border-box;
-      }
-
-      input:focus, select:focus {
-        outline: none;
-        border-color: #0066cc;
-      }
-
-      .param-help {
-        font-size: 11px;
-        color: #666;
-        margin-top: 2px;
-      }
-    `;
-    document.head.appendChild(style);
   }
 
   hideLayerPanel() {

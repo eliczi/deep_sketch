@@ -201,6 +201,8 @@ class CanvasEventHandler {
   }
 
   handleSelectionStart(e) {
+    //only when right mouse button is pressed
+    if (e.button !== 0) return;
     if (e.target === this.canvas) {
       this.selectionManager.startSelection(
         this.canvasUtils.getCanvasPosition(e, 1, 0, 0, true),
@@ -255,9 +257,11 @@ class CanvasEventHandler {
   }
 
   handleKeyDown(e) {
+    console.log(e)
     if (
-      e.key === "Backspace" &&
-      e.metaKey &&
+      (e.key === "Backspace" &&
+        e.metaKey) || e.key === "Delete"
+      &&
       this.selectionManager.hasSelectedNodes()
     ) {
       this.layerManager.deleteSelectedNodes(

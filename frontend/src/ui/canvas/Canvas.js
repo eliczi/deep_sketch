@@ -24,11 +24,17 @@ class Canvas {
 
     this.panX = 0;
     this.panY = 0;
+    this.isPanning = false;
+    this._panningStarted = true
 
     this.scale = 1.0;
     this.minScale = 0.2;
     this.maxScale = 2.0;
     this.zoomStep = 0.1;
+    //right mouse button panning
+    this.isMouseDown = false;
+    this.lastX = 0;
+    this.lastY = 0;
 
     this.initializeStyles();
     this.initializePanningEvents();
@@ -64,6 +70,41 @@ class Canvas {
     );
 
     this.eventHandler.initializeEventHandlers();
+    console.log(this.canvas.style)
+      // Create grid canvas
+    this.gridCanvas = document.createElement("canvas");
+    this.gridCanvas.style.position = "absolute";
+    this.gridCanvas.style.top = "0";
+    this.gridCanvas.style.left = "0";
+    this.gridCanvas.style.pointerEvents = "none";
+    console.log("Grid canvas created with dimensions:", this.canvas.width, this.canvas.height);
+    this.gridCanvas.width = this.canvas.width;
+    this.gridCanvas.height = this.canvas.height;
+    this.canvas.parentNode.insertBefore(this.gridCanvas, this.canvas);
+
+    this.drawGrid();
+  }
+
+  drawGrid(gridSize = 32) {
+    
+    const ctx = this.gridCanvas.getContext("2d");
+    ctx.clearRect(0, 0, this.gridCanvas.width, this.gridCanvas.height);
+
+    ctx.strokeStyle = "#e0e0e0";
+    ctx.lineWidth = 1;
+
+    for (let x = 0; x < this.gridCanvas.width; x += gridSize) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, this.gridCanvas.height);
+      ctx.stroke();
+    }
+    for (let y = 0; y < this.gridCanvas.height; y += gridSize) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(this.gridCanvas.width, y);
+      ctx.stroke();
+    }
   }
 
   initializeStyles() {
@@ -96,6 +137,7 @@ class Canvas {
     this.panYIndicator.className = "pany-indicator";
     this.panYIndicator.textContent = "0";
     document.body.appendChild(this.panYIndicator);
+    
   }
 
   initializePanningEvents() {
@@ -104,14 +146,60 @@ class Canvas {
     this.canvas.addEventListener("wheel", this.handleWheel.bind(this), {
       passive: false,
     });
+
+    //event responsible for panning with right mouse button
+    this.canvas.addEventListener("mousedown", (e) => {
+      if (e.buttons === 2) {
+        this.isMouseDown = true;
+        this.lastX = e.clientX;
+        this.lastY = e.clientY; 
+        this._panningStarted = false;
+        this.contextMenu.hideContextMenu();
+        
+      }
+    });
+    this.canvas.addEventListener("mousemove", (e) => {
+      if (this.isMouseDown && e.buttons === 2) {
+        if (e.clientX !== this.lastX || e.clientY !== this.lastY) {
+          this.isPanning = true;
+          this._panningStarted = true;
+        } 
+        //this.isPanning = true
+        this.canvas.style.cursor = "move";
+        e.preventDefault();
+        const deltaX = e.clientX - this.lastX; 
+        const deltaY = e.clientY - this.lastY; 
+        this.panX += deltaX;
+        this.panY += deltaY;
+        this.updateElementPositions();
+        this.lastX = e.clientX;
+        this.lastY = e.clientY;
+      }
+    });
+
+    this.canvas.addEventListener("mouseup", (e) => {
+      if (e.buttons === 2) { 
+        isMouseDown = false; 
+        setTimeout(() => { this.isPanning = false; }, 0);
+      }
+      this.canvas.style.cursor = "default";
+    });
   }
 
   handleWheel(e) {
+    console.log(this.canvas.style)
     e.preventDefault();
     if (e.ctrlKey) {
-      const zoomAmount = -e.deltaY * 0.005;
+      let zoomAmount = -e.deltaY * 0.005;
+      if (Math.abs(e.deltaY) == 100){
+        zoomAmount *= 0.05; 
+      }
       this.zoom(zoomAmount, e.clientX, e.clientY);
     } else {
+      
+      // if (Math.abs(e.deltaY) == 100){
+      //   zoomAmount *= 0.05; 
+      // }
       this.panX -= e.deltaX;
       this.panY -= e.deltaY;
       this.updateElementPositions();

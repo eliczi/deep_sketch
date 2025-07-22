@@ -291,6 +291,7 @@ class GroupManager {
         !e.target.classList.contains("group-title-edit")
       ) {
         this.selectGroup(groupElement.dataset.id);
+              console.log('click')
 
         isDragging = true;
 

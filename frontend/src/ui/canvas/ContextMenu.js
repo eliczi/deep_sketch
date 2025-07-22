@@ -109,8 +109,13 @@ class ContextMenu {
 
   bindEvents() {
     this.canvas.canvas.addEventListener("contextmenu", (e) => {
+      if (this.canvas._panningStarted) {
+        e.preventDefault();
+        this.canvas._panningStarted = false; // reset for next time
+        return;
+      }
       e.preventDefault();
-      this.showContextMenu(e.clientX, e.clientY, e.target);
+    this.showContextMenu(e.clientX, e.clientY, e.target);
     });
 
     this.contextMenu.addEventListener("click", (e) => {
@@ -121,6 +126,8 @@ class ContextMenu {
         this.hideContextMenu();
       }
     });
+
+
 
     document.addEventListener("click", (e) => {
       if (this.isVisible && !this.contextMenu.contains(e.target)) {

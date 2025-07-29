@@ -3,7 +3,7 @@ import ConnectionModel from "../../models/ConnectionModel.js";
 import NetworkModel from "../../models/NetworkModel.js";
 import ConnectionVisualizer from "../connection/ConnectionVisualizer.js";
 import { GeometryUtils } from "../connection/GeometryUtils.js";
-
+import Tracker from "../../utils/Tracker.js";
 class ConnectionPoint {
   constructor(type, node, position) {
     this.type = type;
@@ -40,6 +40,8 @@ class ConnectionPoint {
   }
 
   onMouseDown(e) {
+    const layerType = this.node.dataset.type;
+    Tracker.trackConnectionOperationStart("connection-point-mouse-down", {sourceLayerType: layerType, pointType: this.type});
     const startCoords = GeometryUtils.calculatePointCoordinates(
       this,
       this.visualizer.svgContainer,
@@ -108,6 +110,12 @@ class ConnectionPoint {
         this.activeLine = null;
         this.activePath = null;
       }
+      let targetLayerType = pointUnderMouse.closest(".layer-node").dataset.type;
+      const targetGroup = pointUnderMouse.closest(".layer-group");
+      if (targetGroup) {
+        targetLayerType = 'group';
+      }
+      Tracker.trackConnectionOperationEnd("connection-point-mouse-up", {sourceType: this.node.dataset.type, targetType: targetLayerType});
     } else {
       this.visualizer.removeTemporaryLine(this.activeLine);
       this.activeLine = null;

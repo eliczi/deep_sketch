@@ -48,8 +48,13 @@ class NetworkModel {
 
   // }
 
-  getLayerType(typeName) {
+  getLayerType(typeName) {   
     return this.layerTypes.find((lt) => lt.name === typeName) || null;
+  }
+
+  appendLayerType(parameter) {
+    //add to params of this.layertypes[19]
+    this.layerTypes[19].params.push(parameter);
   }
 
   clear() {

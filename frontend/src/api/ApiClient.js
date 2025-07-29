@@ -44,6 +44,7 @@ class ApiClient {
   }
 
   async login(username, password) {
+
     const response = await this.fetchApi("login", {
       method: "POST",
       body: JSON.stringify({ username, password }),
@@ -69,17 +70,7 @@ class ApiClient {
     }
   }
 
-  async addLayer(networkId, type, params) {
-    const result = await this.fetchApi(`networks/${networkId}/layers`, {
-      method: "POST",
-      body: JSON.stringify({
-        type: type,
-        params: params,
-      }),
-    });
-
-    return result.id;
-  }
+  
 
   async connectLayers(networkId, sourceId, targetId) {
     const result = await this.fetchApi(`networks/${networkId}/connections`, {
@@ -105,6 +96,25 @@ class ApiClient {
       console.error("API connection test failed:", error);
       return false;
     }
+  }
+  async addLayer(networkId, type, params) {
+    const result = await this.fetchApi(`networks/${networkId}/layers`, {
+      method: "POST",
+      body: JSON.stringify({
+        type: type,
+        params: params,
+      }),
+    });
+
+    return result.id;
+  }
+
+  async sendLogToServer(event) {
+    const response = await this.fetchApi('user-logs', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ events: event })
+    });
   }
 }
 

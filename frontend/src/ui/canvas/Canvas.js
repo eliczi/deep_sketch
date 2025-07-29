@@ -70,14 +70,12 @@ class Canvas {
     );
 
     this.eventHandler.initializeEventHandlers();
-    console.log(this.canvas.style)
       // Create grid canvas
     this.gridCanvas = document.createElement("canvas");
     this.gridCanvas.style.position = "absolute";
     this.gridCanvas.style.top = "0";
     this.gridCanvas.style.left = "0";
     this.gridCanvas.style.pointerEvents = "none";
-    console.log("Grid canvas created with dimensions:", this.canvas.width, this.canvas.height);
     this.gridCanvas.width = this.canvas.width;
     this.gridCanvas.height = this.canvas.height;
     this.canvas.parentNode.insertBefore(this.gridCanvas, this.canvas);
@@ -126,16 +124,19 @@ class Canvas {
     this.zoomIndicator = document.createElement("div");
     this.zoomIndicator.className = "zoom-indicator";
     this.zoomIndicator.textContent = "100%";
+    this.zoomIndicator.style.visibility = "hidden";
     document.body.appendChild(this.zoomIndicator);
 
     this.panXIndicator = document.createElement("div");
     this.panXIndicator.className = "panx-indicator";
     this.panXIndicator.textContent = "0";
+    this.panXIndicator.style.visibility = "hidden";
     document.body.appendChild(this.panXIndicator);
 
     this.panYIndicator = document.createElement("div");
     this.panYIndicator.className = "pany-indicator";
     this.panYIndicator.textContent = "0";
+    this.panYIndicator.style.visibility = "hidden";
     document.body.appendChild(this.panYIndicator);
     
   }
@@ -187,7 +188,6 @@ class Canvas {
   }
 
   handleWheel(e) {
-    console.log(this.canvas.style)
     e.preventDefault();
     if (e.ctrlKey) {
       let zoomAmount = -e.deltaY * 0.005;
@@ -288,7 +288,7 @@ class Canvas {
 
         const attachedFunctionLayers = document.querySelectorAll(
           `.layer-node[data-attached-to="${node.dataset.id}"]`,
-        );
+        )
         attachedFunctionLayers.forEach((functionLayer) => {
           const functionLeft =
             transformedX + node.offsetWidth * this.scale - 22 * this.scale;
@@ -465,7 +465,6 @@ class Canvas {
         };
       },
     );
-    console.log(layers);
 
     const connections = NetworkModel.connections.map((conn) => {
       return {
@@ -480,8 +479,8 @@ class Canvas {
       return {
         id: group.id,
         name: groupElement.dataset.name || `Group`,
-        x: parseInt(groupElement.style.left),
-        y: parseInt(groupElement.style.top),
+        x: parseInt(groupElement.dataset.originalX),
+        y: parseInt(groupElement.dataset.originalY),
         width: parseInt(groupElement.style.width),
         height: parseInt(groupElement.style.height),
         expanded: group.expanded,
@@ -490,7 +489,7 @@ class Canvas {
         ),
       };
     });
-
+    
     return {
       layers,
       connections,
@@ -539,15 +538,11 @@ class Canvas {
         alert("Failed to load network: " + error.message);
       }
     });
-
+    this.updateElementPositions();
     input.click();
   }
 
-  /**
-   * Loads a network state from parsed JSON data
-   * @param {Object} networkState - The network state object
-   * @returns {Promise<boolean>} - True if loaded successfully
-   */
+
   async loadNetworkState(networkState) {
     if (!networkState || typeof networkState !== "object") {
       throw new Error("Invalid network state data");
@@ -560,7 +555,6 @@ class Canvas {
       this.clearNetwork();
 
       const idMapping = {};
-
       if (networkState.layers && Array.isArray(networkState.layers)) {
         for (const layerData of networkState.layers) {
           const layer = await this.createLayerFromData(layerData);
@@ -569,6 +563,30 @@ class Canvas {
           }
         }
       }
+
+      const functionLayers = Array.from(
+        this.canvas.querySelectorAll(".layer-node[data-attached-to]"),
+      );
+      functionLayers.forEach((functionLayer) => {
+        const attachedToId = functionLayer.dataset.attachedTo;
+        const attachedToElement = document.querySelector(`.layer-node[data-id="${attachedToId}"]`);
+        
+        if (!attachedToElement) return;
+
+        let functionLeft, functionTop;
+        if (functionLayer.dataset.groupId) {
+          functionLeft = parseFloat(attachedToElement.style.left) + attachedToElement.offsetWidth - 22;
+          functionTop = parseFloat(attachedToElement.style.top) - 22;
+        } else {
+          functionLeft = parseFloat(attachedToElement.style.left) + attachedToElement.offsetWidth * this.scale - 22 * this.scale;
+          functionTop = parseFloat(attachedToElement.style.top) - 22 * this.scale;
+        }
+
+        functionLayer.style.left = `${functionLeft}px`;
+        functionLayer.style.top = `${functionTop}px`;
+        functionLayer.dataset.originalX = functionLeft;
+        functionLayer.dataset.originalY = functionTop;
+      });
 
       if (networkState.groups && Array.isArray(networkState.groups)) {
         for (const groupData of networkState.groups) {
@@ -594,9 +612,6 @@ class Canvas {
     }
   }
 
-  /**
-   * Clears the current network
-   */
   clearNetwork() {
     const nodes = Array.from(this.canvas.querySelectorAll(".layer-node"));
     nodes.forEach((node) => node.remove());
@@ -626,14 +641,16 @@ class Canvas {
       );
 
       if (!layer) return null;
-
       const element = layer.getElement();
-
       if (layerData.properties) {
         for (const [key, value] of Object.entries(layerData.properties)) {
           element.dataset[key] = value;
         }
       }
+      if (layerData.properties.attachedTo) {
+        element.dataset.attachedTo = layerData.properties.attachedTo;
+      }
+  
 
       return layer;
     } catch (error) {
@@ -642,12 +659,6 @@ class Canvas {
     }
   }
 
-  /**
-   * Creates a group from saved data
-   * @param {Object} groupData - The group data object
-   * @param {Object} idMapping - Mapping from old IDs to new IDs
-   * @returns {Promise<HTMLElement>} - The created group element
-   */
   async createGroupFromData(groupData, idMapping) {
     try {
       this.selectionManager.clearSelection();
@@ -674,7 +685,8 @@ class Canvas {
       if (titleElement) {
         titleElement.textContent = groupData.name || "Group";
       }
-
+      groupElement.dataset.originalX = groupData.x;
+      groupElement.dataset.originalY = groupData.y;
       groupElement.style.left = `${groupData.x}px`;
       groupElement.style.top = `${groupData.y}px`;
 
@@ -697,12 +709,6 @@ class Canvas {
     }
   }
 
-  /**
-   * Creates a connection from saved data
-   * @param {string} sourceId - The source node ID
-   * @param {string} targetId - The target node ID
-   * @returns {Promise<Object>} - The created connection
-   */
   async createConnectionFromData(sourceId, targetId) {
     try {
       const sourceNode = document.querySelector(

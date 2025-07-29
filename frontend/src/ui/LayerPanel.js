@@ -1,5 +1,6 @@
 import DomUtils from "../utils/DomUtils.js";
 import SessionTimer from "../utils/SessionTimer.js";
+import Tracker from "../utils/Tracker.js";
 /**
  * Handles the rendering and user interaction for the layer type selection panel.
  * Supports drag-and-drop and category organization of available layers.
@@ -96,6 +97,8 @@ class LayerPanel {
       });
 
       categoryHeader.addEventListener("click", () => {
+        //add event to tracker
+        Tracker.trackSidebarOperation("toggle-layer-panel", {});
         contentContainer.classList.toggle("collapsed");
         const toggleIcon = categoryHeader.querySelector(".toggle-icon");
         toggleIcon.textContent = contentContainer.classList.contains(
@@ -173,7 +176,10 @@ class LayerPanel {
   }
 
   handleLayerTypeDragStart(e) {
+    
     const layerType = e.target.dataset.type;
+    //add tracking with layer type
+    Tracker.trackDragOperation("drag-start", layerType);
     e.dataTransfer.setData("text/plain", layerType);
     e.dataTransfer.effectAllowed = "move";
     this.currentDraggedLayerType = layerType;

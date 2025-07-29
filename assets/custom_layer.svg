@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
-   sodipodi:docname="recurrent_layer.svg"
+   sodipodi:docname="custom_layer.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.5708632"
-     inkscape:cx="54.428674"
-     inkscape:cy="43.924895"
+     inkscape:zoom="1.1412466"
+     inkscape:cx="6.5717608"
+     inkscape:cy="32.420687"
      inkscape:window-width="1728"
      inkscape:window-height="969"
      inkscape:window-x="0"
@@ -71,27 +71,6 @@
          in2="comp1"
          id="feComposite30" />
     </filter>
-    <marker
-       style="overflow:visible"
-       id="ArrowWide-7"
-       refX="0"
-       refY="0"
-       orient="63"
-       inkscape:stockid="Wide arrow"
-       markerWidth="0.69999999"
-       markerHeight="0.69999999"
-       viewBox="0 0 1 1"
-       inkscape:isstock="true"
-       inkscape:collect="always"
-       preserveAspectRatio="xMidYMid"
-       markerUnits="strokeWidth">
-      <path
-         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
-         d="M 3,-3 0,0 3,3"
-         transform="rotate(180,0.125,0)"
-         sodipodi:nodetypes="ccc"
-         id="path1-5" />
-    </marker>
   </defs>
   <g
      inkscape:label="Layer 1"
@@ -105,41 +84,5 @@
        height="62.060009"
        x="46.740036"
        y="51.795135" />
-    <rect
-       style="fill:none;stroke:#000000;stroke-width:1.66904"
-       id="rect2"
-       width="14.250188"
-       height="14.100519"
-       x="54.829048"
-       y="91.899963" />
-    <rect
-       style="fill:none;stroke:#000000;stroke-width:1.66904"
-       id="rect2-6"
-       width="14.250188"
-       height="14.100519"
-       x="70.739807"
-       y="76.137306" />
-    <rect
-       style="fill:none;stroke:#000000;stroke-width:1.66904"
-       id="rect2-1"
-       width="14.250188"
-       height="14.100519"
-       x="86.664955"
-       y="60.374214" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;marker-mid:"
-       d="m 90.694185,55.461842 c -9.505114,-5.39862 -22.190252,6.688862 -14.352891,16.436377 v 0 0"
-       id="path3"
-       sodipodi:nodetypes="cccc" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.8;stroke-dasharray:none;marker-mid:url(#ArrowWide-7)"
-       d="M 69.286162,69.940218 C 56.499789,65.635351 49.591832,77.580497 57.587197,87.275344 l 0.0845,0.09763 C 57.565265,87.251337 57.458832,87.1297 57.3524,87.008063"
-       id="path3-5"
-       sodipodi:nodetypes="cccc" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.8;stroke-dasharray:none"
-       d="m 78.581506,66.968154 -2.284133,4.920372 -7.128619,-1.970858"
-       id="path5"
-       sodipodi:nodetypes="ccc" />
   </g>
 </svg>

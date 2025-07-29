@@ -87,7 +87,6 @@ export class ConnectionDrawer {
     path.style.pointerEvents = "all";
     path.style.cursor = "pointer";
 
-    // Only attach events once
     if (!path.hasAttribute("data-hover-added")) {
       path.addEventListener("mouseenter", () => {
         path.dataset.isHovered = "true";

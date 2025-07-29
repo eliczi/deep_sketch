@@ -5,7 +5,7 @@ import LayerModel from "../models/LayerModel.js";
 import ConnectionVisualizer from "./connection/ConnectionVisualizer.js";
 import SVGGenerator from "./SVGGenerator.js";
 import GroupManager from "./canvas/GroupManager.js";
-
+import Tracker from "../utils/Tracker.js";  
 class LayerFactory {
   static createNodeElement(
     nodeId,
@@ -257,19 +257,38 @@ class LayerFactory {
       const canvas = element.closest(".drawing-area") || element.parentElement;
       const { canvasRect, scale, panX, panY } = getCanvasInfo(canvas);
 
-      const worldCoords = calculateWorldCoordinates(
-        e.clientX,
-        e.clientY,
-        canvasRect,
-        scale,
-        panX,
-        panY,
-      );
-      const currentLeft = parseFloat(element.style.left) || 0;
-      const currentTop = parseFloat(element.style.top) || 0;
+      if (element.dataset.groupId) {
+        // For grouped nodes, calculate offset relative to the group
+        const group = element.closest(".layer-group");
+        if (group) {
+          const groupLeft = parseFloat(group.style.left) || 0;
+          const groupTop = parseFloat(group.style.top) || 0;
+          const elementLeft = parseFloat(element.style.left) || 0;
+          const elementTop = parseFloat(element.style.top) || 0;
+          
+          // Calculate where the mouse is relative to the element within the group
+          const mouseX = e.clientX - canvasRect.left - groupLeft;
+          const mouseY = e.clientY - canvasRect.top - groupTop;
+          
+          offsetX = mouseX / scale - elementLeft;
+          offsetY = mouseY / scale - elementTop;
+        }
+      } else {
+        // For non-grouped nodes, use the existing logic
+        const worldCoords = calculateWorldCoordinates(
+          e.clientX,
+          e.clientY,
+          canvasRect,
+          scale,
+          panX,
+          panY,
+        );
+        const currentLeft = parseFloat(element.style.left) || 0;
+        const currentTop = parseFloat(element.style.top) || 0;
 
-      offsetX = worldCoords.x - (currentLeft - panX) / scale;
-      offsetY = worldCoords.y - (currentTop - panY) / scale;
+        offsetX = worldCoords.x - (currentLeft - panX) / scale;
+        offsetY = worldCoords.y - (currentTop - panY) / scale;
+      }
 
       e.stopPropagation();
 
@@ -306,14 +325,17 @@ class LayerFactory {
       if (element.dataset.groupId) {
         const group = element.closest(".layer-group");
         if (group) {
-          offsetX = parseFloat(group.style.left);
-          offsetY = parseFloat(group.style.top);
-          left =
-            (e.clientX - canvasRect.left - offsetX) / scale -
-            element.offsetWidth / 2;
-          top =
-            (e.clientY - canvasRect.top - offsetY) / scale -
-            element.offsetHeight / 2;
+          const groupLeft = parseFloat(group.style.left) || 0;
+          const groupTop = parseFloat(group.style.top) || 0;
+          
+          // Calculate mouse position relative to the group
+          const mouseX = e.clientX - canvasRect.left - groupLeft;
+          const mouseY = e.clientY - canvasRect.top - groupTop;
+          
+          // Apply the offset to maintain the click position
+          left = mouseX / scale - offsetX;
+          top = mouseY / scale - offsetY;
+          
           if (left < 0) {
             left = 0;
           }
@@ -369,6 +391,8 @@ class LayerFactory {
     }
 
     function stopDrag() {
+      Tracker.trackEvent("layer", "update-node-position", {nodeId: element.dataset.id,layerType: element.dataset.type, left: element.dataset.originalX, top: element.dataset.originalY});
+
       isDragging = false;
       selectedNodesInfo = [];
       document.removeEventListener("mousemove", drag);

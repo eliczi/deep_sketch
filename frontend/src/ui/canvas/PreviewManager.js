@@ -12,7 +12,6 @@ class PreviewManager {
     this.previewElement = null;
     window.previewManager = this;
   }
-
   updatePreviewElement(x, y, type) {
     const layerTypeDef = NetworkModel.getLayerType(`${type}`);
     let previewSize = { width: 64, height: 64 };
@@ -22,7 +21,8 @@ class PreviewManager {
       previewSize.width = 112;
       previewSize.height = 64;
       previewOffsetX = 56;
-      previewOffsetY = 56;
+      previewOffsetY = 56;//fix magic numbers 
+
     }
     const previewX = x * this.parent.scale - previewOffsetX;
     const previewY = y * this.parent.scale - previewOffsetY;

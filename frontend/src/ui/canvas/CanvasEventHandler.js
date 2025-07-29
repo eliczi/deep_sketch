@@ -1,3 +1,5 @@
+import Tracker from "../../utils/Tracker.js";
+
 class CanvasEventHandler {
   constructor(
     canvas,
@@ -61,6 +63,8 @@ class CanvasEventHandler {
     this.selectionManager.selectNode(nodeId);
     this.layerPanelManager.showLayerPanel(nodeId);
     this.groupManager.deselectAllGroups();
+    const type = document.querySelector(`.layer-node[data-id="${nodeId}"]`).dataset.type;
+    Tracker.trackEvent("canvas", "node-clicked", {nodeId: nodeId, nodeType: type});
   }
 
   setupKeyboardEvents() {
@@ -115,7 +119,7 @@ class CanvasEventHandler {
 
   handleDrop(e) {
     e.preventDefault();
-
+    
     if (
       this.layerPanel.currentDraggedLayerType &&
       this.layerPanel.currentDraggedLayerType.includes("Function")
@@ -150,7 +154,6 @@ class CanvasEventHandler {
           targetPos.y,
           this.parent.scale,
         );
-        console.log('functionLayer:', functionLayer);
 
         nodeUnderCursor.dataset.activation_fuction = functionLayer;
 
@@ -164,7 +167,12 @@ class CanvasEventHandler {
             );
           }
         }
+        Tracker.trackDragOperation("drag-end", {layerType: this.layerPanel.currentDraggedLayerType, 
+          targetNodeType: nodeUnderCursor.dataset.type,
+          position: targetPos,
+        });
       }
+      
     } else {
       const layerType = e.dataTransfer.getData("text/plain");
       const position = this.canvasUtils.getCanvasPosition(
@@ -185,6 +193,9 @@ class CanvasEventHandler {
         this.selectionManager.selectNode(layer.id);
         this.layerPanelManager.showLayerPanel(layer.id);
       }
+      Tracker.trackDragOperation("drag-end", {layerType: this.layerPanel.currentDraggedLayerType, 
+        position: position
+      });
     }
 
     this.previewManager.removePreviewElement();
@@ -257,7 +268,6 @@ class CanvasEventHandler {
   }
 
   handleKeyDown(e) {
-    console.log(e)
     if (
       (e.key === "Backspace" &&
         e.metaKey) || e.key === "Delete"

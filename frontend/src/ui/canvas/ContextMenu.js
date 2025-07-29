@@ -252,14 +252,12 @@ class ContextMenu {
   groupSelectedLayers() {
     const selectedNodes = this.canvas.selectionManager.getSelectedNodeIds();
     if (selectedNodes.length > 1) {
-      console.log("Grouping selected layers:", selectedNodes);
       this.canvas.createGroup();
     }
   }
 
   ungroupLayers() {
     const selectedNodes = this.canvas.selectionManager.getSelectedNodeIds();
-    console.log("Ungrouping layers:", selectedNodes);
     const groupIds = new Set();
     selectedNodes.forEach((nodeId) => {
       const node = document.querySelector(`.layer-node[data-id="${nodeId}"]`);

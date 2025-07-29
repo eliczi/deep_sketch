@@ -2,24 +2,28 @@ import ApiClient from "./api/ApiClient.js";
 import NetworkModel from "./models/NetworkModel.js";
 import UIManager from "./ui/UIManager.js";
 import SessionTimer from "./utils/SessionTimer.js";
-
-/**
- * Main application class for initializing the UI, network, and session timer.
- * Handles app startup, API connection, and login logic.
- * @class
- */
+import Tracker from "./utils/Tracker.js";
 class App {
   constructor() {
     this.uiManager = null;
     this.neuralNetwork = null;
     this.sessionTimer = SessionTimer;
     this.timersEnabled = true;
+    this.loginEnabled = false;
   }
 
   async init() {
-    //document.querySelector('.app-container').style.display = 'none';
+    document.querySelector('.app-container').style.display = 'none';
 
     try {
+      document.querySelector(".login-container").style.display = "none";
+      if (this.loginEnabled) {
+        this.setupLogin();
+      }
+      else
+      {
+        document.querySelector('.app-container').style.display = 'flex';
+      }
       const isApiConnected = await ApiClient.testConnection();
       if (!isApiConnected) {
         throw new Error("Could not connect to API.");
@@ -28,11 +32,6 @@ class App {
       await NetworkModel.initialize();
       this.uiManager.layerPanel.renderLayerTypes(NetworkModel.layerTypes);
 
-      // Initialize and start session timer
-      this.sessionTimer.init();
-      this.sessionTimer.show();
-
-      // Add keyboard shortcut to toggle timer
       document.addEventListener("keydown", (e) => {
         if (e.key === "t" && e.ctrlKey) {
           if (this.sessionTimer.isVisible) {
@@ -56,13 +55,16 @@ class App {
 
       try {
         const res = await ApiClient.login(username, password);
-        alert("Login successful!");
         document.querySelector(".login-container").style.display = "none";
         document.querySelector(".app-container").style.display = "flex";
 
-        // Start session timer after successful login
-        this.sessionTimer.reset();
-        this.sessionTimer.show();
+        if (res)
+        {
+          this.sessionTimer.init();
+          this.sessionTimer.show();
+          Tracker.setUser(username);
+        }
+        
       } catch (error) {
         alert(`Login failed: ${error.message}`);
       }

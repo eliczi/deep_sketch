@@ -4,16 +4,20 @@ from enum import Enum
 #normalization types
 
 class NormalizationType(Enum):
-    BATCH_NORMALIZATION = "Batch Normalization"
+    BATCH_NORMALIZATION1D = "Batch Normalization 1D"
+    BATCH_NORMALIZATION2D = "Batch Normalization 2D"
+    BATCH_NORMALIZATION3D = "Batch Normalization 3D"
     LAYER_NORMALIZATION = "Layer Normalization"
     GROUP_NORMALIZATION = "Group Normalization"
-    INSTANCE_NORMALIZATION = "Instance Normalization"
+    INSTANCE_NORMALIZATION1D = "Instance Normalization 1D"
+    INSTANCE_NORMALIZATION2D = "Instance Normalization 2D"
+    INSTANCE_NORMALIZATION3D = "Instance Normalization 3D"
 
 
 class NormalizationLayer(Layer):
     path = os.path.join('.', 'assets', 'normalization_layer.svg')
 
-    DEFAULT_NORMALIZATION_TYPE = NormalizationType.BATCH_NORMALIZATION
+    DEFAULT_NORMALIZATION_TYPE = NormalizationType.BATCH_NORMALIZATION2D
 
     def __init__(self, normalization_type: NormalizationType = DEFAULT_NORMALIZATION_TYPE):
         super().__init__()

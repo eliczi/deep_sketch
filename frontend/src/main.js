@@ -40,6 +40,8 @@ class App {
           }
         }
       });
+      Tracker.setNetworkId(NetworkModel.id)
+
     } catch (error) {
       console.error("App: Initialization failed:", error);
       alert(`Initialization failed: ${error.message}.`);

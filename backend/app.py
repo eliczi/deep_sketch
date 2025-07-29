@@ -24,17 +24,19 @@ from layers.misc_layers.dropout_layer import DropoutLayer
 from layers.misc_layers.recurrent_layer import RecurrentLayer
 from layers.layer import Layer
 import inspect
+import json
 from neural_network import NeuralNetwork
 from connection import Connection
 from flask_jwt_extended import (
     JWTManager, create_access_token,
     jwt_required, get_jwt_identity
 )
-
+import os
 
 app = Flask(__name__)
 #how to use env variables in flask?
-app.config['JWT_SECRET_KEY'] = 'e3f7a0bd67b94e5f8c3bbac435a2d1b204dab5d52db7c1fdc3f85f95f238dfab'  # use env var in production
+
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 jwt = JWTManager(app)
 
 users = {
@@ -71,10 +73,9 @@ def test():
     
 def get_class_info(cls):    
     if issubclass(cls, Layer):
-        # Collect parameters from the entire inheritance chain
         all_params = []
         for c in cls.__mro__:
-            if c == object:  # Stop at the object class
+            if c == object:  
                 break
                 
             if hasattr(c, '__init__'):
@@ -85,10 +86,9 @@ def get_class_info(cls):
                         param_info = {
                             "name": name,
                             "type": "string",
-                            "is_basic": False  # Default to additional parameter
+                            "is_basic": False 
                         }
                         
-                        # Set basic parameters based on layer type
                         if cls == ConvolutionalLayer and name in ['conv_type', 'out_channels', 'kernel_size', 'stride', 'in_channels']:
                             param_info["is_basic"] = True
                         elif cls == PoolingLayer and name in ['pooling_type', 'pool_dimension', 'pool_size']:
@@ -107,12 +107,10 @@ def get_class_info(cls):
                             param_info["is_basic"] = True
                         elif cls == NormalizationLayer and name in ['normalization_type']:
                             param_info["is_basic"] = True
-                        # elif cls.__name__.endswith('InputLayer') and name in ['input_shape', 'input_type']:
-                        #     param_info["is_basic"] = True
+                      
                         elif cls == RecurrentLayer and name in ['recurrent_type', 'input_size', 'hidden_size', 'num_layers']:
                             param_info["is_basic"] = True
                         
-                        # Get default value from class attribute if available
                         default_attr_name = f"DEFAULT_{name.upper()}"
                         if hasattr(c, default_attr_name):
                             default_value = getattr(c, default_attr_name)
@@ -121,9 +119,7 @@ def get_class_info(cls):
                                 param_info["default"] = default_value.name
                             else:
                                 param_info["default"] = default_value
-                        # If parameter has a default value in the signature
                         elif param.default != inspect.Parameter.empty:
-                            # Handle enum values
                             if isinstance(param.default, Enum):
                                 param_info["default"] = param.default.name
                             else:
@@ -133,7 +129,6 @@ def get_class_info(cls):
                             if inspect.isclass(param_type) and issubclass(param_type, Enum):
                                 param_info["type"] = "enum"
                                 param_info["enum_type"] = param_type.__name__
-                                # Add enum values
                                 param_info["enum_values"] = [e.name for e in param_type]
                             elif param_type == int:
                                 param_info["type"] = "number"
@@ -148,11 +143,8 @@ def get_class_info(cls):
                         
                         all_params.append(param_info)
         
-        # Special handling for input type layers
         if hasattr(cls, '__name__') and cls.__name__.endswith('InputLayer') and cls != BaseInputLayer:
-            # Check if input_type is already in params
             if not any(p['name'] == 'input_type' for p in all_params):
-                # Determine the default input type based on the class name
                 default_type = "IMAGE"  # Default fallback
                 
                 if cls.__name__ == "ImageInputLayer":
@@ -189,7 +181,6 @@ def get_class_info(cls):
 
 @app.route('/api/layer-types', methods=['GET'])
 def get_layer_types():
-    # Include all the input layer types
     layer_types = [
         get_class_info(ConvolutionalLayer),
         get_class_info(PoolingLayer),
@@ -197,8 +188,8 @@ def get_layer_types():
         get_class_info(LeakyReLUFunction),
         get_class_info(TanhFunction),
         get_class_info(SoftMaxFunction),
-        get_class_info(BaseInputLayer),  # Keep the base class for backward compatibility
-        get_class_info(ImageInputLayer),  # Add specialized input layers
+        get_class_info(BaseInputLayer),  
+        get_class_info(ImageInputLayer), 
         get_class_info(TextInputLayer),
         get_class_info(TabularInputLayer),
         get_class_info(AudioInputLayer),
@@ -229,7 +220,6 @@ def create_network():
     
     return jsonify({"id": network_id})
 
-# Update the layer types dictionary to include all input layer variants
 LAYER_TYPES : Dict[str, Type[Layer]] = {
     'ConvolutionalLayer': ConvolutionalLayer,
     'PoolingLayer': PoolingLayer,
@@ -261,7 +251,6 @@ def add_layer(network_id):
 
     layer_class = LAYER_TYPES.get(layer_type)
     
-    # Handle case where layer_class is not found
     if not layer_class:
         return jsonify({"error": f"Unknown layer type: {layer_type}"}), 400
         
@@ -269,7 +258,6 @@ def add_layer(network_id):
 
     network = find_network_by_id(network_id)
     
-    # Handle case where network is not found
     if not network:
         return jsonify({"error": f"Network not found: {network_id}"}), 404
         
@@ -286,14 +274,12 @@ def connect_layers(network_id):
     target_id = data.get('target')
     network = find_network_by_id(network_id)
     
-    # Handle case where network is not found
     if not network:
         return jsonify({"error": f"Network not found: {network_id}"}), 404
         
     source_layer = network.find_layer(source_id)
     target_layer = network.find_layer(target_id)
     
-    # Handle case where layers are not found
     if not source_layer:
         return jsonify({"error": f"Source layer not found: {source_id}"}), 404
     if not target_layer:
@@ -315,7 +301,6 @@ def save_user_logs():
     events_log.append(event)
     return jsonify({'status': 'ok'})
 
-import json
 @app.route('/api/user-logs', methods=['GET'])
 def get_event_log():
     return jsonify(events_log)

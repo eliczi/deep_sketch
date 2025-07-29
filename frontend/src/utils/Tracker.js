@@ -4,10 +4,14 @@ class Tracker {
     this.events = [];
     this.sessionStart = Date.now();
     this.user = null;
+    this.networkId = null;
   }
 
   setUser(user) {
     this.user = user;
+  }
+  setNetworkId(networkId) {
+    this.networkId = networkId;
   }
 
   trackConnectionOperationStart(action, details) {
@@ -58,6 +62,7 @@ class Tracker {
   trackEvent(category, action, details) {
     const event = {
       user: this.user,
+      networkId: this.networkId,
       timestamp: Date.now(),
       sessionTime: Date.now() - this.sessionStart,
       category,

@@ -14,9 +14,8 @@ class App {
 
   async init() {
     document.querySelector('.app-container').style.display = 'none';
-    document.querySelector(".login-container").style.display = "none";
     try {
-      document.querySelector(".login-container").style.display = "none";
+      // document.querySelector(".login-container").style.display = "none";
       if (this.loginEnabled) {
         this.setupLogin();
       }

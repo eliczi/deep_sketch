@@ -169,13 +169,9 @@ class LayerModel {
     if (!svgContainer) return;
 
     const kernelSize = this.getLayerParameter("kernel_size", 3);
-    const filters = this.getLayerParameter("filters", 32);
-    const stride = this.getLayerParameter("stride", 1);
-
     const scaledKernelSize = this.calculateKernelDisplaySize(kernelSize);
-
-    const kernelX = 5 * 2;
-    const kernelY = 5 * 2;
+    const kernelX = 10;
+    const kernelY = 10;
 
     const kernelOptions = {
       kernelWidth: scaledKernelSize,
@@ -270,6 +266,9 @@ class LayerModel {
       LayerModel.LAYER_DIMENSIONS[layerType] ||
       LayerModel.LAYER_DIMENSIONS.DEFAULT
     );
+  }
+  addCustomParameter(name, value, type, description) {
+    this.params[name] = value;
   }
 }
 

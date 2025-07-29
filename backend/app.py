@@ -5,7 +5,7 @@ from enum import Enum
 from layers.activation_function_layers.convolutional_layer import ConvolutionalLayer, ConvolutionType
 from layers.activation_function_layers.pooling_layer import PoolingLayer
 from activation_functions.activation_function import ReLUFunction, LeakyReLUFunction, TanhFunction, SoftMaxFunction
-
+from layers.misc_layers.custom_layer import CustomLayer
 # Update imports for the new input layer structure
 from layers.misc_layers.input_layer import (
     BaseInputLayer, 
@@ -26,15 +26,16 @@ from layers.layer import Layer
 import inspect
 from neural_network import NeuralNetwork
 from connection import Connection
-# from flask_jwt_extended import (
-#     JWTManager, create_access_token,
-#     jwt_required, get_jwt_identity
-# )
+from flask_jwt_extended import (
+    JWTManager, create_access_token,
+    jwt_required, get_jwt_identity
+)
 
 
 app = Flask(__name__)
+#how to use env variables in flask?
 app.config['JWT_SECRET_KEY'] = 'e3f7a0bd67b94e5f8c3bbac435a2d1b204dab5d52db7c1fdc3f85f95f238dfab'  # use env var in production
-# jwt = JWTManager(app)
+jwt = JWTManager(app)
 
 users = {
     "admin": {"password": "admin123"},
@@ -51,8 +52,8 @@ def login():
     if not user or user['password'] != password:
         return jsonify({"error": "Invalid credentials"}), 401
     
-    #access_token = create_access_token(identity=username)
-    #return jsonify(access_token=access_token)
+    access_token = create_access_token(identity=username)
+    return jsonify(access_token=access_token)
 
 
 CORS(app, resources={r"/api/*": {"origins": "*"}})
@@ -88,7 +89,7 @@ def get_class_info(cls):
                         }
                         
                         # Set basic parameters based on layer type
-                        if cls == ConvolutionalLayer and name in ['conv_type', 'filters', 'kernel_size', 'strides']:
+                        if cls == ConvolutionalLayer and name in ['conv_type', 'out_channels', 'kernel_size', 'stride', 'in_channels']:
                             param_info["is_basic"] = True
                         elif cls == PoolingLayer and name in ['pooling_type', 'pool_dimension', 'pool_size']:
                             param_info["is_basic"] = True
@@ -98,10 +99,12 @@ def get_class_info(cls):
                             param_info["is_basic"] = True
                         elif cls == DropoutLayer and name in ['probability', 'inplace']:
                             param_info["is_basic"] = True
-                        # elif cls == EmbeddingLayer and name in ['input_dim', 'output_dim']:
-                        #     param_info["is_basic"] = True
-                        # elif cls == AttentionLayer and name in ['num_heads', 'key_dim']:
-                        #     param_info["is_basic"] = True
+                        elif cls == FlatteningLayer and name in ['start_dim', 'end_dim']:
+                            param_info["is_basic"] = True
+                        elif cls == EmbeddingLayer and name in ['num_embeddings', 'embedding_dim']:
+                            param_info["is_basic"] = True
+                        elif cls == AttentionLayer and name in ['embed_dim', 'num_heads']:
+                            param_info["is_basic"] = True
                         elif cls == NormalizationLayer and name in ['normalization_type']:
                             param_info["is_basic"] = True
                         # elif cls.__name__.endswith('InputLayer') and name in ['input_shape', 'input_type']:
@@ -206,7 +209,8 @@ def get_layer_types():
         get_class_info(AttentionLayer),
         get_class_info(NormalizationLayer),
         get_class_info(DropoutLayer),
-        get_class_info(RecurrentLayer)
+        get_class_info(RecurrentLayer),
+        get_class_info(CustomLayer)
 
     ]
 
@@ -245,7 +249,8 @@ LAYER_TYPES : Dict[str, Type[Layer]] = {
     'AttentionLayer': AttentionLayer,
     'NormalizationLayer': NormalizationLayer,
     'DropoutLayer': DropoutLayer,
-    'RecurrentLayer': RecurrentLayer
+    'RecurrentLayer': RecurrentLayer,
+    'CustomLayer': CustomLayer
 }
 
 @app.route('/api/networks/<network_id>/layers', methods=['POST'])
@@ -301,6 +306,23 @@ def connect_layers(network_id):
     network.add_connection(connection)
     
     return jsonify({"id": connection_id})
+
+events_log = []
+@app.route('/api/user-logs', methods=['POST'])
+def save_user_logs():
+    data = request.get_json()
+    event = data.get('events', [])
+    events_log.append(event)
+    return jsonify({'status': 'ok'})
+
+import json
+@app.route('/api/user-logs', methods=['GET'])
+def get_event_log():
+    return jsonify(events_log)
+    #download to file
+    # with open('user_logs.jsonl', 'w') as f:
+    #     for event in event_log:
+    #         f.write(json.dumps(event) + '\\n')
 
 
 def find_network_by_id(id) -> NeuralNetwork:

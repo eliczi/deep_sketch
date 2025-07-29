@@ -25,86 +25,57 @@ class ConstraintType(Enum):
 class EmbeddingLayer(Layer):
     path = os.path.join('.', 'assets', 'embedding_layer.svg')
     
-    DEFAULT_INPUT_DIM = 1000
-    DEFAULT_OUTPUT_DIM = 100
-    DEFAULT_INITIALIZER = InitializerType.UNIFORM
-    DEFAULT_REGULARIZER = RegularizerType.NONE
-    DEFAULT_CONSTRAINT = ConstraintType.NONE
-    DEFAULT_MASK_ZERO = False
-    DEFAULT_LORA_RANK = None
+    DEFAULT_NUM_EMBEDDINGS = 1000
+    DEFAULT_EMBEDDING_DIM = 100
+    DEFAULT_PADDING_IDX = None
+    DEFAULT_MAX_NORM = None
+    DEFAULT_NORM_TYPE = 2.0
+    DEFAULT_SCALE_GRAD_BY_FREQ = False
+    DEFAULT_SPARSE = False
 
     def __init__(
         self,
-        input_dim: int = DEFAULT_INPUT_DIM,
-        output_dim: int = DEFAULT_OUTPUT_DIM,
-        embeddings_initializer: InitializerType = DEFAULT_INITIALIZER,
-        embeddings_regularizer: RegularizerType = DEFAULT_REGULARIZER,
-        embeddings_constraint: ConstraintType = DEFAULT_CONSTRAINT,
-        mask_zero: bool = DEFAULT_MASK_ZERO,
-        lora_rank: int = DEFAULT_LORA_RANK,
-        **kwargs
+        num_embeddings: int = DEFAULT_NUM_EMBEDDINGS,
+        embedding_dim: int = DEFAULT_EMBEDDING_DIM,
+        padding_idx: int = DEFAULT_PADDING_IDX,
+        max_norm: float = DEFAULT_MAX_NORM,
+        norm_type: float = DEFAULT_NORM_TYPE,
+        scale_grad_by_freq: bool = DEFAULT_SCALE_GRAD_BY_FREQ,
+        sparse: bool = DEFAULT_SPARSE
     ):
         super().__init__()
-        self.input_dim = input_dim
-        self.output_dim = output_dim
-        self.embeddings_initializer = embeddings_initializer
-        self.embeddings_regularizer = embeddings_regularizer
-        self.embeddings_constraint = embeddings_constraint
-        self.mask_zero = mask_zero
-        self.lora_rank = lora_rank
+        self.num_embeddings = num_embeddings
+        self.embedding_dim = embedding_dim
+        self.padding_idx = padding_idx
+        self.max_norm = max_norm
+        self.norm_type = norm_type
+        self.scale_grad_by_freq = scale_grad_by_freq
+        self.sparse = sparse
         self.input_shape = None
         self.output_shape = None
-        # Store any additional kwargs
-        self.extra_params = kwargs
 
     @classmethod
     def from_params(cls, params):
-        # Convert string values to enum types
-        initializer = params.get('embeddings_initializer', cls.DEFAULT_INITIALIZER.value)
-        if isinstance(initializer, str):
-            for init_type in InitializerType:
-                if init_type.value == initializer:
-                    initializer = init_type
-                    break
-
-        regularizer = params.get('embeddings_regularizer', cls.DEFAULT_REGULARIZER.value)
-        if isinstance(regularizer, str):
-            for reg_type in RegularizerType:
-                if reg_type.value == regularizer:
-                    regularizer = reg_type
-                    break
-
-        constraint = params.get('embeddings_constraint', cls.DEFAULT_CONSTRAINT.value)
-        if isinstance(constraint, str):
-            for const_type in ConstraintType:
-                if const_type.value == constraint:
-                    constraint = const_type
-                    break
-
         return cls(
-            input_dim=params.get('input_dim', cls.DEFAULT_INPUT_DIM),
-            output_dim=params.get('output_dim', cls.DEFAULT_OUTPUT_DIM),
-            embeddings_initializer=initializer,
-            embeddings_regularizer=regularizer,
-            embeddings_constraint=constraint,
-            mask_zero=params.get('mask_zero', cls.DEFAULT_MASK_ZERO),
-            lora_rank=params.get('lora_rank', cls.DEFAULT_LORA_RANK),
-            **{k: v for k, v in params.items() if k not in {
-                'input_dim', 'output_dim', 'embeddings_initializer',
-                'embeddings_regularizer', 'embeddings_constraint',
-                'mask_zero', 'lora_rank'
-            }}
+            num_embeddings=params.get('num_embeddings', cls.DEFAULT_NUM_EMBEDDINGS),
+            embedding_dim=params.get('embedding_dim', cls.DEFAULT_EMBEDDING_DIM),
+            padding_idx=params.get('padding_idx', cls.DEFAULT_PADDING_IDX),
+            max_norm=params.get('max_norm', cls.DEFAULT_MAX_NORM),
+            norm_type=params.get('norm_type', cls.DEFAULT_NORM_TYPE),
+            scale_grad_by_freq=params.get('scale_grad_by_freq', cls.DEFAULT_SCALE_GRAD_BY_FREQ),
+            sparse=params.get('sparse', cls.DEFAULT_SPARSE),
+      
         )
 
     def get_config(self):
         return {
-            'input_dim': self.input_dim,
-            'output_dim': self.output_dim,
-            'embeddings_initializer': self.embeddings_initializer.value,
-            'embeddings_regularizer': self.embeddings_regularizer.value,
-            'embeddings_constraint': self.embeddings_constraint.value,
-            'mask_zero': self.mask_zero,
-            'lora_rank': self.lora_rank
+            'num_embeddings': self.num_embeddings,
+            'embedding_dim': self.embedding_dim,
+            'padding_idx': self.padding_idx,
+            'max_norm': self.max_norm,
+            'norm_type': self.norm_type,
+            'scale_grad_by_freq': self.scale_grad_by_freq,
+            'sparse': self.sparse
         }
     
 

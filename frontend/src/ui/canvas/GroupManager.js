@@ -3,6 +3,7 @@ import ConnectionVisualizer from "../connection/ConnectionVisualizer.js";
 import { InputPoint, OutputPoint } from "../connection/ConnectionPoint.js";
 import NetworkModel from "../../models/NetworkModel.js";
 import ConnectionModel from "../../models/ConnectionModel.js";
+import Tracker from "../../utils/Tracker.js";
 
 const GROUP_DEFAULTS = {
   PADDING: 20,
@@ -74,20 +75,18 @@ class GroupManager {
     this.selectionManager.clearSelection();
     GroupManager.updateGroupConnections(groupId);
     this.parent.updateElementPositions();
+    Tracker.trackEvent("group", "create-group", {groupId: groupId, nodes: nodes.map((node) => node.dataset.id), position: {left: boundingBox.left, top: boundingBox.top}});
     return groupElement;
   }
 
-  createGroupElement(
-    groupId,
-    boundingBox,
-    groupName = `Group ${this.groupCounter}`,
-  ) {
+  createGroupElement(groupId, boundingBox, groupName = `Group ${this.groupCounter}`,) {
     const groupElement = DomUtils.createElementWithClass("div", "layer-group");
     groupElement.dataset.id = groupId;
     groupElement.style.left = `${boundingBox.left}px`;
     groupElement.style.top = `${boundingBox.top}px`;
     groupElement.style.width = `${boundingBox.width}px`;
     groupElement.style.height = `${boundingBox.height}px`;
+    groupElement.style.backgroundColor = "rgba(218, 219, 201, 0.78)";
     const header = DomUtils.createElementWithClass("div", "group-header");
     header.innerHTML = `
       <span class="group-title">${groupName}</span>
@@ -105,6 +104,7 @@ class GroupManager {
     const toggleButton = header.querySelector(".group-toggle");
     toggleButton.addEventListener("click", (e) => {
       e.stopPropagation();
+      Tracker.trackEvent("group", "toggle-group", {groupId: groupId});
       this.toggleGroup(groupId);
     });
     this.makeGroupDraggable(groupElement);
@@ -334,12 +334,13 @@ class GroupManager {
 
             groupElement.dataset.originalX = left;
             groupElement.dataset.originalY = top;
-
+            
             GroupManager.updateGroupConnections(groupElement.dataset.id);
           }
         };
 
         const upHandler = () => {
+          Tracker.trackEvent("group", "update-group-position", {groupId: groupElement.dataset.id, position: {left: groupElement.dataset.originalX, top: groupElement.dataset.originalY}});
           isDragging = false;
           document.removeEventListener("mousemove", moveHandler);
           document.removeEventListener("mouseup", upHandler);
@@ -826,15 +827,11 @@ class GroupManager {
       console.warn("Node is already part of another group");
       return false;
     }
-    //find to which node is the node atta hed to
     const attachedTo = node.dataset.attachedTo;
     const attachedToNode = document.querySelector(
       `.layer-node[data-id="${attachedTo}"]`,
     );
-    console.log("attachedToNode.style.left", attachedToNode.style.left);
-    console.log("attachedToNode.style.top", attachedToNode.style.top);
     const groupElement = group.element;
-    const scale = this.parent.scale || 1;
     const originalLeft = parseFloat(attachedToNode.style.left) + 22 + 24; //+ (parseInt(node.dataset.originalX) - parseInt(groupElement.dataset.originalX)) / scale;
     const originalTop = parseFloat(attachedToNode.style.top) - 22; // (parseInt(node.dataset.originalY) - parseInt(groupElement.dataset.originalY)) / scale;
 
@@ -843,8 +840,6 @@ class GroupManager {
     node.style.transform = `scale(${1})`;
     node.style.left = `${originalLeft}px`;
     node.style.top = `${originalTop}px`;
-    console.log("node.style.left", node.style.left);
-    console.log("node.style.top", node.style.top);
     group.nodes.push(node);
     GroupManager.updateGroupConnections(groupId);
     this.parent.updateElementPositions();

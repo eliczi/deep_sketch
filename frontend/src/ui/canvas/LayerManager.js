@@ -76,7 +76,6 @@ class LayerManager {
     const nodeElement = document.querySelector(
       `.layer-node[data-id="${nodeId}"]`,
     );
-    //check if something is attached to this node
     const attachedFunctionLayers = document.querySelectorAll(
       `.layer-node[data-attached-to="${nodeId}"]`,
     );

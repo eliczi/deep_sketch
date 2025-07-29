@@ -1,5 +1,6 @@
 import DomUtils from "../utils/DomUtils.js";
 import SessionTimer from "../utils/SessionTimer.js";
+import Tracker from "../utils/Tracker.js";
 /**
  * Handles the rendering and user interaction for the layer type selection panel.
  * Supports drag-and-drop and category organization of available layers.
@@ -78,16 +79,7 @@ class LayerPanel {
         "div",
         "category-header",
       );
-      Object.assign(categoryHeader.style, {
-        padding: "8px",
-        backgroundColor: "#f5f5f5",
-        borderBottom: "1px solid #ddd",
-        cursor: "pointer",
-        userSelect: "none",
-        position: "sticky",
-        top: "0",
-        zIndex: "1",
-      });
+  
 
       categoryHeader.innerHTML = `
         <span class="category-name">${categoryName}</span>
@@ -105,6 +97,8 @@ class LayerPanel {
       });
 
       categoryHeader.addEventListener("click", () => {
+        //add event to tracker
+        Tracker.trackSidebarOperation("toggle-layer-panel", {});
         contentContainer.classList.toggle("collapsed");
         const toggleIcon = categoryHeader.querySelector(".toggle-icon");
         toggleIcon.textContent = contentContainer.classList.contains(
@@ -174,14 +168,18 @@ class LayerPanel {
       });
 
       categoryContainer.appendChild(contentContainer);
-      scrollableWrapper.appendChild(categoryContainer);
+      //scrollableWrapper.appendChild(categoryContainer);
+      this.container.appendChild(categoryContainer);
     });
 
-    this.container.appendChild(scrollableWrapper);
+    //this.container.appendChild(scrollableWrapper);
   }
 
   handleLayerTypeDragStart(e) {
+    
     const layerType = e.target.dataset.type;
+    //add tracking with layer type
+    Tracker.trackDragOperation("drag-start", layerType);
     e.dataTransfer.setData("text/plain", layerType);
     e.dataTransfer.effectAllowed = "move";
     this.currentDraggedLayerType = layerType;

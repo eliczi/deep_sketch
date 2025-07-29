@@ -1,7 +1,27 @@
+import apiClient from "../api/ApiClient.js";
 class Tracker {
   constructor() {
     this.events = [];
     this.sessionStart = Date.now();
+    this.user = null;
+  }
+
+  setUser(user) {
+    this.user = user;
+  }
+
+  trackConnectionOperationStart(action, details) {
+    this.trackEvent("connection", action, details);
+  }
+  trackConnectionOperationEnd(action, details) {
+    this.trackEvent("connection", action, details);
+  }
+  trackSidebarOperation(action, details) {
+    this.trackEvent("sidebar", action, details);
+  }
+
+  trackDragOperation(action, details) {
+    this.trackEvent("drag", action, details);
   }
 
   trackLayerOperation(action, layer) {
@@ -37,6 +57,7 @@ class Tracker {
   }
   trackEvent(category, action, details) {
     const event = {
+      user: this.user,
       timestamp: Date.now(),
       sessionTime: Date.now() - this.sessionStart,
       category,
@@ -44,8 +65,11 @@ class Tracker {
       details,
     };
     this.events.push(event);
-
-    console.log(`Tracked ${category} ${action}:`, details);
+    this.sendLogToServer(event);
+  }
+  //send one log
+  sendLogToServer(event) {
+    apiClient.sendLogToServer(event);
   }
 
   getEvents() {

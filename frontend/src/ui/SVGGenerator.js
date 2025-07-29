@@ -67,12 +67,7 @@ class SVGGenerator {
     return svg;
   }
 
-  /**
-   * Creates an SVG representation based on layer type
-   * @param {string} type - The type of layer
-   * @param {Object} options - Configuration options
-   * @returns {Object|null} Object containing SVG content or null if type not supported
-   */
+
   static createSVGRepresentation(type, options = {}) {
     let svgContent = "";
     switch (type.toLowerCase()) {

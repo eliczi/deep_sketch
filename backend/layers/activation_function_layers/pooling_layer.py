@@ -20,29 +20,32 @@ class PoolingLayer(Layer):
     
     DEFAULT_POOL_TYPE = PoolingType.MAX
     DEFAULT_POOL_DIM = PoolingDimension.POOL2D
-    DEFAULT_POOL_SIZE = 2
+    DEFAULT_KERNEL_SIZE = 32
     DEFAULT_PADDING = PaddingType.VALID
     
     def __init__(
         self,
         pooling_type: PoolingType = DEFAULT_POOL_TYPE,
         pool_dimension: PoolingDimension = DEFAULT_POOL_DIM,
-        pool_size = None,
-        strides = 1,
-        padding: PaddingType = DEFAULT_PADDING
+        kernel_size = 32,
+        stride = 1,
+        padding: PaddingType = DEFAULT_PADDING,
+        dilation = 1,
+        return_indices = False,
+        ceil_mode = False
     ):
         ndim = {"Pool1D": 1, "Pool2D": 2, "Pool3D": 3}[pool_dimension.value]
-        if pool_size is None:
-            pool_size = tuple([DEFAULT_POOL_SIZE] * ndim)
-        if strides is None:
-            strides = pool_size
+        
             
         super().__init__()
         self.pooling_type = pooling_type
         self.pool_dimension = pool_dimension
-        self.pool_size = pool_size
-        self.strides = strides
+        self.kernel_size = kernel_size
+        self.stride = stride
         self.padding = padding
+        self.dilation = dilation
+        self.return_indices = return_indices
+        self.ceil_mode = ceil_mode
 
     @classmethod
     def from_params(cls, params):
@@ -58,15 +61,18 @@ class PoolingLayer(Layer):
                     return tuple(val * ndim)
             return tuple([val] * ndim)
             
-        pool_size = parse_tuple(params.get('pool_size', cls.DEFAULT_POOL_SIZE), ndim)
-        strides = parse_tuple(params.get('strides', pool_size), ndim)
+        kernel_size = parse_tuple(params.get('kernel_size', cls.DEFAULT_KERNEL_SIZE), ndim)
+        stride = parse_tuple(params.get('stride', kernel_size), ndim)
         
         return cls(
             pooling_type=PoolingType(params.get('pooling_type', cls.DEFAULT_POOL_TYPE.value)),
-            pool_dimension=pool_dimension,
-            pool_size=pool_size,
-            strides=strides,
-            padding=PaddingType(params.get('padding', cls.DEFAULT_PADDING.value))
+            pool_dimension=pool_dimension,  
+            kernel_size=kernel_size,
+            stride=stride,
+            padding=PaddingType(params.get('padding', cls.DEFAULT_PADDING.value)),
+            dilation=params.get('dilation', 1),
+            return_indices=params.get('return_indices', False),
+            ceil_mode=params.get('ceil_mode', False)
         )
     
    

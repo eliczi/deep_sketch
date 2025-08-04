@@ -9,6 +9,7 @@ class SessionTimer {
     this.timerElement = null;
     this.intervalId = null;
     this.isVisible = false;
+    this.enable = false;
   }
 
   init(elementId = "session-timer") {
@@ -47,7 +48,7 @@ class SessionTimer {
 
       this.timerElement.title = "Press Ctrl+T to toggle timer visibility";
     }
-
+    this.startTime = Date.now()
     this.startDisplay();
   }
 

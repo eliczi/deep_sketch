@@ -30,7 +30,7 @@ class PyTorchCodeGenerator {
     ConvolutionalLayer: (layer, idx) =>
       `        self.layer${idx} = nn.${this.ConvolutionalType[layer.params.conv_type]}(${layer.params.in_channels}, ${layer.params.out_channels}, ${layer.params.kernel_size}, ${layer.params.stride}, ${layer.params.padding}, ${layer.params.dilation}, ${layer.params.groups}, ${layer.params.bias}, '${layer.params.padding_mode.toLowerCase()}')`,
     DenseLayer: (layer, idx) =>
-      `        self.layer${idx} = nn.Linear(${layer.params.in_features}, ${layer.params.out_features})`,
+      `        self.layer${idx} = nn.Linear(${layer.params.in_features}, ${layer.params.units})`,
     PoolingLayer: (layer, idx) =>
       this.generatePoolingLayer(layer, idx),
     FlatteningLayer: (layer, idx) =>

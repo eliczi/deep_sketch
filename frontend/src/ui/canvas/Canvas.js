@@ -55,7 +55,7 @@ class Canvas {
       this.layerManager,
       this,
     );
-    this.contextMenu = new ContextMenu(this);
+   //this.contextMenu = new ContextMenu(this);
 
     this.eventHandler = new CanvasEventHandler(
       this.canvas,
@@ -155,7 +155,7 @@ class Canvas {
         this.lastX = e.clientX;
         this.lastY = e.clientY; 
         this._panningStarted = false;
-        this.contextMenu.hideContextMenu();
+        //this.contextMenu.hideContextMenu();
         
       }
     });

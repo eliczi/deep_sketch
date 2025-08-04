@@ -147,7 +147,9 @@ class Canvas {
     this.canvas.addEventListener("wheel", this.handleWheel.bind(this), {
       passive: false,
     });
-
+    this.canvas.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+    });
     //event responsible for panning with right mouse button
     this.canvas.addEventListener("mousedown", (e) => {
       if (e.buttons === 2) {

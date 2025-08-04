@@ -308,6 +308,7 @@ def get_event_log():
     # with open('user_logs.jsonl', 'w') as f:
     #     for event in event_log:
     #         f.write(json.dumps(event) + '\\n')
+    
 
 
 def find_network_by_id(id) -> NeuralNetwork:

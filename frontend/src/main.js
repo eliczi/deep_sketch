@@ -9,13 +9,13 @@ class App {
     this.neuralNetwork = null;
     this.sessionTimer = SessionTimer;
     this.timersEnabled = true;
-    this.loginEnabled = true;
+    this.loginEnabled = false;
   }
 
   async init() {
     document.querySelector('.app-container').style.display = 'none';
     try {
-      // document.querySelector(".login-container").style.display = "none";
+      document.querySelector(".login-container").style.display = "none";
       if (this.loginEnabled) {
         this.setupLogin();
       }

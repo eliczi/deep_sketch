@@ -93,11 +93,11 @@ def get_class_info(cls):
                         
                         if cls == ConvolutionalLayer and name in ['conv_type', 'filters', 'kernel_size', 'stride', 'in_channels']:
                             param_info["is_basic"] = True
-                        elif cls == PoolingLayer and name in ['pooling_type', 'pool_dimension', 'pool_size']:
+                        elif cls == PoolingLayer and name in ['pooling_type', 'pool_dimension', 'pool_size', 'kernel_size']:
                             param_info["is_basic"] = True
                         elif cls == BaseInputLayer and name in ['input_shape', 'input_type']:
                             param_info["is_basic"] = True
-                        elif cls == DenseLayer and name in ['in_features', 'out_features']:
+                        elif cls == DenseLayer and name in ['units']:
                             param_info["is_basic"] = True
                         elif cls == DropoutLayer and name in ['probability', 'inplace']:
                             param_info["is_basic"] = True

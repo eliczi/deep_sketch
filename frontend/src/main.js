@@ -9,7 +9,7 @@ class App {
     this.neuralNetwork = null;
     this.sessionTimer = SessionTimer;
     this.timersEnabled = true;
-    this.loginEnabled = false;
+    this.loginEnabled = true;
   }
 
   async init() {
@@ -56,11 +56,12 @@ class App {
 
       try {
         const res = await ApiClient.login(username, password);
-        document.querySelector(".login-container").style.display = "none";
+        console.log(res);
         document.querySelector(".app-container").style.display = "flex";
 
         if (res)
         {
+          document.querySelector(".login-container").style.display = "none";
           this.sessionTimer.init();
           this.sessionTimer.show();
           Tracker.setUser(username);

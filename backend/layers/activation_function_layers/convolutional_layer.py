@@ -33,7 +33,7 @@ class ConvolutionalLayer(Layer):
         self,
         conv_type: ConvolutionType = ConvolutionType.CONV2D,
         in_channels=32,
-        out_channels=32,
+        filters=32,
         kernel_size=3,
         stride=1,
         padding = 0,
@@ -46,7 +46,7 @@ class ConvolutionalLayer(Layer):
         super().__init__()
         self.conv_type = conv_type
         self.in_channels = in_channels
-        self.out_channels = out_channels
+        self.filters = filters
         self.stride = stride
         self.padding = padding
         self.dilation= dilation
@@ -75,7 +75,7 @@ class ConvolutionalLayer(Layer):
         return cls(
             conv_type=conv_type,
             in_channels=params.get('in_channels', 32),
-            out_channels=params.get('out_channels', 32),
+            filters=params.get('filters', 32),
             kernel_size=kernel_size,
             stride=stride,
             padding=params.get('padding', 1),

@@ -41,11 +41,13 @@ jwt = JWTManager(app)
 
 users = {
     "admin": {"password": "admin123"},
-    "user1": {"password": "pass1"}
+    "user1": {"password": "pass1"},
+    "dvg": {"password": "dvg123"}
 }
 
 @app.route('/api/login', methods=['POST'])
 def login():
+    
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
@@ -89,7 +91,7 @@ def get_class_info(cls):
                             "is_basic": False 
                         }
                         
-                        if cls == ConvolutionalLayer and name in ['conv_type', 'out_channels', 'kernel_size', 'stride', 'in_channels']:
+                        if cls == ConvolutionalLayer and name in ['conv_type', 'filters', 'kernel_size', 'stride', 'in_channels']:
                             param_info["is_basic"] = True
                         elif cls == PoolingLayer and name in ['pooling_type', 'pool_dimension', 'pool_size']:
                             param_info["is_basic"] = True
@@ -308,7 +310,6 @@ def get_event_log():
     # with open('user_logs.jsonl', 'w') as f:
     #     for event in event_log:
     #         f.write(json.dumps(event) + '\\n')
-    
 
 
 def find_network_by_id(id) -> NeuralNetwork:
@@ -319,4 +320,4 @@ def find_network_by_id(id) -> NeuralNetwork:
         
 if __name__ == '__main__':
     print("Starting Flask server on https://msc-project-8fbo.onrender.com")
-    app.run(debug=True, host='0.0.0.0', port=10000)
+    app.run(debug=True, port=5001)

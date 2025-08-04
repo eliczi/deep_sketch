@@ -151,6 +151,24 @@ class SelectionManager {
   isNodeSelected(nodeId) {
     return this.selectedNodeIds.has(nodeId);
   }
+
+  toggleNodeSelection(nodeId) {
+    if (this.selectedNodeIds.has(nodeId)) {
+      // Remove from selection
+      this.selectedNodeIds.delete(nodeId);
+      const node = document.querySelector(`.layer-node[data-id="${nodeId}"]`);
+      if (node) {
+        node.classList.remove("selected");
+      }
+    } else {
+      // Add to selection
+      this.addNodeToSelection(nodeId);
+    }
+  }
+
+  getSelectedNodeCount() {
+    return this.selectedNodeIds.size;
+  }
 }
 
 export default SelectionManager;

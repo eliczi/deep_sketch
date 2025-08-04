@@ -44,7 +44,6 @@ class ApiClient {
   }
 
   async login(username, password) {
-
     const response = await this.fetchApi("login", {
       method: "POST",
       body: JSON.stringify({ username, password }),

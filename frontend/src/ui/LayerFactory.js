@@ -140,7 +140,7 @@ class LayerFactory {
 
     node.addEventListener("click", (e) => {
       e.stopPropagation();
-      if (clickHandler) clickHandler(nodeId);
+      if (clickHandler) clickHandler(nodeId, e.metaKey || e.ctrlKey);
     });
   }
 

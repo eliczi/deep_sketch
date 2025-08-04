@@ -115,7 +115,7 @@ class ContextMenu {
         return;
       }
       e.preventDefault();
-    this.showContextMenu(e.clientX, e.clientY, e.target);
+    //this.showContextMenu(e.clientX, e.clientY, e.target);
     });
 
     this.contextMenu.addEventListener("click", (e) => {

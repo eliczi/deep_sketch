@@ -56,7 +56,6 @@ class App {
 
       try {
         const res = await ApiClient.login(username, password);
-        console.log(res);
         document.querySelector(".app-container").style.display = "flex";
 
         if (res)

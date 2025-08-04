@@ -684,6 +684,8 @@ class LayerPanelManager {
       input.addEventListener("change", (e) => {
         const newValue =
           input.type === "number" ? parseFloat(e.target.value) : e.target.value;
+        Tracker.trackEvent("layer", "update-parameter", {nodeId: this.currentLayerNodeId, layerType: layer.type, parameter: key, value: newValue});
+  
         layer.updateParameter(key, newValue);
 
         if (this.currentLayerNodeId) {

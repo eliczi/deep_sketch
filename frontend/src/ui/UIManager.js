@@ -70,15 +70,16 @@ class UIManager {
   handleGenerateButtonClick() {
     const codeGenerator = new PyTorchCodeGenerator(NetworkModel);
     const code = codeGenerator.generateCode();
+    console.log(code);
     // Create and download the file directly
-    const blob = new Blob([code], { type: "text/plain" });
-    const a = document.createElement("a");
-    a.download = "network_code.py";
-    a.href = URL.createObjectURL(blob);
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(a.href);
+    // const blob = new Blob([code], { type: "text/plain" });
+    // const a = document.createElement("a");
+    // a.download = "network_code.py";
+    // a.href = URL.createObjectURL(blob);
+    // document.body.appendChild(a);
+    // a.click();
+    // document.body.removeChild(a);
+    // URL.revokeObjectURL(a.href);
   }
 }
 

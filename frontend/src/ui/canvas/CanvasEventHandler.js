@@ -1,5 +1,5 @@
 import Tracker from "../../utils/Tracker.js";
-
+import ConnectionVisualizer from "../connection/ConnectionVisualizer.js";
 class CanvasEventHandler {
   constructor(
     canvas,
@@ -59,9 +59,23 @@ class CanvasEventHandler {
   }
 
   handleNodeClicked(e) {
-    const { nodeId } = e.detail;
-    this.selectionManager.selectNode(nodeId);
-    this.layerPanelManager.showLayerPanel(nodeId);
+    const { nodeId, metaKey } = e.detail;
+    
+    if (metaKey) {
+      this.selectionManager.toggleNodeSelection(nodeId);
+      
+      if (this.selectionManager.hasSelectedNodes()) {
+        const selectedIds = this.selectionManager.getSelectedNodeIds();
+        const lastSelectedId = selectedIds[selectedIds.length - 1];
+        this.layerPanelManager.showLayerPanel(lastSelectedId);
+      } else {
+        this.layerPanelManager.hideLayerPanel();
+      }
+    } else {
+      this.selectionManager.selectNode(nodeId);
+      this.layerPanelManager.showLayerPanel(nodeId);
+    }
+    
     this.groupManager.deselectAllGroups();
     const type = document.querySelector(`.layer-node[data-id="${nodeId}"]`).dataset.type;
     Tracker.trackEvent("canvas", "node-clicked", {nodeId: nodeId, nodeType: type});
@@ -251,16 +265,40 @@ class CanvasEventHandler {
     ) {
       this.selectionManager.clearSelection();
       this.layerPanelManager.hideLayerPanel();
+    //   console.log("canvas clicked");
+    // //if any permament connection is selected, deselect it and set the path.dataset.isClicked to false
+    //   const permamentConnections = document.querySelectorAll(
+    //     ".permanent-connection",
+    //   );
+    //   permamentConnections.forEach((connection) => {
+    //     //access path element
+    //     const path = connection.querySelector("path");
+    //     console.log(path);
+    //     path.dataset.isClicked = "false";
+    //   });
       return;
     }
+    
 
     let target = e.target;
     while (target && target !== this.canvas) {
       if (target.classList.contains("layer-node")) {
         const nodeId = target.dataset.id;
-        this.selectionManager.clearSelection();
-        this.selectionManager.addNodeToSelection(nodeId);
-        this.layerPanelManager.showLayerPanel(nodeId);
+        if (e.metaKey || e.ctrlKey) {
+          this.selectionManager.toggleNodeSelection(nodeId);
+          
+          if (this.selectionManager.hasSelectedNodes()) {
+            const selectedIds = this.selectionManager.getSelectedNodeIds();
+            const lastSelectedId = selectedIds[selectedIds.length - 1];
+            this.layerPanelManager.showLayerPanel(lastSelectedId);
+          } else {
+            this.layerPanelManager.hideLayerPanel();
+          }
+        } else {
+          this.selectionManager.clearSelection();
+          this.selectionManager.addNodeToSelection(nodeId);
+          this.layerPanelManager.showLayerPanel(nodeId);
+        }
         break;
       }
       target = target.parentElement;
@@ -268,17 +306,24 @@ class CanvasEventHandler {
   }
 
   handleKeyDown(e) {
-    if (
-      (e.key === "Backspace" &&
-        e.metaKey) || e.key === "Delete"
-      &&
-      this.selectionManager.hasSelectedNodes()
-    ) {
-      this.layerManager.deleteSelectedNodes(
-        this.selectionManager.getSelectedNodeIds(),
-      );
+    if ((e.key === "Backspace" && e.metaKey) || e.key === "Delete" && this.selectionManager.hasSelectedNodes()) 
+    {
+      this.layerManager.deleteSelectedNodes(this.selectionManager.getSelectedNodeIds(),);
       this.selectionManager.clearSelection();
+      const permamentConnections = document.querySelectorAll(
+        ".permanent-connection",
+      );      
+      const visualizer = ConnectionVisualizer.getInstance();
+      permamentConnections.forEach((connection) => {
+        const path = connection.querySelector("path");
+        if (path.dataset.isClicked === "true") {
+          visualizer.removeConnectionsForNode(connection.dataset.sourceId);
+
+        }
+        
+      });
     }
+   
   }
 }
 

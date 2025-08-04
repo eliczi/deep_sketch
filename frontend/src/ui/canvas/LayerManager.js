@@ -24,10 +24,10 @@ class LayerManager {
 
     const layer = this.networkModel.addLayer(layerType, params, x, y);
     if (!layer) throw new Error("Failed to create layer");
-    const clickHandler = (nodeId) => {
+    const clickHandler = (nodeId, metaKey) => {
       this.canvas.dispatchEvent(
         new CustomEvent("node-clicked", {
-          detail: { nodeId },
+          detail: { nodeId, metaKey },
           bubbles: true,
         }),
       );

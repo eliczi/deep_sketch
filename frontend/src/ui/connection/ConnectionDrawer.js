@@ -20,14 +20,8 @@ export class ConnectionDrawer {
     return { line, path };
   }
 
-  updateTemporaryLine(
-    path,
-    startX,
-    startY,
-    cursorX,
-    cursorY,
-    connectionPointType,
-  ) {
+  updateTemporaryLine(path,startX,startY,cursorX,cursorY,connectionPointType,) 
+  {
     const containerRect = this.svgContainer.getBoundingClientRect();
     const adjustedCursorX = cursorX - containerRect.left;
     const adjustedCursorY = cursorY - containerRect.top;
@@ -40,10 +34,62 @@ export class ConnectionDrawer {
       pathData = `M ${startX} ${startY} C ${startX - offset} ${startY}, ${startX - offset} ${adjustedCursorY}, ${adjustedCursorX} ${adjustedCursorY}`;
     }
     path.setAttribute("d", pathData);
+    
+    // Get current scale and add arrowhead
+    const currentScale = DomUtils.getScale();
+    this.addArrowhead(path, adjustedCursorX, adjustedCursorY, connectionPointType, currentScale);
+  }
+
+  addArrowhead(path, endX, endY, connectionPointType, scale = 1.0) {
+    // Remove existing arrowhead if any
+    const existingArrowhead = path.parentNode.querySelector('.temp-arrowhead');
+    if (existingArrowhead) {
+      existingArrowhead.remove();
+    }
+
+    // Calculate arrow direction based on connection type
+    const arrowLength = 12 * scale; // Scale the arrow length
+    const arrowAngle = Math.PI / 6; // 30 degrees
+    
+    // Calculate the direction vector (simplified - you might want to calculate actual tangent)
+    let directionX, directionY;
+    if (connectionPointType === "output") {
+      directionX = 1; // Pointing right
+      directionY = 0;
+    } else {
+      directionX = -1; // Pointing left
+      directionY = 0;
+    }
+
+    // Calculate arrow points
+    const arrowTipX = endX;
+    const arrowTipY = endY;
+    
+    const arrowBase1X = endX - directionX * arrowLength * Math.cos(arrowAngle);
+    const arrowBase1Y = endY - directionY * arrowLength * Math.cos(arrowAngle) - arrowLength * Math.sin(arrowAngle);
+    
+    const arrowBase2X = endX - directionX * arrowLength * Math.cos(arrowAngle);
+    const arrowBase2Y = endY - directionY * arrowLength * Math.cos(arrowAngle) + arrowLength * Math.sin(arrowAngle);
+
+    // Create arrowhead path
+    const arrowheadPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    arrowheadPath.setAttribute("d", `M ${arrowTipX} ${arrowTipY} L ${arrowBase1X} ${arrowBase1Y} L ${arrowBase2X} ${arrowBase2Y} Z`);
+    arrowheadPath.setAttribute("fill", "#666");
+    arrowheadPath.setAttribute("stroke", "#666");
+    arrowheadPath.setAttribute("stroke-width", `${1 * scale}`); // Scale the stroke width
+    arrowheadPath.classList.add("temp-arrowhead");
+    
+    // Add arrowhead to the same container as the path
+    path.parentNode.appendChild(arrowheadPath);
   }
 
   removeTemporaryLine(line) {
     if (line && line.parentNode) {
+      // Remove the temporary arrowhead if it exists
+      const arrowhead = line.parentNode.querySelector('.temp-arrowhead');
+      if (arrowhead) {
+        arrowhead.remove();
+      }
       line.parentNode.removeChild(line);
     }
   }
@@ -98,12 +144,26 @@ export class ConnectionDrawer {
 
       path.addEventListener("mouseleave", () => {
         path.dataset.isHovered = "false";
-        path.setAttribute("stroke-width", `${this.baseStrokeWidth * scale}`);
+        if (!path.dataset.isClicked || path.dataset.isClicked === "false") {
+          path.setAttribute("stroke-width", `${this.baseStrokeWidth * scale}`);
+        }
       });
 
       path.addEventListener("click", (e) => {
         e.stopPropagation();
-        clickHandler(sourceId, targetId, e);
+        console.log('click')
+        if(path.dataset.isClicked === 'true') {
+          path.setAttribute("stroke-width", `${this.baseStrokeWidth * scale}`);
+          this.pathClicked = false;
+          path.dataset.isClicked = "false";
+        } else {  
+          path.setAttribute("stroke-width", `${this.baseHoverStrokeWidth * scale}`);
+          this.pathClicked = true;
+          path.dataset.isClicked = "true";
+        }
+        console.log(path.dataset.isClicked)
+
+        //clickHandler(sourceId, targetId, e);
       });
 
       path.setAttribute("data-hover-added", "true");

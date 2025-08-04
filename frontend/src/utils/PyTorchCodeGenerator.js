@@ -83,8 +83,8 @@ class PyTorchCodeGenerator {
       "    def __init__(self):",
       "        super().__init__()"
     ];
-
-    this.network.layers.forEach((layer, idx) => {
+    const networkLayers = this.network.layers.filter(layer => layer.type !== "BaseInputLayer");
+    networkLayers.forEach((layer, idx) => {
       code.push(this.generateLayer(layer, idx));
     });
     code.push("");
@@ -98,8 +98,8 @@ class PyTorchCodeGenerator {
   }
 
   generateForwardMethod() {
-    const layers = this.network.layers;
-    const connections = this.network.connections;
+    const layers = this.network.layers.filter(layer => layer.type !== "BaseInputLayer");
+    const connections = this.network.connections
     if (!connections || connections.length === 0) {
       return layers.map((layer, idx) => `        x = self.layer${idx}(x)`);
     }

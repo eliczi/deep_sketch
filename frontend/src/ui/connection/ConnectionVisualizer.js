@@ -63,6 +63,9 @@ class ConnectionVisualizer {
       (sId, tId, event) => this.showConnectionWindow(sId, tId, event),
     );
     this.manager.updateConnection(element, sourceId, targetId);
+    setTimeout(() => {
+      document.dispatchEvent(new CustomEvent("connection-created"));
+    }, 0);
     return element;
   }
 

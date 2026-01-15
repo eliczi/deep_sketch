@@ -56,6 +56,11 @@ class CanvasEventHandler {
       "node-clicked",
       this.handleNodeClicked.bind(this),
     );
+    document.addEventListener("connection-created", () => {
+      if (this.parent && !this.parent.isRestoringState) {
+        this.parent.saveState();
+    }
+    });
   }
 
   handleNodeClicked(e) {
@@ -217,6 +222,8 @@ class CanvasEventHandler {
     document.querySelectorAll(".function-drop-target").forEach((node) => {
       node.classList.remove("function-drop-target");
     });
+
+    this.parent.saveState();
   }
 
   handleDragLeave(e) {
@@ -258,13 +265,20 @@ class CanvasEventHandler {
   }
 
   handleCanvasClick(e) {
-    if (
-      e.target === this.canvas &&
-      !this.selectionManager.isSelecting &&
-      !this.justFinishedSelecting
-    ) {
+    if (e.target === this.canvas &&!this.selectionManager.isSelecting &&!this.justFinishedSelecting) {
       this.selectionManager.clearSelection();
       this.layerPanelManager.hideLayerPanel();
+      const permanentConnections = document.querySelectorAll(".permanent-connection");
+      permanentConnections.forEach((connection) => {
+        const path = connection.querySelector("path");
+        if (path) {
+          path.dataset.isClicked = "false";
+          // Reset visual style (stroke width)
+          const baseWidth = parseFloat(path.dataset.baseWidth || 2);
+          const currentScale = this.parent.scale || 1;
+          path.setAttribute("stroke-width", `${baseWidth * currentScale}`);
+        }
+      });
     //   console.log("canvas clicked");
     // //if any permament connection is selected, deselect it and set the path.dataset.isClicked to false
     //   const permamentConnections = document.querySelectorAll(
@@ -306,6 +320,19 @@ class CanvasEventHandler {
   }
 
   handleKeyDown(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === "z" && !e.shiftKey) 
+    {
+      e.preventDefault();
+      this.parent.undo();
+      return;
+    }
+    if ((e.ctrlKey || e.metaKey) && (e.key === "y" || (e.shiftKey && e.key === "z"))) 
+    {
+      e.preventDefault();
+      this.parent.redo();
+      return;
+    }
+
     if ((e.key === "Backspace" && e.metaKey) || e.key === "Delete" && this.selectionManager.hasSelectedNodes()) 
     {
       this.layerManager.deleteSelectedNodes(this.selectionManager.getSelectedNodeIds(),);
@@ -322,8 +349,15 @@ class CanvasEventHandler {
         }
         
       });
+      this.parent.saveState();
     }
-   
+    else if (e.key === "z" && (e.ctrlKey || e.metaKey)) 
+      {
+        //this.copySelectedGroup();
+        e.preventDefault();
+        
+        return;
+      }   
   }
 }
 

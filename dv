@@ -1,0 +1,3227 @@
+[
+  {
+    "action": "update-group-position",
+    "category": "group",
+    "details": {
+      "groupId": "group-0",
+      "position": {
+        "left": "76.99993384000493",
+        "top": "154.99972222173918"
+      }
+    },
+    "networkId": "0",
+    "sessionTime": 309546,
+    "timestamp": 1754315309487,
+    "user": "admin"
+  },
+  {
+    "action": "create-group",
+    "category": "group",
+    "details": {
+      "groupId": "group-1",
+      "nodes": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "12",
+        "13"
+      ],
+      "position": {
+        "left": 754,
+        "top": 164
+      }
+    },
+    "networkId": "0",
+    "sessionTime": 320580,
+    "timestamp": 1754315320521,
+    "user": "admin"
+  },
+  {
+    "action": "update-group-position",
+    "category": "group",
+    "details": {
+      "groupId": "group-1",
+      "position": {
+        "left": "754",
+        "top": "164"
+      }
+    },
+    "networkId": "0",
+    "sessionTime": 325702,
+    "timestamp": 1754315325643,
+    "user": "admin"
+  },
+  {
+    "action": "toggle-group",
+    "category": "group",
+    "details": {
+      "groupId": "group-0"
+    },
+    "networkId": "0",
+    "sessionTime": 329189,
+    "timestamp": 1754315329130,
+    "user": "admin"
+  },
+  {
+    "action": "toggle-group",
+    "category": "group",
+    "details": {
+      "groupId": "group-0"
+    },
+    "networkId": "0",
+    "sessionTime": 330102,
+    "timestamp": 1754315330043,
+    "user": "admin"
+  },
+  {
+    "action": "update-group-position",
+    "category": "group",
+    "details": {
+      "groupId": "group-1",
+      "position": {
+        "left": "753.9998843309753",
+        "top": "151.08481842748512"
+      }
+    },
+    "networkId": "0",
+    "sessionTime": 335302,
+    "timestamp": 1754315335243,
+    "user": "admin"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "BaseInputLayer",
+    "networkId": "0",
+    "sessionTime": 7163,
+    "timestamp": 1754315364265,
+    "user": "admin"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "BaseInputLayer",
+      "position": {
+        "x": 257.5,
+        "y": 317.8046875
+      }
+    },
+    "networkId": "0",
+    "sessionTime": 7435,
+    "timestamp": 1754315364537,
+    "user": "admin"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "BaseInputLayer",
+    "networkId": "0",
+    "sessionTime": 22242,
+    "timestamp": 1754315379344,
+    "user": "admin"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "BaseInputLayer",
+      "position": {
+        "x": 185.22448357171038,
+        "y": 261.2535070122565
+      }
+    },
+    "networkId": "0",
+    "sessionTime": 22399,
+    "timestamp": 1754315379501,
+    "user": "admin"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 2,
+      "nodeType": "BaseInputLayer"
+    },
+    "networkId": "0",
+    "sessionTime": 37695,
+    "timestamp": 1754315394797,
+    "user": "admin"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "BaseInputLayer",
+      "left": "153.22448357171038",
+      "nodeId": "2",
+      "top": "229.25350701225648"
+    },
+    "networkId": "0",
+    "sessionTime": 37693,
+    "timestamp": 1754315394795,
+    "user": "admin"
+  },
+  {
+    "action": "save-network",
+    "category": "canvas",
+    "details": {
+      "networkState": {
+        "connections": [],
+        "groups": [],
+        "layers": [
+          {
+            "groupId": null,
+            "id": "2",
+            "properties": {
+              "type": "BaseInputLayer"
+            },
+            "type": "BaseInputLayer",
+            "x": 153,
+            "y": 229
+          }
+        ]
+      }
+    },
+    "networkId": "0",
+    "sessionTime": 70921,
+    "timestamp": 1754315428023,
+    "user": "admin"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "BaseInputLayer",
+      "left": "153.76388888888886",
+      "nodeId": "2",
+      "top": "230.1888888888889"
+    },
+    "networkId": "0",
+    "sessionTime": 227141,
+    "timestamp": 1754315584243,
+    "user": "admin"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 2,
+      "nodeType": "BaseInputLayer"
+    },
+    "networkId": "0",
+    "sessionTime": 227143,
+    "timestamp": 1754315584245,
+    "user": "admin"
+  },
+  {
+    "action": "toggle-layer-panel",
+    "category": "sidebar",
+    "details": {},
+    "networkId": "0",
+    "sessionTime": 231264,
+    "timestamp": 1754315588366,
+    "user": "admin"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "BaseInputLayer",
+    "networkId": "1",
+    "sessionTime": 6082,
+    "timestamp": 1754315909692,
+    "user": "admin"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "BaseInputLayer",
+      "position": {
+        "x": 199.5,
+        "y": 279.8046875
+      }
+    },
+    "networkId": "1",
+    "sessionTime": 6374,
+    "timestamp": 1754315909984,
+    "user": "admin"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "DenseLayer",
+    "networkId": "1",
+    "sessionTime": 6848,
+    "timestamp": 1754315910458,
+    "user": "admin"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "DenseLayer",
+      "position": {
+        "x": 347.5,
+        "y": 288.8046875
+      }
+    },
+    "networkId": "1",
+    "sessionTime": 7154,
+    "timestamp": 1754315910764,
+    "user": "admin"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "BaseInputLayer",
+      "left": "167.5",
+      "nodeId": "1",
+      "top": "247.805"
+    },
+    "networkId": "1",
+    "sessionTime": 8017,
+    "timestamp": 1754315911627,
+    "user": "admin"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 1,
+      "nodeType": "BaseInputLayer"
+    },
+    "networkId": "1",
+    "sessionTime": 8018,
+    "timestamp": 1754315911628,
+    "user": "admin"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "BaseInputLayer",
+    "networkId": "1",
+    "sessionTime": 9982,
+    "timestamp": 1754315913592,
+    "user": "admin"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "BaseInputLayer",
+      "position": {
+        "x": 329.5,
+        "y": 156.8046875
+      }
+    },
+    "networkId": "1",
+    "sessionTime": 10208,
+    "timestamp": 1754315913818,
+    "user": "admin"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "PoolingLayer",
+    "networkId": "1",
+    "sessionTime": 10648,
+    "timestamp": 1754315914258,
+    "user": "admin"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "PoolingLayer",
+    "networkId": "1",
+    "sessionTime": 11673,
+    "timestamp": 1754315915283,
+    "user": "admin"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "PoolingLayer",
+    "networkId": "1",
+    "sessionTime": 12557,
+    "timestamp": 1754315916167,
+    "user": "admin"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "PoolingLayer",
+      "position": {
+        "x": 522.5,
+        "y": 222.8046875
+      }
+    },
+    "networkId": "1",
+    "sessionTime": 13542,
+    "timestamp": 1754315917152,
+    "user": "admin"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "left": "466.5",
+      "nodeId": "4",
+      "top": "190.8046875"
+    },
+    "networkId": "1",
+    "sessionTime": 14311,
+    "timestamp": 1754315917921,
+    "user": "admin"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 4,
+      "nodeType": "PoolingLayer"
+    },
+    "networkId": "1",
+    "sessionTime": 14312,
+    "timestamp": 1754315917922,
+    "user": "admin"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 3,
+      "nodeType": "BaseInputLayer"
+    },
+    "networkId": "1",
+    "sessionTime": 14762,
+    "timestamp": 1754315918372,
+    "user": "admin"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "BaseInputLayer",
+      "left": "297.5",
+      "nodeId": "3",
+      "top": "124.8046875"
+    },
+    "networkId": "1",
+    "sessionTime": 14761,
+    "timestamp": 1754315918371,
+    "user": "admin"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 2,
+      "nodeType": "DenseLayer"
+    },
+    "networkId": "1",
+    "sessionTime": 15160,
+    "timestamp": 1754315918770,
+    "user": "admin"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "left": "315.5",
+      "nodeId": "2",
+      "top": "256.8046875"
+    },
+    "networkId": "1",
+    "sessionTime": 15159,
+    "timestamp": 1754315918769,
+    "user": "admin"
+  },
+  {
+    "action": "create-group",
+    "category": "group",
+    "details": {
+      "groupId": "group-0",
+      "nodes": [
+        "4",
+        "3",
+        "2"
+      ],
+      "position": {
+        "left": 267,
+        "top": 64
+      }
+    },
+    "networkId": "1",
+    "sessionTime": 16810,
+    "timestamp": 1754315920420,
+    "user": "admin"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "DenseLayer",
+    "networkId": "9",
+    "sessionTime": 70534,
+    "timestamp": 1754317857806,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "DenseLayer",
+      "position": {
+        "x": 424,
+        "y": 307.8046875
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 71221,
+    "timestamp": 1754317858493,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 72641,
+    "timestamp": 1754317859913,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "left": "392",
+      "nodeId": "1",
+      "top": "275.8046875"
+    },
+    "networkId": "9",
+    "sessionTime": 74019,
+    "timestamp": 1754317861291,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 1,
+      "nodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 74020,
+    "timestamp": 1754317861292,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "BaseInputLayer",
+    "networkId": "9",
+    "sessionTime": 84193,
+    "timestamp": 1754317871465,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "BaseInputLayer",
+      "position": {
+        "x": 108,
+        "y": 311.8046875
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 84841,
+    "timestamp": 1754317872113,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "BaseInputLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 96503,
+    "timestamp": 1754317883775,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "PoolingLayer",
+    "networkId": "9",
+    "sessionTime": 117127,
+    "timestamp": 1754317904399,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "PoolingLayer",
+      "position": {
+        "x": 292,
+        "y": 310.8046875
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 119188,
+    "timestamp": 1754317906460,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 2,
+      "nodeType": "BaseInputLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 193754,
+    "timestamp": 1754317981026,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "BaseInputLayer",
+      "left": "8.746666666666677",
+      "nodeId": "2",
+      "top": "526.661111111111"
+    },
+    "networkId": "9",
+    "sessionTime": 193753,
+    "timestamp": 1754317981025,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "ConvolutionalLayer",
+    "networkId": "9",
+    "sessionTime": 194637,
+    "timestamp": 1754317981909,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "position": {
+        "x": 169.19198292831132,
+        "y": 567.6058621020538
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 195255,
+    "timestamp": 1754317982527,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 4,
+      "nodeType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 197706,
+    "timestamp": 1754317984978,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "left": "128.88888888888886",
+      "nodeId": "4",
+      "top": "519.7833333333333"
+    },
+    "networkId": "9",
+    "sessionTime": 197705,
+    "timestamp": 1754317984977,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 3,
+      "nodeType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 202945,
+    "timestamp": 1754317990217,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "left": "251.45555555555558",
+      "nodeId": "3",
+      "top": "518.9911111111112"
+    },
+    "networkId": "9",
+    "sessionTime": 202943,
+    "timestamp": 1754317990215,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "nodeId": 3,
+      "parameter": "pooling_type",
+      "value": "AVG"
+    },
+    "networkId": "9",
+    "sessionTime": 206049,
+    "timestamp": 1754317993321,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "left": "250.34444444444446",
+      "nodeId": "3",
+      "top": "522.3244444444445"
+    },
+    "networkId": "9",
+    "sessionTime": 207457,
+    "timestamp": 1754317994729,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 3,
+      "nodeType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 207458,
+    "timestamp": 1754317994730,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 4,
+      "nodeType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 207937,
+    "timestamp": 1754317995209,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "left": "128.88888888888886",
+      "nodeId": "4",
+      "top": "519.7833333333333"
+    },
+    "networkId": "9",
+    "sessionTime": 207937,
+    "timestamp": 1754317995209,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "ConvolutionalLayer",
+    "networkId": "9",
+    "sessionTime": 214870,
+    "timestamp": 1754318002142,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "position": {
+        "x": 443.9108791325175,
+        "y": 549.8820623469437
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 216347,
+    "timestamp": 1754318003619,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "nodeId": 5,
+      "parameter": "in_channels",
+      "value": 8
+    },
+    "networkId": "9",
+    "sessionTime": 226132,
+    "timestamp": 1754318013404,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "nodeId": 5,
+      "parameter": "filters",
+      "value": 8
+    },
+    "networkId": "9",
+    "sessionTime": 231772,
+    "timestamp": 1754318019044,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "left": "412.22222222222223",
+      "nodeId": "5",
+      "top": "519.7833333333333"
+    },
+    "networkId": "9",
+    "sessionTime": 235704,
+    "timestamp": 1754318022976,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 5,
+      "nodeType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 235705,
+    "timestamp": 1754318022977,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "nodeId": 5,
+      "parameter": "kernel_size",
+      "value": 16
+    },
+    "networkId": "9",
+    "sessionTime": 243567,
+    "timestamp": 1754318030839,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 5,
+      "nodeType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 246876,
+    "timestamp": 1754318034148,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "left": "412.22222222222223",
+      "nodeId": "5",
+      "top": "519.7833333333333"
+    },
+    "networkId": "9",
+    "sessionTime": 246875,
+    "timestamp": 1754318034147,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "nodeId": 5,
+      "parameter": "kernel_size",
+      "value": 8
+    },
+    "networkId": "9",
+    "sessionTime": 249642,
+    "timestamp": 1754318036914,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "PoolingLayer",
+    "networkId": "9",
+    "sessionTime": 255174,
+    "timestamp": 1754318042446,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "PoolingLayer",
+      "position": {
+        "x": 586.8090146580925,
+        "y": 552.0975373163326
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 256227,
+    "timestamp": 1754318043499,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 6,
+      "nodeType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 257160,
+    "timestamp": 1754318044432,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "left": "515.5555555555554",
+      "nodeId": "6",
+      "top": "519.7833333333333"
+    },
+    "networkId": "9",
+    "sessionTime": 257160,
+    "timestamp": 1754318044432,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "nodeId": 6,
+      "parameter": "pooling_type",
+      "value": "AVG"
+    },
+    "networkId": "9",
+    "sessionTime": 261728,
+    "timestamp": 1754318049000,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "left": "528.53",
+      "nodeId": "6",
+      "top": "521.8144444444445"
+    },
+    "networkId": "9",
+    "sessionTime": 267943,
+    "timestamp": 1754318055215,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 6,
+      "nodeType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 267944,
+    "timestamp": 1754318055216,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "left": "704.5977777777778",
+      "nodeId": "1",
+      "top": "517.0933333333332"
+    },
+    "networkId": "9",
+    "sessionTime": 274263,
+    "timestamp": 1754318061535,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 1,
+      "nodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 274264,
+    "timestamp": 1754318061536,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "DenseLayer",
+    "networkId": "9",
+    "sessionTime": 277579,
+    "timestamp": 1754318064851,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "DenseLayer",
+      "position": {
+        "x": 859.31243589291,
+        "y": 547.6665873775551
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 279155,
+    "timestamp": 1754318066427,
+    "user": "dvg"
+  },
+  {
+    "action": "toggle-layer-panel",
+    "category": "sidebar",
+    "details": {},
+    "networkId": "9",
+    "sessionTime": 288953,
+    "timestamp": 1754318076225,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "ReLUFunction",
+    "networkId": "9",
+    "sessionTime": 289930,
+    "timestamp": 1754318077202,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 292890,
+    "timestamp": 1754318080162,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "DenseLayer",
+      "targetType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 295407,
+    "timestamp": 1754318082679,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "ReLUFunction",
+    "networkId": "9",
+    "sessionTime": 296537,
+    "timestamp": 1754318083809,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 301877,
+    "timestamp": 1754318089149,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "ReLUFunction",
+    "networkId": "9",
+    "sessionTime": 308463,
+    "timestamp": 1754318095735,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "ReLUFunction",
+      "position": {
+        "x": 768.5926302860348,
+        "y": 517.0913019601703
+      },
+      "targetNodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 309122,
+    "timestamp": 1754318096394,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "ReLUFunction",
+    "networkId": "9",
+    "sessionTime": 311155,
+    "timestamp": 1754318098427,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "ReLUFunction",
+      "position": {
+        "x": 891.3091735123342,
+        "y": 515.6633591088064
+      },
+      "targetNodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 312024,
+    "timestamp": 1754318099296,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "ReLUFunction",
+      "left": "869.3091735123342",
+      "nodeId": "9",
+      "top": "493.6633591088064"
+    },
+    "networkId": "9",
+    "sessionTime": 313089,
+    "timestamp": 1754318100361,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 9,
+      "nodeType": "ReLUFunction"
+    },
+    "networkId": "9",
+    "sessionTime": 313089,
+    "timestamp": 1754318100361,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "ReLUFunction",
+    "networkId": "9",
+    "sessionTime": 320914,
+    "timestamp": 1754318108186,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "ReLUFunction",
+      "position": {
+        "x": 640.5229916403828,
+        "y": 521.8078404692205
+      },
+      "targetNodeType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 321868,
+    "timestamp": 1754318109140,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "ReLUFunction",
+      "left": "584.9888888888889",
+      "nodeId": "10",
+      "top": "500.5122222222222"
+    },
+    "networkId": "9",
+    "sessionTime": 332299,
+    "timestamp": 1754318119571,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 10,
+      "nodeType": "ReLUFunction"
+    },
+    "networkId": "9",
+    "sessionTime": 332299,
+    "timestamp": 1754318119571,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 10,
+      "nodeType": "ReLUFunction"
+    },
+    "networkId": "9",
+    "sessionTime": 333239,
+    "timestamp": 1754318120511,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "ReLUFunction",
+      "left": "596.1",
+      "nodeId": "10",
+      "top": "507.178888888889"
+    },
+    "networkId": "9",
+    "sessionTime": 333238,
+    "timestamp": 1754318120510,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "ReLUFunction",
+      "left": "602.7666666666667",
+      "nodeId": "10",
+      "top": "504.9566666666666"
+    },
+    "networkId": "9",
+    "sessionTime": 334312,
+    "timestamp": 1754318121584,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 10,
+      "nodeType": "ReLUFunction"
+    },
+    "networkId": "9",
+    "sessionTime": 334313,
+    "timestamp": 1754318121585,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "ReLUFunction",
+      "left": "550.5444444444444",
+      "nodeId": "10",
+      "top": "532.7344444444445"
+    },
+    "networkId": "9",
+    "sessionTime": 334869,
+    "timestamp": 1754318122141,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 10,
+      "nodeType": "ReLUFunction"
+    },
+    "networkId": "9",
+    "sessionTime": 334869,
+    "timestamp": 1754318122141,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 10,
+      "nodeType": "ReLUFunction"
+    },
+    "networkId": "9",
+    "sessionTime": 337574,
+    "timestamp": 1754318124846,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "ReLUFunction",
+      "left": "599.4333333333334",
+      "nodeId": "10",
+      "top": "509.40111111111105"
+    },
+    "networkId": "9",
+    "sessionTime": 337573,
+    "timestamp": 1754318124845,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "left": "704.5977777777778",
+      "nodeId": "1",
+      "top": "517.0933333333332"
+    },
+    "networkId": "9",
+    "sessionTime": 348902,
+    "timestamp": 1754318136174,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 1,
+      "nodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 348903,
+    "timestamp": 1754318136175,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 1,
+      "nodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 349042,
+    "timestamp": 1754318136314,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "left": "704.5977777777778",
+      "nodeId": "1",
+      "top": "517.0933333333332"
+    },
+    "networkId": "9",
+    "sessionTime": 349041,
+    "timestamp": 1754318136313,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "nodeId": 1,
+      "parameter": "units",
+      "value": 120
+    },
+    "networkId": "9",
+    "sessionTime": 352306,
+    "timestamp": 1754318139578,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 7,
+      "nodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 353072,
+    "timestamp": 1754318140344,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "left": "830.1244444444444",
+      "nodeId": "7",
+      "top": "517.6855555555555"
+    },
+    "networkId": "9",
+    "sessionTime": 353072,
+    "timestamp": 1754318140344,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "left": "830.1244444444444",
+      "nodeId": "7",
+      "top": "517.6855555555555"
+    },
+    "networkId": "9",
+    "sessionTime": 353228,
+    "timestamp": 1754318140500,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 7,
+      "nodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 353228,
+    "timestamp": 1754318140500,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "nodeId": 7,
+      "parameter": "units",
+      "value": 84
+    },
+    "networkId": "9",
+    "sessionTime": 357412,
+    "timestamp": 1754318144684,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "BaseInputLayer",
+      "left": "-55.378888888888895",
+      "nodeId": "2",
+      "top": "522.0466666666665"
+    },
+    "networkId": "9",
+    "sessionTime": 375678,
+    "timestamp": 1754318162950,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 2,
+      "nodeType": "BaseInputLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 375679,
+    "timestamp": 1754318162951,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "BaseInputLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 376251,
+    "timestamp": 1754318163523,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "BaseInputLayer",
+      "targetType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 377546,
+    "timestamp": 1754318164818,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 378374,
+    "timestamp": 1754318165646,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "ConvolutionalLayer",
+      "targetType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 379114,
+    "timestamp": 1754318166386,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 380100,
+    "timestamp": 1754318167372,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "PoolingLayer",
+      "targetType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 380674,
+    "timestamp": 1754318167946,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 381546,
+    "timestamp": 1754318168818,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "ConvolutionalLayer",
+      "targetType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 382345,
+    "timestamp": 1754318169617,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 384016,
+    "timestamp": 1754318171288,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "PoolingLayer",
+      "targetType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 384612,
+    "timestamp": 1754318171884,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "CustomLayer",
+    "networkId": "9",
+    "sessionTime": 400248,
+    "timestamp": 1754318187520,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "CustomLayer",
+      "position": {
+        "x": 1014.3956837501231,
+        "y": 542.1278999540831
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 400826,
+    "timestamp": 1754318188098,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 11,
+      "nodeType": "CustomLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 401801,
+    "timestamp": 1754318189073,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "CustomLayer",
+      "left": "968.8888888888888",
+      "nodeId": "11",
+      "top": "508.6722222222222"
+    },
+    "networkId": "9",
+    "sessionTime": 401800,
+    "timestamp": 1754318189072,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "CustomLayer",
+      "left": "968.8888888888888",
+      "nodeId": "11",
+      "top": "508.6722222222222"
+    },
+    "networkId": "9",
+    "sessionTime": 402234,
+    "timestamp": 1754318189506,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 11,
+      "nodeType": "CustomLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 402234,
+    "timestamp": 1754318189506,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 11,
+      "nodeType": "CustomLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 402392,
+    "timestamp": 1754318189664,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "CustomLayer",
+      "left": "968.8888888888888",
+      "nodeId": "11",
+      "top": "508.6722222222222"
+    },
+    "networkId": "9",
+    "sessionTime": 402391,
+    "timestamp": 1754318189663,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 11,
+      "nodeType": "CustomLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 404133,
+    "timestamp": 1754318191405,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "CustomLayer",
+      "left": "967.7777777777778",
+      "nodeId": "11",
+      "top": "518.6722222222222"
+    },
+    "networkId": "9",
+    "sessionTime": 404132,
+    "timestamp": 1754318191404,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 405092,
+    "timestamp": 1754318192364,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "DenseLayer",
+      "targetType": "CustomLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 405889,
+    "timestamp": 1754318193161,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "CustomLayer",
+      "left": "967.7777777777777",
+      "nodeId": "11",
+      "top": "518.6722222222222"
+    },
+    "networkId": "9",
+    "sessionTime": 406406,
+    "timestamp": 1754318193678,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 11,
+      "nodeType": "CustomLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 406407,
+    "timestamp": 1754318193679,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 11,
+      "nodeType": "CustomLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 406591,
+    "timestamp": 1754318193863,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "CustomLayer",
+      "left": "967.7777777777777",
+      "nodeId": "11",
+      "top": "518.6722222222222"
+    },
+    "networkId": "9",
+    "sessionTime": 406591,
+    "timestamp": 1754318193863,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 11,
+      "nodeType": "CustomLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 407574,
+    "timestamp": 1754318194846,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "CustomLayer",
+      "left": "967.7777777777777",
+      "nodeId": "11",
+      "top": "515.3388888888888"
+    },
+    "networkId": "9",
+    "sessionTime": 407574,
+    "timestamp": 1754318194846,
+    "user": "dvg"
+  },
+  {
+    "action": "add-custom-parameter",
+    "category": "layer",
+    "details": {
+      "nodeId": 11,
+      "parameterName": "Output",
+      "parameterType": "number"
+    },
+    "networkId": "9",
+    "sessionTime": 425609,
+    "timestamp": 1754318212881,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "CustomLayer",
+      "left": "967.7777777777777",
+      "nodeId": "11",
+      "top": "514.2277777777778"
+    },
+    "networkId": "9",
+    "sessionTime": 426931,
+    "timestamp": 1754318214203,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 11,
+      "nodeType": "CustomLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 426932,
+    "timestamp": 1754318214204,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 2,
+      "nodeType": "BaseInputLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 430775,
+    "timestamp": 1754318218047,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "BaseInputLayer",
+      "left": "-15.254777777777768",
+      "nodeId": "2",
+      "top": "519.6411111111111"
+    },
+    "networkId": "9",
+    "sessionTime": 430775,
+    "timestamp": 1754318218047,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "left": "704.5977777777778",
+      "nodeId": "1",
+      "top": "517.0933333333332"
+    },
+    "networkId": "9",
+    "sessionTime": 445169,
+    "timestamp": 1754318232441,
+    "user": "dvg"
+  },
+  {
+    "action": "create-group",
+    "category": "group",
+    "details": {
+      "groupId": "group-0",
+      "nodes": [
+        "2",
+        "1",
+        "7",
+        "8",
+        "9"
+      ],
+      "position": {
+        "left": -45,
+        "top": 294
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 447150,
+    "timestamp": 1754318234422,
+    "user": "dvg"
+  },
+  {
+    "action": "update-group-position",
+    "category": "group",
+    "details": {
+      "groupId": "group-0",
+      "position": {
+        "left": "-45.00002633844554",
+        "top": "292.89174301575036"
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 450607,
+    "timestamp": 1754318237879,
+    "user": "dvg"
+  },
+  {
+    "action": "update-group-position",
+    "category": "group",
+    "details": {
+      "groupId": "group-0",
+      "position": {
+        "left": "-45.00002633844554",
+        "top": "291.784005531056"
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 452766,
+    "timestamp": 1754318240038,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "BaseInputLayer",
+    "networkId": "9",
+    "sessionTime": 486833,
+    "timestamp": 1754318274105,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "BaseInputLayer",
+      "position": {
+        "x": 143.0399868700124,
+        "y": 290.2443841720585
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 487419,
+    "timestamp": 1754318274691,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "ConvolutionalLayer",
+    "networkId": "9",
+    "sessionTime": 495549,
+    "timestamp": 1754318282821,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "position": {
+        "x": 263.0399868700124,
+        "y": 291.2443841720585
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 496720,
+    "timestamp": 1754318283992,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "nodeId": 2,
+      "parameter": "kernel_size",
+      "value": 24
+    },
+    "networkId": "9",
+    "sessionTime": 501591,
+    "timestamp": 1754318288863,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "nodeId": 2,
+      "parameter": "filters",
+      "value": null
+    },
+    "networkId": "9",
+    "sessionTime": 506391,
+    "timestamp": 1754318293663,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "nodeId": 2,
+      "parameter": "in_channels",
+      "value": 2
+    },
+    "networkId": "9",
+    "sessionTime": 508900,
+    "timestamp": 1754318296172,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "nodeId": 2,
+      "parameter": "filters",
+      "value": 6
+    },
+    "networkId": "9",
+    "sessionTime": 510776,
+    "timestamp": 1754318298048,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "BaseInputLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 512221,
+    "timestamp": 1754318299493,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "BaseInputLayer",
+      "targetType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 512776,
+    "timestamp": 1754318300048,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "PoolingLayer",
+    "networkId": "9",
+    "sessionTime": 516650,
+    "timestamp": 1754318303922,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "PoolingLayer",
+      "position": {
+        "x": 395.0399868700124,
+        "y": 292.2443841720585
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 517552,
+    "timestamp": 1754318304824,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "nodeId": 3,
+      "parameter": "pooling_type",
+      "value": "AVG"
+    },
+    "networkId": "9",
+    "sessionTime": 519354,
+    "timestamp": 1754318306626,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "nodeId": 3,
+      "parameter": "pool_dimension",
+      "value": "POOL3D"
+    },
+    "networkId": "9",
+    "sessionTime": 526383,
+    "timestamp": 1754318313655,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "nodeId": 3,
+      "parameter": "kernel_size",
+      "value": 12
+    },
+    "networkId": "9",
+    "sessionTime": 532847,
+    "timestamp": 1754318320119,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 534292,
+    "timestamp": 1754318321564,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "ConvolutionalLayer",
+      "targetType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 535125,
+    "timestamp": 1754318322397,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "ConvolutionalLayer",
+    "networkId": "9",
+    "sessionTime": 539966,
+    "timestamp": 1754318327238,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "position": {
+        "x": 535.0399868700124,
+        "y": 290.2443841720585
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 540976,
+    "timestamp": 1754318328248,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 541751,
+    "timestamp": 1754318329023,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "position": {
+        "x": 500.0399868700124,
+        "y": 288.2443841720585
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 542567,
+    "timestamp": 1754318329839,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "input",
+      "sourceLayerType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 543400,
+    "timestamp": 1754318330672,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 4,
+      "nodeType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 543997,
+    "timestamp": 1754318331269,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "PoolingLayer",
+      "targetType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 543996,
+    "timestamp": 1754318331268,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "left": "502",
+      "nodeId": "4",
+      "top": "253.805"
+    },
+    "networkId": "9",
+    "sessionTime": 546050,
+    "timestamp": 1754318333322,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 4,
+      "nodeType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 546051,
+    "timestamp": 1754318333323,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "nodeId": 4,
+      "parameter": "kernel_size",
+      "value": 8
+    },
+    "networkId": "9",
+    "sessionTime": 551120,
+    "timestamp": 1754318338392,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "nodeId": 4,
+      "parameter": "in_channels",
+      "value": 6
+    },
+    "networkId": "9",
+    "sessionTime": 554423,
+    "timestamp": 1754318341695,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "left": "502",
+      "nodeId": "4",
+      "top": "259.805"
+    },
+    "networkId": "9",
+    "sessionTime": 556137,
+    "timestamp": 1754318343409,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 4,
+      "nodeType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 556138,
+    "timestamp": 1754318343410,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "ConvolutionalLayer",
+      "nodeId": 4,
+      "parameter": "filters",
+      "value": 6
+    },
+    "networkId": "9",
+    "sessionTime": 560726,
+    "timestamp": 1754318347998,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "PoolingLayer",
+    "networkId": "9",
+    "sessionTime": 565668,
+    "timestamp": 1754318352940,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "PoolingLayer",
+      "position": {
+        "x": 702.0399868700124,
+        "y": 292.2443841720585
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 566842,
+    "timestamp": 1754318354114,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "nodeId": 5,
+      "parameter": "pooling_type",
+      "value": "AVG"
+    },
+    "networkId": "9",
+    "sessionTime": 568461,
+    "timestamp": 1754318355733,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "nodeId": 5,
+      "parameter": "pool_dimension",
+      "value": "POOL3D"
+    },
+    "networkId": "9",
+    "sessionTime": 570798,
+    "timestamp": 1754318358070,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "nodeId": 5,
+      "parameter": "kernel_size",
+      "value": 16
+    },
+    "networkId": "9",
+    "sessionTime": 573628,
+    "timestamp": 1754318360900,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "ConvolutionalLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 574517,
+    "timestamp": 1754318361789,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "ConvolutionalLayer",
+      "targetType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 575277,
+    "timestamp": 1754318362549,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "left": "646",
+      "nodeId": "5",
+      "top": "259.805"
+    },
+    "networkId": "9",
+    "sessionTime": 577245,
+    "timestamp": 1754318364517,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 5,
+      "nodeType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 577246,
+    "timestamp": 1754318364518,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "DenseLayer",
+    "networkId": "9",
+    "sessionTime": 585965,
+    "timestamp": 1754318373237,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "DenseLayer",
+      "position": {
+        "x": 863.0399868700124,
+        "y": 288.2443841720585
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 586985,
+    "timestamp": 1754318374257,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "DenseLayer",
+    "networkId": "9",
+    "sessionTime": 588551,
+    "timestamp": 1754318375823,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "DenseLayer",
+      "position": {
+        "x": 1023.0399868700124,
+        "y": 288.2443841720585
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 589327,
+    "timestamp": 1754318376599,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 590128,
+    "timestamp": 1754318377400,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 591836,
+    "timestamp": 1754318379108,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "DenseLayer",
+      "targetType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 592800,
+    "timestamp": 1754318380072,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 593931,
+    "timestamp": 1754318381203,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "PoolingLayer",
+      "targetType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 594764,
+    "timestamp": 1754318382036,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "ReLUFunction",
+    "networkId": "9",
+    "sessionTime": 598326,
+    "timestamp": 1754318385598,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "ReLUFunction",
+      "position": {
+        "x": 757.9931118700124,
+        "y": 259.7990716720585
+      },
+      "targetNodeType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 599164,
+    "timestamp": 1754318386436,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "ReLUFunction",
+    "networkId": "9",
+    "sessionTime": 600243,
+    "timestamp": 1754318387515,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "ReLUFunction",
+      "position": {
+        "x": 895.0399868700124,
+        "y": 256.2443841720585
+      },
+      "targetNodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 601344,
+    "timestamp": 1754318388616,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "ReLUFunction",
+    "networkId": "9",
+    "sessionTime": 603209,
+    "timestamp": 1754318390481,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "ReLUFunction",
+      "position": {
+        "x": 1055.0399868700124,
+        "y": 256.2443841720585
+      },
+      "targetNodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 603952,
+    "timestamp": 1754318391224,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "left": "646.96",
+      "nodeId": "5",
+      "top": "259.365"
+    },
+    "networkId": "9",
+    "sessionTime": 604702,
+    "timestamp": 1754318391974,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 5,
+      "nodeType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 604704,
+    "timestamp": 1754318391976,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 5,
+      "nodeType": "PoolingLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 604830,
+    "timestamp": 1754318392102,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "PoolingLayer",
+      "left": "646.96",
+      "nodeId": "5",
+      "top": "259.365"
+    },
+    "networkId": "9",
+    "sessionTime": 604828,
+    "timestamp": 1754318392100,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 6,
+      "nodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 606636,
+    "timestamp": 1754318393908,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "left": "831.0399868700124",
+      "nodeId": "6",
+      "top": "256.2443841720585"
+    },
+    "networkId": "9",
+    "sessionTime": 606635,
+    "timestamp": 1754318393907,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "left": "831.0399868700124",
+      "nodeId": "6",
+      "top": "256.2443841720585"
+    },
+    "networkId": "9",
+    "sessionTime": 606815,
+    "timestamp": 1754318394087,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 6,
+      "nodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 606815,
+    "timestamp": 1754318394087,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 7,
+      "nodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 610177,
+    "timestamp": 1754318397449,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "left": "991.0399868700124",
+      "nodeId": "7",
+      "top": "256.2443841720585"
+    },
+    "networkId": "9",
+    "sessionTime": 610176,
+    "timestamp": 1754318397448,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "nodeId": 7,
+      "parameter": "units",
+      "value": 120
+    },
+    "networkId": "9",
+    "sessionTime": 610176,
+    "timestamp": 1754318397448,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 7,
+      "nodeType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 610298,
+    "timestamp": 1754318397570,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "left": "991.0399868700124",
+      "nodeId": "7",
+      "top": "256.2443841720585"
+    },
+    "networkId": "9",
+    "sessionTime": 610298,
+    "timestamp": 1754318397570,
+    "user": "dvg"
+  },
+  {
+    "action": "update-parameter",
+    "category": "layer",
+    "details": {
+      "layerType": "DenseLayer",
+      "nodeId": 7,
+      "parameter": "units",
+      "value": 84
+    },
+    "networkId": "9",
+    "sessionTime": 613887,
+    "timestamp": 1754318401159,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-start",
+    "category": "drag",
+    "details": "CustomLayer",
+    "networkId": "9",
+    "sessionTime": 615918,
+    "timestamp": 1754318403190,
+    "user": "dvg"
+  },
+  {
+    "action": "drag-end",
+    "category": "drag",
+    "details": {
+      "layerType": "CustomLayer",
+      "position": {
+        "x": 1180.0399868700124,
+        "y": 287.2443841720585
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 616669,
+    "timestamp": 1754318403941,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 617600,
+    "timestamp": 1754318404872,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-down",
+    "category": "connection",
+    "details": {
+      "pointType": "output",
+      "sourceLayerType": "DenseLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 620096,
+    "timestamp": 1754318407368,
+    "user": "dvg"
+  },
+  {
+    "action": "connection-point-mouse-up",
+    "category": "connection",
+    "details": {
+      "sourceType": "DenseLayer",
+      "targetType": "CustomLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 621161,
+    "timestamp": 1754318408433,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "CustomLayer",
+      "left": "1148",
+      "nodeId": "11",
+      "top": "254.805"
+    },
+    "networkId": "9",
+    "sessionTime": 621671,
+    "timestamp": 1754318408943,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 11,
+      "nodeType": "CustomLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 621671,
+    "timestamp": 1754318408943,
+    "user": "dvg"
+  },
+  {
+    "action": "node-clicked",
+    "category": "canvas",
+    "details": {
+      "nodeId": 11,
+      "nodeType": "CustomLayer"
+    },
+    "networkId": "9",
+    "sessionTime": 621803,
+    "timestamp": 1754318409075,
+    "user": "dvg"
+  },
+  {
+    "action": "update-node-position",
+    "category": "layer",
+    "details": {
+      "layerType": "CustomLayer",
+      "left": "1148",
+      "nodeId": "11",
+      "top": "254.805"
+    },
+    "networkId": "9",
+    "sessionTime": 621802,
+    "timestamp": 1754318409074,
+    "user": "dvg"
+  },
+  {
+    "action": "create-group",
+    "category": "group",
+    "details": {
+      "groupId": "group-1",
+      "nodes": [
+        "6",
+        "7",
+        "9",
+        "10"
+      ],
+      "position": {
+        "left": 801,
+        "top": 174
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 651918,
+    "timestamp": 1754318439190,
+    "user": "dvg"
+  },
+  {
+    "action": "update-group-position",
+    "category": "group",
+    "details": {
+      "groupId": "group-1",
+      "position": {
+        "left": "799.9999868700124",
+        "top": "173.99969667205852"
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 653205,
+    "timestamp": 1754318440477,
+    "user": "dvg"
+  },
+  {
+    "action": "update-group-position",
+    "category": "group",
+    "details": {
+      "groupId": "group-1",
+      "position": {
+        "left": "808.9999868700124",
+        "top": "358.9996966720585"
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 678457,
+    "timestamp": 1754318465729,
+    "user": "dvg"
+  },
+  {
+    "action": "save-network",
+    "category": "canvas",
+    "details": {
+      "networkState": {
+        "connections": [
+          {
+            "id": 0,
+            "sourceId": "1",
+            "targetId": "2"
+          },
+          {
+            "id": 1,
+            "sourceId": "2",
+            "targetId": "3"
+          },
+          {
+            "id": 2,
+            "sourceId": "3",
+            "targetId": "4"
+          },
+          {
+            "id": 3,
+            "sourceId": "4",
+            "targetId": "5"
+          },
+          {
+            "id": 4,
+            "sourceId": "6",
+            "targetId": "7"
+          },
+          {
+            "id": 5,
+            "sourceId": "5",
+            "targetId": "6"
+          },
+          {
+            "id": 6,
+            "sourceId": "7",
+            "targetId": "11"
+          }
+        ],
+        "groups": [
+          {
+            "expanded": true,
+            "height": 176,
+            "id": "group-1",
+            "name": "Fully Connected Layers",
+            "nodeIds": [
+              "6",
+              "7",
+              "9",
+              "10"
+            ],
+            "width": 302,
+            "x": 808,
+            "y": 358
+          }
+        ],
+        "layers": [
+          {
+            "groupId": null,
+            "id": "1",
+            "properties": {
+              "type": "BaseInputLayer"
+            },
+            "type": "BaseInputLayer",
+            "x": 111,
+            "y": 258
+          },
+          {
+            "groupId": null,
+            "id": "2",
+            "properties": {
+              "type": "ConvolutionalLayer"
+            },
+            "type": "ConvolutionalLayer",
+            "x": 231,
+            "y": 259
+          },
+          {
+            "groupId": null,
+            "id": "3",
+            "properties": {
+              "poolingType": "AVG",
+              "type": "PoolingLayer"
+            },
+            "type": "PoolingLayer",
+            "x": 339,
+            "y": 260
+          },
+          {
+            "groupId": null,
+            "id": "4",
+            "properties": {
+              "type": "ConvolutionalLayer"
+            },
+            "type": "ConvolutionalLayer",
+            "x": 502,
+            "y": 259
+          },
+          {
+            "groupId": null,
+            "id": "5",
+            "properties": {
+              "activation_fuction": "[object Object]",
+              "poolingType": "AVG",
+              "type": "PoolingLayer"
+            },
+            "type": "PoolingLayer",
+            "x": 646,
+            "y": 259
+          },
+          {
+            "groupId": null,
+            "id": "8",
+            "properties": {
+              "attachedTo": "5",
+              "type": "ReLUFunction"
+            },
+            "type": "ReLUFunction",
+            "x": 317,
+            "y": 293
+          },
+          {
+            "groupId": null,
+            "id": "11",
+            "properties": {
+              "type": "CustomLayer"
+            },
+            "type": "CustomLayer",
+            "x": 1148,
+            "y": 254
+          },
+          {
+            "groupId": "group-1",
+            "id": "6",
+            "properties": {
+              "activation_fuction": "[object Object]",
+              "type": "DenseLayer"
+            },
+            "type": "DenseLayer",
+            "x": 831,
+            "y": 256
+          },
+          {
+            "groupId": "group-1",
+            "id": "7",
+            "properties": {
+              "activation_fuction": "[object Object]",
+              "type": "DenseLayer"
+            },
+            "type": "DenseLayer",
+            "x": 991,
+            "y": 256
+          },
+          {
+            "groupId": "group-1",
+            "id": "9",
+            "properties": {
+              "attachedTo": "6",
+              "type": "ReLUFunction"
+            },
+            "type": "ReLUFunction",
+            "x": 873,
+            "y": 234
+          },
+          {
+            "groupId": "group-1",
+            "id": "10",
+            "properties": {
+              "attachedTo": "7",
+              "type": "ReLUFunction"
+            },
+            "type": "ReLUFunction",
+            "x": 1033,
+            "y": 234
+          }
+        ]
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 680114,
+    "timestamp": 1754318467386,
+    "user": "dvg"
+  },
+  {
+    "action": "create-group",
+    "category": "group",
+    "details": {
+      "groupId": "group-0",
+      "nodes": [
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "position": {
+        "left": 668,
+        "top": 123
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 720097,
+    "timestamp": 1754318507369,
+    "user": "dvg"
+  },
+  {
+    "action": "update-group-position",
+    "category": "group",
+    "details": {
+      "groupId": "group-0",
+      "position": {
+        "left": "851",
+        "top": "358"
+      }
+    },
+    "networkId": "9",
+    "sessionTime": 1281771,
+    "timestamp": 1754319069043,
+    "user": "dvg"
+  }
+]

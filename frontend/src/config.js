@@ -1,5 +1,5 @@
 
-export const API_URL = 'https://msc-project-8fbo.onrender.com/api';
+export const API_URL = 'http://localhost:50001/api';
 
 export const DEFAULT_STYLES = {  
   node: {

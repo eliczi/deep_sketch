@@ -575,141 +575,141 @@ class LayerPanelManager {
     }
   }
 
-  createParameterControl(key, value, layer, paramDef) {
-    const paramContainer = DomUtils.createElementWithClass(
-      "div",
-      "param-container",
-    );
+  // createParameterControl(key, value, layer, paramDef) {
+  //   const paramContainer = DomUtils.createElementWithClass(
+  //     "div",
+  //     "param-container",
+  //   );
 
-    const label = DomUtils.createElementWithClass("label", "param-label");
-    label.textContent = this.formatParamName(key);
-    label.htmlFor = `param-${key}-${this.currentLayerNodeId}`;
+  //   const label = DomUtils.createElementWithClass("label", "param-label");
+  //   label.textContent = this.formatParamName(key);
+  //   label.htmlFor = `param-${key}-${this.currentLayerNodeId}`;
 
-    let input;
+  //   let input;
     
-    // Handle custom parameters for CustomLayer
-    if (layer.type === "CustomLayer" && typeof value === 'object' && value.value !== undefined) {
-      const customParam = value;
-      const paramType = customParam.type || "text";
+  //   // Handle custom parameters for CustomLayer
+  //   if (layer.type === "CustomLayer" && typeof value === 'object' && value.value !== undefined) {
+  //     const customParam = value;
+  //     const paramType = customParam.type || "text";
       
-      if (paramType === "boolean") {
-        input = document.createElement("input");
-        input.type = "checkbox";
-        input.checked = customParam.value;
-      } else if (paramType === "number") {
-        input = document.createElement("input");
-        input.type = "number";
-        input.step = "any";
-      } else {
-        input = document.createElement("input");
-        input.type = "text";
-      }
+  //     if (paramType === "boolean") {
+  //       input = document.createElement("input");
+  //       input.type = "checkbox";
+  //       input.checked = customParam.value;
+  //     } else if (paramType === "number") {
+  //       input = document.createElement("input");
+  //       input.type = "number";
+  //       input.step = "any";
+  //     } else {
+  //       input = document.createElement("input");
+  //       input.type = "text";
+  //     }
       
-      input.value = customParam.value;
-      input.id = `param-${key}-${this.currentLayerNodeId}`;
+  //     input.value = customParam.value;
+  //     input.id = `param-${key}-${this.currentLayerNodeId}`;
 
-      input.addEventListener("change", (e) => {
-        let newValue = e.target.type === "checkbox" ? e.target.checked : e.target.value;
-        if (paramType === "number") {
-          newValue = parseFloat(newValue) || 0;
-        }
+  //     input.addEventListener("change", (e) => {
+  //       let newValue = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+  //       if (paramType === "number") {
+  //         newValue = parseFloat(newValue) || 0;
+  //       }
         
-        layer.update_custom_parameter(key, newValue);
-        Tracker.trackEvent("layer", "update-custom-parameter", {
-          nodeId: this.currentLayerNodeId, 
-          parameter: key, 
-          value: newValue
-        });
-      });
+  //       layer.update_custom_parameter(key, newValue);
+  //       Tracker.trackEvent("layer", "update-custom-parameter", {
+  //         nodeId: this.currentLayerNodeId, 
+  //         parameter: key, 
+  //         value: newValue
+  //       });
+  //     });
 
-      const removeButton = DomUtils.createElementWithClass("button", "remove-param-button");
-      removeButton.textContent = "×";
-      removeButton.title = "Remove parameter";
-      removeButton.addEventListener("click", () => {
-        layer.remove_custom_parameter(key);
-        this.showLayerPanel(this.currentLayerNodeId);
-        Tracker.trackEvent("layer", "remove-custom-parameter", {
-          nodeId: this.currentLayerNodeId, 
-          parameter: key
-        });
-      });
-      paramContainer.appendChild(removeButton);
+  //     const removeButton = DomUtils.createElementWithClass("button", "remove-param-button");
+  //     removeButton.textContent = "×";
+  //     removeButton.title = "Remove parameter";
+  //     removeButton.addEventListener("click", () => {
+  //       layer.remove_custom_parameter(key);
+  //       this.showLayerPanel(this.currentLayerNodeId);
+  //       Tracker.trackEvent("layer", "remove-custom-parameter", {
+  //         nodeId: this.currentLayerNodeId, 
+  //         parameter: key
+  //       });
+  //     });
+  //     paramContainer.appendChild(removeButton);
 
-    } else if (
-      paramDef &&
-      paramDef.type === "enum" &&
-      paramDef.enum_values &&
-      paramDef.enum_values.length > 0
-    ) {
-      input = document.createElement("select");
-      input.id = `param-${key}-${this.currentLayerNodeId}`;
+  //   } else if (
+  //     paramDef &&
+  //     paramDef.type === "enum" &&
+  //     paramDef.enum_values &&
+  //     paramDef.enum_values.length > 0
+  //   ) {
+  //     input = document.createElement("select");
+  //     input.id = `param-${key}-${this.currentLayerNodeId}`;
 
-      paramDef.enum_values.forEach((enumValue) => {
-        const option = document.createElement("option");
-        option.value = enumValue;
-        option.textContent = this.formatEnumValue(enumValue);
-        if (value === enumValue) {
-          option.selected = true;
-        }
-        input.appendChild(option);
-      });
+  //     paramDef.enum_values.forEach((enumValue) => {
+  //       const option = document.createElement("option");
+  //       option.value = enumValue;
+  //       option.textContent = this.formatEnumValue(enumValue);
+  //       if (value === enumValue) {
+  //         option.selected = true;
+  //       }
+  //       input.appendChild(option);
+  //     });
 
-      input.addEventListener("change", (e) => {
-        Tracker.trackEvent("layer", "update-parameter", {nodeId: this.currentLayerNodeId, layerType: layer.type, parameter: key, value: e.target.value});
-        const newValue = e.target.value;
-        if (layer.getParameters()[key] !== newValue) {
-          layer.updateParameter(key, newValue);
+  //     input.addEventListener("change", (e) => {
+  //       Tracker.trackEvent("layer", "update-parameter", {nodeId: this.currentLayerNodeId, layerType: layer.type, parameter: key, value: e.target.value});
+  //       const newValue = e.target.value;
+  //       if (layer.getParameters()[key] !== newValue) {
+  //         layer.updateParameter(key, newValue);
 
-          if (this.currentLayerNodeId) {
-            this.showLayerPanel(this.currentLayerNodeId);
-          }
-        }
-      });
-    } else {
-      input = document.createElement("input");
-      input.id = `param-${key}-${this.currentLayerNodeId}`;
+  //         if (this.currentLayerNodeId) {
+  //           this.showLayerPanel(this.currentLayerNodeId);
+  //         }
+  //       }
+  //     });
+  //   } else {
+  //     input = document.createElement("input");
+  //     input.id = `param-${key}-${this.currentLayerNodeId}`;
 
-      if (typeof value === "number") {
-        input.type = "number";
-        if (paramDef) {
-          if (paramDef.min !== undefined) input.min = paramDef.min;
-          if (paramDef.max !== undefined) input.max = paramDef.max;
-          if (paramDef.step !== undefined) input.step = paramDef.step;
-        }
-      } else {
-        input.type = "text";
-      }
+  //     if (typeof value === "number") {
+  //       input.type = "number";
+  //       if (paramDef) {
+  //         if (paramDef.min !== undefined) input.min = paramDef.min;
+  //         if (paramDef.max !== undefined) input.max = paramDef.max;
+  //         if (paramDef.step !== undefined) input.step = paramDef.step;
+  //       }
+  //     } else {
+  //       input.type = "text";
+  //     }
 
-      input.value = value;
+  //     input.value = value;
 
-      input.addEventListener("change", (e) => {
-        const newValue =
-          input.type === "number" ? parseFloat(e.target.value) : e.target.value;
-        Tracker.trackEvent("layer", "update-parameter", {nodeId: this.currentLayerNodeId, layerType: layer.type, parameter: key, value: newValue});
+  //     input.addEventListener("change", (e) => {
+  //       const newValue =
+  //         input.type === "number" ? parseFloat(e.target.value) : e.target.value;
+  //       Tracker.trackEvent("layer", "update-parameter", {nodeId: this.currentLayerNodeId, layerType: layer.type, parameter: key, value: newValue});
   
-        layer.updateParameter(key, newValue);
+  //       layer.updateParameter(key, newValue);
 
-        if (this.currentLayerNodeId) {
-          this.showLayerPanel(this.currentLayerNodeId);
-        }
-      });
-    }
+  //       if (this.currentLayerNodeId) {
+  //         this.showLayerPanel(this.currentLayerNodeId);
+  //       }
+  //     });
+  //   }
 
-    paramContainer.appendChild(label);
-    paramContainer.appendChild(input);
+  //   paramContainer.appendChild(label);
+  //   paramContainer.appendChild(input);
 
-    if (layer.type === "CustomLayer" && typeof value === 'object' && value.description) {
-      const helpText = DomUtils.createElementWithClass("div", "param-help");
-      helpText.textContent = value.description;
-      paramContainer.appendChild(helpText);
-    } else if (paramDef && paramDef.description) {
-      const helpText = DomUtils.createElementWithClass("div", "param-help");
-      helpText.textContent = paramDef.description;
-      paramContainer.appendChild(helpText);
-    }
+  //   if (layer.type === "CustomLayer" && typeof value === 'object' && value.description) {
+  //     const helpText = DomUtils.createElementWithClass("div", "param-help");
+  //     helpText.textContent = value.description;
+  //     paramContainer.appendChild(helpText);
+  //   } else if (paramDef && paramDef.description) {
+  //     const helpText = DomUtils.createElementWithClass("div", "param-help");
+  //     helpText.textContent = paramDef.description;
+  //     paramContainer.appendChild(helpText);
+  //   }
 
-    return paramContainer;
-  }
+  //   return paramContainer;
+  // }
 }
 
 export default LayerPanelManager;

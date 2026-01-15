@@ -23,16 +23,17 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.94895954"
-     inkscape:cx="196.53103"
-     inkscape:cy="61.646464"
+     inkscape:zoom="1.8159506"
+     inkscape:cx="113.01536"
+     inkscape:cy="116.71602"
      inkscape:window-width="1728"
-     inkscape:window-height="972"
+     inkscape:window-height="964"
      inkscape:window-x="0"
      inkscape:window-y="38"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
-     showgrid="false" />
+     showgrid="false"
+     inkscape:rotation="1" />
   <defs
      id="defs1">
     <inkscape:perspective
@@ -92,24 +93,24 @@
        x="47.325584"
        y="50.163548" />
     <path
-       style="fill:#cccccc;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-dasharray:2, 3;stroke-dashoffset:0;stroke-opacity:1"
-       d="M 89.647087,56.562121 63.236751,69.412452 M 89.382505,56.562123"
+       style="fill:#cccccc;stroke:#000000;stroke-width:1.00399;stroke-linecap:round;stroke-dasharray:2.00797, 3.01196;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 89.657632,56.57731 64.466497,70.157177 M 89.405264,56.577312"
        id="path18-3"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1.65863;stroke-dasharray:none"
-       d="M 64.027084,70.344718 V 95.945699"
+       d="M 65.614342,70.317013 V 95.917994"
        id="path2" />
     <rect
        style="fill:none;stroke:#000000;stroke-width:1.7;stroke-dasharray:none"
        id="rect2"
        width="26.538071"
        height="26.538071"
-       x="50.796627"
-       y="69.648308" />
+       x="52.762844"
+       y="69.620613" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1.65863;stroke-dasharray:none"
-       d="M 51.336643,82.773764 H 77.702847"
+       d="M 52.923901,82.746059 H 79.290105"
        id="path3" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1.7;stroke-dasharray:none"
@@ -136,8 +137,8 @@
        id="path18-3-0"
        sodipodi:nodetypes="cc" />
     <path
-       style="fill:#cccccc;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-dasharray:2, 3;stroke-dashoffset:0;stroke-opacity:1"
-       d="M 91.092515,94.800791 76.703417,84.332803"
+       style="fill:#cccccc;stroke:#000000;stroke-width:0.867965;stroke-linecap:round;stroke-dasharray:1.73593, 2.60389;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 90.413661,94.253699 79.573757,83.785395"
        id="path18-3-4"
        sodipodi:nodetypes="cc" />
   </g>

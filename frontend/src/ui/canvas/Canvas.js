@@ -10,7 +10,7 @@ import ConnectionVisualizer from "../connection/ConnectionVisualizer.js";
 import GroupManager from "./GroupManager.js";
 import DomUtils from "../../utils/DomUtils.js";
 import ConnectionModel from "../../models/ConnectionModel.js";
-
+import HistoryManager from "../../utils/HistoryManager.js";
 import ContextMenu from "./ContextMenu.js";
 /**
  * Manages the main drawing canvas, including layers, groups, panning, zoom, and user interactions.
@@ -21,6 +21,7 @@ class Canvas {
   constructor(canvasElement, layerPanel) {
     this.canvas = canvasElement;
     this.layerPanel = layerPanel;
+    this.canvas.canvasInstance = this;
 
     this.panX = 0;
     this.panY = 0;
@@ -55,7 +56,7 @@ class Canvas {
       this.layerManager,
       this,
     );
-   //this.contextMenu = new ContextMenu(this);
+   this.contextMenu = new ContextMenu(this);
 
     this.eventHandler = new CanvasEventHandler(
       this.canvas,
@@ -68,6 +69,8 @@ class Canvas {
       this.groupManager,
       this,
     );
+    this.historyManager = new HistoryManager();
+    setTimeout(() => this.saveState(), 0);
 
     this.eventHandler.initializeEventHandlers();
       // Create grid canvas
@@ -157,7 +160,7 @@ class Canvas {
         this.lastX = e.clientX;
         this.lastY = e.clientY; 
         this._panningStarted = false;
-        //this.contextMenu.hideContextMenu();
+        this.contextMenu.hideContextMenu();
         
       }
     });
@@ -451,7 +454,10 @@ class Canvas {
   }
 
   createGroup() {
-    return this.groupManager.createGroup();
+    this.groupManager.createGroup();
+    if (!this.isRestoringState) {
+       this.saveState();
+    }
   }
 
   getNetworkState() {
@@ -460,8 +466,8 @@ class Canvas {
         return {
           id: node.dataset.id,
           type: node.dataset.type,
-          x: parseInt(node.dataset.originalX),
-          y: parseInt(node.dataset.originalY),
+          x: parseInt(node.dataset.originalX) + 32,
+          y: parseInt(node.dataset.originalY) + 32,
           properties: this.getNodeProperties(node),
           groupId: node.dataset.groupId || null,
         };
@@ -549,9 +555,10 @@ class Canvas {
     if (!networkState || typeof networkState !== "object") {
       throw new Error("Invalid network state data");
     }
-    this.scale = 1.0;
-    this.panX = 0;
-    this.panY = 0;
+    this.isRestoringState = true
+    // this.scale = 1.0;
+    // this.panX = 0;
+    // this.panY = 0;
 
     try {
       this.clearNetwork();
@@ -612,6 +619,11 @@ class Canvas {
       console.error("Error loading network state:", error);
       throw error;
     }
+    finally {
+      setTimeout(() => {
+        this.isRestoringState = false;
+      }, 50);
+    }
   }
 
   clearNetwork() {
@@ -664,7 +676,6 @@ class Canvas {
   async createGroupFromData(groupData, idMapping) {
     try {
       this.selectionManager.clearSelection();
-
       const nodeIds = groupData.nodeIds || [];
       for (const oldId of nodeIds) {
         const newId = idMapping[oldId];
@@ -748,11 +759,30 @@ class Canvas {
       if (ConnectionVisualizer.getInstance) {
         ConnectionVisualizer.getInstance().updateAllConnections();
       }
-
       return null;
     } catch (error) {
       console.error("Error creating connection:", error);
       return null;
+    }
+  }
+
+  saveState() {
+    const currentState = this.getNetworkState();
+    const stateCopy = JSON.parse(JSON.stringify(currentState));
+    this.historyManager.push(stateCopy);
+  }
+
+  async undo() {
+    const state = this.historyManager.getPreviousState();
+    if (state) {
+      await this.loadNetworkState(state);
+    }
+  }
+
+  async redo() {
+    const state = this.historyManager.getNextState();
+    if (state) {
+      await this.loadNetworkState(state);
     }
   }
 }

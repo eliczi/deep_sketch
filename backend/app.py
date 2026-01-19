@@ -91,6 +91,7 @@ def get_class_info(cls):
                             "is_basic": False 
                         }
                         
+                        
                         if cls == ConvolutionalLayer and name in ['conv_type', 'filters', 'kernel_size', 'stride', 'in_channels']:
                             param_info["is_basic"] = True
                         elif cls == PoolingLayer and name in ['pooling_type', 'pool_dimension', 'pool_size', 'kernel_size']:
@@ -319,5 +320,4 @@ def find_network_by_id(id) -> NeuralNetwork:
     return None
         
 if __name__ == '__main__':
-    print("Starting Flask server on https://msc-project-8fbo.onrender.com")
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=50001)

@@ -54,6 +54,7 @@ class PreviewManager {
       height: `${size}px`,
       transform: `scale(${scale})`,
       transformOrigin: "center center",
+      zIndex: 100,
     });
   }
 

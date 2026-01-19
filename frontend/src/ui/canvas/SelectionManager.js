@@ -7,6 +7,7 @@ class SelectionManager {
     this.selectionEnd = { x: 0, y: 0 };
     this.selectionElement = null;
     this.selectedNodeIds = new Set();
+    this.selectedGroupIds = new Set();
   }
 
   startSelection(position) {
@@ -86,6 +87,29 @@ class SelectionManager {
         this.addNodeToSelection(node.dataset.id);
       }
     });
+    const groups = this.canvas.querySelectorAll(".layer-group");
+    groups.forEach((group) => {
+      const groupRect = this.getScaledNodeRect(group, scale);
+      if (this.rectContains(selectionRect, groupRect)) {
+        this.addGroupToSelection(group.dataset.id);
+      }
+    });
+  }
+  rectContains(outer, inner) {
+    return (
+      outer.left <= inner.left &&
+      outer.right >= inner.right &&
+      outer.top <= inner.top &&
+      outer.bottom >= inner.bottom
+    );
+  }
+
+  addGroupToSelection(groupId) {
+    this.selectedGroupIds.add(groupId);
+    const group = document.querySelector(`.layer-group[data-id="${groupId}"]`);
+    if (group) {
+      group.classList.add("selected-group");
+    }
   }
 
   getScaledNodeRect(node, scale) {
@@ -118,8 +142,12 @@ class SelectionManager {
   addNodeToSelection(nodeId) {
     this.selectedNodeIds.add(nodeId);
     const node = document.querySelector(`.layer-node[data-id="${nodeId}"]`);
+    const attachedNode = document.querySelector((`.layer-node[data-attached-to="${nodeId}"]`))
     if (node) {
       node.classList.add("selected");
+      if(attachedNode){
+        attachedNode.classList.add("selected")
+      }
     } else {
       console.warn(`Node ${nodeId} not found in DOM when trying to select`);
     }
@@ -128,11 +156,24 @@ class SelectionManager {
   clearSelection() {
     this.selectedNodeIds.forEach((nodeId) => {
       const node = document.querySelector(`.layer-node[data-id="${nodeId}"]`);
+      const attachedNode = document.querySelector((`.layer-node[data-attached-to="${nodeId}"]`))
       if (node) {
         node.classList.remove("selected");
+        if(attachedNode)
+        {
+          attachedNode.classList.remove("selected")
+        }
       }
     });
     this.selectedNodeIds.clear();
+
+    this.selectedGroupIds.forEach((groupId) => {
+      const group = document.querySelector(`.layer-group[data-id="${groupId}"]`);
+      if (group) {
+        group.classList.remove("selected-group");
+      }
+    });
+    this.selectedGroupIds.clear();
   }
 
   selectNode(nodeId) {
@@ -141,7 +182,7 @@ class SelectionManager {
   }
 
   hasSelectedNodes() {
-    return this.selectedNodeIds.size > 0;
+    return this.selectedNodeIds.size > 0 || this.selectedGroupIds.size > 0;
   }
 
   getSelectedNodeIds() {
@@ -154,14 +195,12 @@ class SelectionManager {
 
   toggleNodeSelection(nodeId) {
     if (this.selectedNodeIds.has(nodeId)) {
-      // Remove from selection
       this.selectedNodeIds.delete(nodeId);
       const node = document.querySelector(`.layer-node[data-id="${nodeId}"]`);
       if (node) {
         node.classList.remove("selected");
       }
     } else {
-      // Add to selection
       this.addNodeToSelection(nodeId);
     }
   }

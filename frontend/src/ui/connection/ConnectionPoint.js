@@ -182,6 +182,7 @@ class ConnectionPoint {
       this.activeLine = null;
       this.activePath = null;
     }
+
   }
 
   onHover(e) {

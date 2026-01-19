@@ -5,8 +5,11 @@ import LayerModel from "../models/LayerModel.js";
 import ConnectionVisualizer from "./connection/ConnectionVisualizer.js";
 import SVGGenerator from "./SVGGenerator.js";
 import GroupManager from "./canvas/GroupManager.js";
-import Tracker from "../utils/Tracker.js";  
+import Tracker from "../utils/Tracker.js";
 class LayerFactory {
+  constructor(parent) {
+    this.parent = parent;
+  }
   static createNodeElement(
     nodeId,
     type,
@@ -16,7 +19,7 @@ class LayerFactory {
     layerTypeDef,
     scale,
     panX,
-    panY,
+    panY
   ) {
     const node = DomUtils.createElementWithClass("div", "layer-node");
     node.classList.add(type.toLowerCase().replace("layer", "-layer"));
@@ -54,7 +57,7 @@ class LayerFactory {
     node.innerHTML = "";
     const svgContainer = DomUtils.createElementWithClass(
       "div",
-      "node-svg-container",
+      "node-svg-container"
     );
     if (layerTypeDef.name === "ConvolutionalLayer") {
       const svgRepresentation =
@@ -110,7 +113,7 @@ class LayerFactory {
       const poolingType = node.dataset.poolingType || "MAX";
       const textElement = document.createElementNS(
         "http://www.w3.org/2000/svg",
-        "text",
+        "text"
       );
       textElement.setAttribute("x", 17);
       textElement.setAttribute("y", 16);
@@ -172,6 +175,7 @@ class LayerFactory {
     let isDragging = false;
     let offsetX, offsetY;
     let selectedNodesInfo = [];
+    let selectedElementsInfo = [];
     const visualizer = ConnectionVisualizer.getInstance();
 
     element.addEventListener("mousedown", startDrag);
@@ -188,25 +192,19 @@ class LayerFactory {
       const panX =
         canvasInstance?.panX ||
         parseFloat(
-          document.querySelector(".panx-indicator")?.textContent || 100,
+          document.querySelector(".panx-indicator")?.textContent || 100
         );
       const panY =
         canvasInstance?.panY ||
         parseFloat(
-          document.querySelector(".pany-indicator")?.textContent || 100,
+          document.querySelector(".pany-indicator")?.textContent || 100
         );
 
       return { canvasRect, scale, panX, panY };
     }
 
-    function calculateWorldCoordinates(
-      clientX,
-      clientY,
-      canvasRect,
-      scale,
-      panX,
-      panY,
-    ) {
+    function calculateWorldCoordinates(clientX, clientY, canvasRect, scale, panX, panY) 
+    {
       return {
         x: (clientX - canvasRect.left - panX) / scale,
         y: (clientY - canvasRect.top - panY) / scale,
@@ -223,14 +221,9 @@ class LayerFactory {
       node.dataset.originalY = top;
     }
 
-    function updateAttachedFunctionLayers(
-      element,
-      transformedX,
-      transformedY,
-      scale,
-    ) {
+    function updateAttachedFunctionLayers(element, transformedX, transformedY, scale) {
       const attachedFunctionLayers = document.querySelectorAll(
-        `.layer-node[data-attached-to="${element.dataset.id}"]`,
+        `.layer-node[data-attached-to="${element.dataset.id}"]`
       );
       attachedFunctionLayers.forEach((functionLayer) => {
         let functionLeft, functionTop;
@@ -258,30 +251,27 @@ class LayerFactory {
       const { canvasRect, scale, panX, panY } = getCanvasInfo(canvas);
 
       if (element.dataset.groupId) {
-        // For grouped nodes, calculate offset relative to the group
         const group = element.closest(".layer-group");
         if (group) {
           const groupLeft = parseFloat(group.style.left) || 0;
           const groupTop = parseFloat(group.style.top) || 0;
           const elementLeft = parseFloat(element.style.left) || 0;
           const elementTop = parseFloat(element.style.top) || 0;
-          
-          // Calculate where the mouse is relative to the element within the group
+
           const mouseX = e.clientX - canvasRect.left - groupLeft;
           const mouseY = e.clientY - canvasRect.top - groupTop;
-          
+
           offsetX = mouseX / scale - elementLeft;
           offsetY = mouseY / scale - elementTop;
         }
       } else {
-        // For non-grouped nodes, use the existing logic
         const worldCoords = calculateWorldCoordinates(
           e.clientX,
           e.clientY,
           canvasRect,
           scale,
           panX,
-          panY,
+          panY
         );
         const currentLeft = parseFloat(element.style.left) || 0;
         const currentTop = parseFloat(element.style.top) || 0;
@@ -293,12 +283,13 @@ class LayerFactory {
       e.stopPropagation();
 
       if (element.classList.contains("selected")) {
-        selectedNodesInfo = Array.from(
-          document.querySelectorAll(".layer-node.selected"),
-        )
+        const selectedNodes = Array.from(document.querySelectorAll(".layer-node.selected")).filter((node) => !node.dataset.groupId);
+
+        selectedElementsInfo = selectedNodes
           .filter((node) => node !== element)
           .map((node) => ({
-            node,
+            element: node,
+            isGroup: false,
             offsetLeft:
               (parseFloat(node.dataset.originalX) || 0) -
               (parseFloat(element.dataset.originalX) || 0),
@@ -306,8 +297,22 @@ class LayerFactory {
               (parseFloat(node.dataset.originalY) || 0) -
               (parseFloat(element.dataset.originalY) || 0),
           }));
+
+        const selectedGroups = Array.from(document.querySelectorAll(".layer-group.selected-group"));
+        selectedGroups.forEach((group) => {
+          selectedElementsInfo.push({
+            element: group,
+            isGroup: true,
+            offsetLeft:
+              (parseFloat(group.dataset.originalX) || 0) -
+              (parseFloat(element.dataset.originalX) || 0),
+            offsetTop:
+              (parseFloat(group.dataset.originalY) || 0) -
+              (parseFloat(element.dataset.originalY) || 0),
+          });
+        });
       } else {
-        selectedNodesInfo = [];
+        selectedElementsInfo = [];
       }
 
       document.addEventListener("mousemove", drag);
@@ -327,15 +332,13 @@ class LayerFactory {
         if (group) {
           const groupLeft = parseFloat(group.style.left) || 0;
           const groupTop = parseFloat(group.style.top) || 0;
-          
-          // Calculate mouse position relative to the group
+
           const mouseX = e.clientX - canvasRect.left - groupLeft;
           const mouseY = e.clientY - canvasRect.top - groupTop;
-          
-          // Apply the offset to maintain the click position
+
           left = mouseX / scale - offsetX;
           top = mouseY / scale - offsetY;
-          
+
           if (left < 0) {
             left = 0;
           }
@@ -355,14 +358,7 @@ class LayerFactory {
           element.dataset.originalY = top;
         }
       } else {
-        const worldCoords = calculateWorldCoordinates(
-          e.clientX,
-          e.clientY,
-          canvasRect,
-          scale,
-          panX,
-          panY,
-        );
+        const worldCoords = calculateWorldCoordinates(e.clientX,e.clientY,canvasRect,scale,panX,panY);
         left = worldCoords.x - offsetX;
         top = worldCoords.y - offsetY;
         updateNodePosition(element, left, top, scale, panX, panY);
@@ -376,27 +372,42 @@ class LayerFactory {
           element,
           left * scale + panX,
           top * scale + panY,
-          scale,
+          scale
         );
       }
 
-      selectedNodesInfo.forEach((nodeData) => {
-        const newLeft = left + nodeData.offsetLeft;
-        const newTop = top + nodeData.offsetTop;
-        updateNodePosition(nodeData.node, newLeft, newTop, scale, panX, panY);
-        visualizer.updateConnectionsForNode(nodeData.node.dataset.id);
+      selectedElementsInfo.forEach((item) => {
+        const newLeft = left + item.offsetLeft;
+        const newTop = top + item.offsetTop;
+
+        updateNodePosition(item.element, newLeft, newTop, scale, panX, panY);
+
+        if (item.isGroup) {
+          GroupManager.updateGroupConnections(item.element.dataset.id);
+        } else {
+          visualizer.updateConnectionsForNode(item.element.dataset.id);
+        }
       });
 
       visualizer.updateConnectionsForNode(element.dataset.id);
     }
 
     function stopDrag() {
-      Tracker.trackEvent("layer", "update-node-position", {nodeId: element.dataset.id,layerType: element.dataset.type, left: element.dataset.originalX, top: element.dataset.originalY});
+      Tracker.trackEvent("layer", "update-node-position", {
+        nodeId: element.dataset.id,
+        layerType: element.dataset.type,
+        left: element.dataset.originalX,
+        top: element.dataset.originalY,
+      });
 
       isDragging = false;
       selectedNodesInfo = [];
       document.removeEventListener("mousemove", drag);
       document.removeEventListener("mouseup", stopDrag);
+      const canvas = element.closest(".drawing-area");
+      if (canvas && canvas.canvasInstance) {
+        canvas.canvasInstance.saveState();
+      }
     }
   }
 
@@ -418,7 +429,7 @@ class LayerFactory {
         if (!textElement) {
           textElement = document.createElementNS(
             "http://www.w3.org/2000/svg",
-            "text",
+            "text"
           );
           textElement.setAttribute("x", svgElement.getAttribute("width") / 2);
           textElement.setAttribute("y", svgElement.getAttribute("height") / 2);

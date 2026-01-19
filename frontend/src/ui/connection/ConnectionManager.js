@@ -178,6 +178,7 @@ export class ConnectionManager {
     });
 
     this.drawer.updateConnectionWidths(currentScale);
+    
   }
 
   removeConnectionsForNode(nodeId) {
@@ -203,4 +204,5 @@ export class ConnectionManager {
       }
     });
   }
+
 }

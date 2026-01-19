@@ -348,6 +348,7 @@ class GroupManager {
 
         document.addEventListener("mousemove", moveHandler);
         document.addEventListener("mouseup", upHandler);
+   
       }
     });
   }
@@ -818,6 +819,7 @@ class GroupManager {
       );
       NetworkModel.addConnection(connection);
     }
+
   }
 
   addNodeToGroup(groupId, node) {

@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
-   sodipodi:docname="recurrent_layer.svg"
+   sodipodi:docname="convolutional.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,11 +23,11 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="2.1788253"
-     inkscape:cx="74.122509"
-     inkscape:cy="61.50103"
+     inkscape:zoom="1.7776338"
+     inkscape:cx="113.91548"
+     inkscape:cy="97.882929"
      inkscape:window-width="1728"
-     inkscape:window-height="973"
+     inkscape:window-height="979"
      inkscape:window-x="0"
      inkscape:window-y="38"
      inkscape:window-maximized="1"
@@ -35,6 +35,18 @@
      showgrid="false" />
   <defs
      id="defs1">
+    <rect
+       x="127.1353"
+       y="48.941464"
+       width="114.7593"
+       height="113.6342"
+       id="rect4" />
+    <rect
+       x="146.26185"
+       y="65.255286"
+       width="48.941464"
+       height="32.627643"
+       id="rect3" />
     <filter
        style="color-interpolation-filters:sRGB"
        inkscape:label="Drop Shadow"
@@ -85,45 +97,30 @@
        x="46.740036"
        y="51.795135" />
     <rect
-       style="fill:none;stroke:#000000;stroke-width:1.66904"
+       style="fill:none;stroke:#000000;stroke-width:2.06181"
        id="rect2"
-       width="14.250188"
-       height="14.100519"
-       x="54.829048"
-       y="91.899963" />
-    <rect
-       style="fill:none;stroke:#000000;stroke-width:1.66904"
-       id="rect2-6"
-       width="14.250188"
-       height="14.100519"
-       x="70.739807"
-       y="76.137306" />
-    <rect
-       style="fill:none;stroke:#000000;stroke-width:1.66904"
-       id="rect2-1"
-       width="14.250188"
-       height="14.100519"
-       x="86.664955"
-       y="60.374214" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.8;stroke-dasharray:none"
-       d="M 90.247631,56.243312 C 80.742517,50.844692 68.057379,62.932174 75.89474,72.679689 v 0 0"
-       id="path3"
-       sodipodi:nodetypes="cccc" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.8;stroke-dasharray:none"
-       d="M 70.634537,71.233857 C 60.428542,67.44314 52.329466,78.712319 60.166827,88.459834 v 0 0"
-       id="path3-9"
-       sodipodi:nodetypes="cccc" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.8;stroke-dasharray:none"
-       d="M 78.134952,67.749624 75.850819,72.669996 68.7222,70.699138"
-       id="path5"
-       sodipodi:nodetypes="ccc" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.8;stroke-dasharray:none"
-       d="m 63.171569,84.423965 -2.284133,4.920372 -6.298162,-1.029673"
-       id="path5-3"
-       sodipodi:nodetypes="ccc" />
+       width="22.938185"
+       height="22.93819"
+       x="55.624393"
+       y="60.232971" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,45.770035,50.825134)"
+       id="text2"
+       style="text-orientation:auto;stroke-width:7.55905512;stroke:#000000;fill:none;letter-spacing:1.8px;font-size:13.33333333px;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3)" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,45.770035,50.825134)"
+       id="text4"
+       style="text-orientation:auto;stroke-width:7.55905512;stroke:#000000;fill:none;letter-spacing:1.8px;font-size:13.33333333px;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect4)" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;text-align:start;letter-spacing:0.47625px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:none;stroke:#000000;stroke-width:2"
+       x="93.250053"
+       y="74.937241"
+       id="text5"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         style="stroke-width:2"></tspan></text>
   </g>
 </svg>

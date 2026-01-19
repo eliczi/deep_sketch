@@ -43,10 +43,6 @@ class UIManager {
 
   handleGroupButtonClick() {
     const group = this.canvas.createGroup();
-
-    if (!group) {
-      alert("Please select at least two nodes to create a group.");
-    }
   }
 
   handleSaveButtonClick() {

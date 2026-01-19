@@ -8,34 +8,39 @@ export class ConnectionDrawer {
   }
 
   createTemporaryLine(scale = 1.0) {
-    const line = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    
+    line.style.pointerEvents = "none"; 
+
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("stroke", "#000000");
     path.setAttribute("stroke-width", `${this.baseStrokeWidth * scale}`);
     path.setAttribute("stroke-dasharray", "5,3");
     path.setAttribute("fill", "none");
     path.dataset.baseWidth = this.baseStrokeWidth;
+    
     line.appendChild(path);
     this.svgContainer.appendChild(line);
+    
     return { line, path };
   }
 
-  updateTemporaryLine(path,startX,startY,cursorX,cursorY,connectionPointType,) 
-  {
+  updateTemporaryLine(path, startX, startY, cursorX, cursorY, connectionPointType) {
     const containerRect = this.svgContainer.getBoundingClientRect();
     const adjustedCursorX = cursorX - containerRect.left;
     const adjustedCursorY = cursorY - containerRect.top;
 
     let pathData;
     const offset = Math.abs(adjustedCursorY - startY) / 2;
+    
     if (connectionPointType === "output") {
       pathData = `M ${startX} ${startY} C ${startX + offset} ${startY}, ${startX + offset} ${adjustedCursorY}, ${adjustedCursorX} ${adjustedCursorY}`;
     } else {
       pathData = `M ${startX} ${startY} C ${startX - offset} ${startY}, ${startX - offset} ${adjustedCursorY}, ${adjustedCursorX} ${adjustedCursorY}`;
     }
-    path.setAttribute("d", pathData);
     
-    // Get current scale and add arrowhead
+    path.setAttribute("d", pathData);
+
     const currentScale = DomUtils.getScale();
     this.addArrowhead(path, adjustedCursorX, adjustedCursorY, connectionPointType, currentScale);
   }
@@ -47,45 +52,41 @@ export class ConnectionDrawer {
       existingArrowhead.remove();
     }
 
-    // Calculate arrow direction based on connection type
-    const arrowLength = 12 * scale; // Scale the arrow length
-    const arrowAngle = Math.PI / 6; // 30 degrees
+    const arrowLength = 12 * scale; 
+    const arrowAngle = Math.PI / 6; 
     
-    // Calculate the direction vector (simplified - you might want to calculate actual tangent)
-    let directionX, directionY;
+    let directionX;
     if (connectionPointType === "output") {
-      directionX = 1; // Pointing right
-      directionY = 0;
+      directionX = 1; 
     } else {
-      directionX = -1; // Pointing left
-      directionY = 0;
+      directionX = -1;
     }
 
-    // Calculate arrow points
     const arrowTipX = endX;
     const arrowTipY = endY;
     
     const arrowBase1X = endX - directionX * arrowLength * Math.cos(arrowAngle);
-    const arrowBase1Y = endY - directionY * arrowLength * Math.cos(arrowAngle) - arrowLength * Math.sin(arrowAngle);
+    const arrowBase1Y = endY - arrowLength * Math.sin(arrowAngle); // Simplified vertical math for straight entry
     
     const arrowBase2X = endX - directionX * arrowLength * Math.cos(arrowAngle);
-    const arrowBase2Y = endY - directionY * arrowLength * Math.cos(arrowAngle) + arrowLength * Math.sin(arrowAngle);
+    const arrowBase2Y = endY + arrowLength * Math.sin(arrowAngle);
 
-    // Create arrowhead path
+    // More precise rotated calculation if needed (matches your original logic):
+    // const arrowBase1Y = endY - (0) * arrowLength * Math.cos(arrowAngle) - arrowLength * Math.sin(arrowAngle);
+    // const arrowBase2Y = endY - (0) * arrowLength * Math.cos(arrowAngle) + arrowLength * Math.sin(arrowAngle);
+
     const arrowheadPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
     arrowheadPath.setAttribute("d", `M ${arrowTipX} ${arrowTipY} L ${arrowBase1X} ${arrowBase1Y} L ${arrowBase2X} ${arrowBase2Y} Z`);
-    arrowheadPath.setAttribute("fill", "#666");
-    arrowheadPath.setAttribute("stroke", "#666");
-    arrowheadPath.setAttribute("stroke-width", `${1 * scale}`); // Scale the stroke width
+    arrowheadPath.setAttribute("fill", "#000000ff");
+    arrowheadPath.setAttribute("stroke", "#000000ff");
+    arrowheadPath.setAttribute("stroke-width", `${1 * scale}`);
     arrowheadPath.classList.add("temp-arrowhead");
     
-    // Add arrowhead to the same container as the path
     path.parentNode.appendChild(arrowheadPath);
   }
 
   removeTemporaryLine(line) {
     if (line && line.parentNode) {
-      // Remove the temporary arrowhead if it exists
       const arrowhead = line.parentNode.querySelector('.temp-arrowhead');
       if (arrowhead) {
         arrowhead.remove();
@@ -95,38 +96,35 @@ export class ConnectionDrawer {
   }
 
   createPermanentConnection(sourceId, targetId, clickHandler) {
-    const connectionElement = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "svg",
-    );
-    connectionElement.classList.add("permanent-connection");
-    connectionElement.dataset.sourceId = sourceId;
-    connectionElement.dataset.targetId = targetId;
-
-    const currentScale = DomUtils.getScale();
-
-    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute("stroke", "#000000");
-    path.setAttribute("stroke-width", `${this.baseStrokeWidth * currentScale}`);
-    path.setAttribute("stroke-dasharray", "5,3");
-    path.setAttribute("fill", "none");
-
-    path.dataset.baseWidth = this.baseStrokeWidth;
-    path.dataset.baseHoverWidth = this.baseHoverStrokeWidth;
-    path.dataset.isHovered = "false";
-
-    this.setupPathInteractivity(
-      path,
-      sourceId,
-      targetId,
-      clickHandler,
-      currentScale,
-    );
-
-    connectionElement.appendChild(path);
-    this.svgContainer.appendChild(connectionElement);
-
-    return connectionElement;
+      const connectionElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      connectionElement.classList.add("permanent-connection");
+      connectionElement.dataset.sourceId = sourceId;
+      connectionElement.dataset.targetId = targetId;
+  
+      const currentScale = DomUtils.getScale();
+  
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("stroke", "#000000");
+      path.setAttribute("stroke-width", `${this.baseStrokeWidth * currentScale}`);
+      path.setAttribute("stroke-dasharray", "5,3");
+      path.setAttribute("fill", "none");
+      path.dataset.baseWidth = this.baseStrokeWidth;
+      path.dataset.baseHoverWidth = this.baseHoverStrokeWidth;
+      path.dataset.isHovered = "false";
+  
+      this.setupPathInteractivity(path, sourceId, targetId, clickHandler, currentScale);
+  
+      const arrowPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      arrowPath.classList.add("permanent-arrowhead");
+      arrowPath.setAttribute("fill", "#000000ff");
+      arrowPath.setAttribute("stroke", "#000000ff");
+      arrowPath.setAttribute("stroke-width", `${1 * currentScale}`);
+  
+      connectionElement.appendChild(path);
+      connectionElement.appendChild(arrowPath);
+      this.svgContainer.appendChild(connectionElement);
+  
+      return connectionElement;
   }
 
   setupPathInteractivity(path, sourceId, targetId, clickHandler, scale) {
@@ -136,10 +134,7 @@ export class ConnectionDrawer {
     if (!path.hasAttribute("data-hover-added")) {
       path.addEventListener("mouseenter", () => {
         path.dataset.isHovered = "true";
-        path.setAttribute(
-          "stroke-width",
-          `${this.baseHoverStrokeWidth * scale}`,
-        );
+        path.setAttribute("stroke-width", `${this.baseHoverStrokeWidth * scale}`);
       });
 
       path.addEventListener("mouseleave", () => {
@@ -151,19 +146,13 @@ export class ConnectionDrawer {
 
       path.addEventListener("click", (e) => {
         e.stopPropagation();
-        console.log('click')
-        if(path.dataset.isClicked === 'true') {
+        if (path.dataset.isClicked === 'true') {
           path.setAttribute("stroke-width", `${this.baseStrokeWidth * scale}`);
-          this.pathClicked = false;
           path.dataset.isClicked = "false";
-        } else {  
+        } else {
           path.setAttribute("stroke-width", `${this.baseHoverStrokeWidth * scale}`);
-          this.pathClicked = true;
           path.dataset.isClicked = "true";
         }
-        console.log(path.dataset.isClicked)
-
-        //clickHandler(sourceId, targetId, e);
       });
 
       path.setAttribute("data-hover-added", "true");
@@ -171,18 +160,36 @@ export class ConnectionDrawer {
   }
 
   updateConnectionPath(connectionElement, sourcePath, targetPath) {
-    const path = connectionElement.querySelector("path");
+    const path = connectionElement.querySelector("path:not(.permanent-arrowhead)");
+    const arrowPath = connectionElement.querySelector(".permanent-arrowhead");
     if (!path) return;
 
     const currentScale = DomUtils.getScale();
     path.setAttribute("d", sourcePath);
 
-    const baseWidth = parseFloat(
-      path.dataset.baseWidth || this.baseStrokeWidth,
-    );
-    const baseHoverWidth = parseFloat(
-      path.dataset.baseHoverWidth || this.baseHoverStrokeWidth,
-    );
+    // Update arrowhead geometry from path data
+    const coordinates = sourcePath.trim().split(/[\s,]+/);
+    const endY = parseFloat(coordinates[coordinates.length - 1]);
+    const endX = parseFloat(coordinates[coordinates.length - 2]);
+
+    if (arrowPath && !isNaN(endX) && !isNaN(endY)) {
+      const arrowLength = 12 * currentScale;
+      const arrowAngle = Math.PI / 6;
+      const directionX = 1; 
+
+      const arrowBase1X = endX - directionX * arrowLength * Math.cos(arrowAngle);
+      const arrowBase1Y = endY - arrowLength * Math.sin(arrowAngle);
+      const arrowBase2X = endX - directionX * arrowLength * Math.cos(arrowAngle);
+      const arrowBase2Y = endY + arrowLength * Math.sin(arrowAngle);
+
+      const d = `M ${endX} ${endY} L ${arrowBase1X} ${arrowBase1Y} L ${arrowBase2X} ${arrowBase2Y} Z`;
+      arrowPath.setAttribute("d", d);
+      arrowPath.setAttribute("stroke-width", `${1 * currentScale}`);
+    }
+
+    // Width update
+    const baseWidth = parseFloat(path.dataset.baseWidth || this.baseStrokeWidth);
+    const baseHoverWidth = parseFloat(path.dataset.baseHoverWidth || this.baseHoverStrokeWidth);
     const isHovered = path.dataset.isHovered === "true";
 
     if (isHovered) {
@@ -193,14 +200,10 @@ export class ConnectionDrawer {
   }
 
   updateConnectionWidths(scale) {
-    const connections = document.querySelectorAll(".permanent-connection path");
+    const connections = document.querySelectorAll(".permanent-connection path:not(.permanent-arrowhead)");
     connections.forEach((path) => {
-      const baseWidth = parseFloat(
-        path.dataset.baseWidth || this.baseStrokeWidth,
-      );
-      const baseHoverWidth = parseFloat(
-        path.dataset.baseHoverWidth || this.baseHoverStrokeWidth,
-      );
+      const baseWidth = parseFloat(path.dataset.baseWidth || this.baseStrokeWidth);
+      const baseHoverWidth = parseFloat(path.dataset.baseHoverWidth || this.baseHoverStrokeWidth);
       const isHovered = path.dataset.isHovered === "true";
 
       if (isHovered) {
@@ -208,6 +211,11 @@ export class ConnectionDrawer {
       } else {
         path.setAttribute("stroke-width", `${baseWidth * scale}`);
       }
+    });
+
+    const arrowheads = document.querySelectorAll(".permanent-arrowhead");
+    arrowheads.forEach(arrow => {
+       arrow.setAttribute("stroke-width", `${1 * scale}`);
     });
   }
 }
